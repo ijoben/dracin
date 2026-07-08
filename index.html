@@ -753,4 +753,1076 @@
                 <input type="text" id="regRef" placeholder="Masukkan kode referral">
             </div>
             <label for="authUsername">Username</label>
-            <input type="text" id="authUsername" placeholder="Masukkan username" value="
+            <input type="text" id="authUsername" placeholder="Masukkan username" value="admin">
+            <label for="authPassword">Password</label>
+            <input type="password" id="authPassword" placeholder="Masukkan password" value="admin123">
+            <button type="submit" class="btn-auth" id="authBtn"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            <div id="authError" class="auth-error"><i class="fas fa-exclamation-circle"></i> <span id="authErrorMsg">Error</span></div>
+        </form>
+        <div class="auth-switch">
+            <span id="authSwitchText">Belum punya akun?</span>
+            <a id="authSwitchLink" onclick="toggleAuth()">Daftar sekarang</a>
+        </div>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="dashboard">
+        <div class="dash-nav">
+            <div class="brand">DEXTER <span>| <span id="dashRole">Member</span></span></div>
+            <div class="user-info">
+                <div class="avatar"><i class="fas fa-user"></i></div>
+                <div>
+                    <div class="name" id="dashName">User</div>
+                    <div class="role" id="dashLevel">Level 1</div>
+                </div>
+                <button class="btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+            </div>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tabMember" onclick="switchTab('tabMember')"><i class="fas fa-home"></i> Dashboard</button>
+            <button class="tab-btn" data-tab="tabMissions" onclick="switchTab('tabMissions')"><i class="fas fa-film"></i> Short Dracin</button>
+            <button class="tab-btn" data-tab="tabReferral" onclick="switchTab('tabReferral')"><i class="fas fa-users"></i> Referral</button>
+            <button class="tab-btn" data-tab="tabReward" onclick="switchTab('tabReward')"><i class="fas fa-trophy"></i> Reward</button>
+            <button class="tab-btn" data-tab="tabDeposit" onclick="switchTab('tabDeposit')"><i class="fas fa-wallet"></i> Deposit</button>
+            <button class="tab-btn" data-tab="tabAdmin" id="adminTabBtn" onclick="switchTab('tabAdmin')" style="display:none;"><i class="fas fa-crown"></i> Admin</button>
+        </div>
+
+        <!-- ===== TAB: MEMBER ===== -->
+        <div id="tabMember" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="mTotalSaldo">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Bonus Nonton</div><div class="value" id="mBonusNonton">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Bonus Referral</div><div class="value" id="mBonusRef">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Bonus Rabat</div><div class="value purple" id="mBonusRabat">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Total Referral</div><div class="value" id="mTotalRef">0</div></div>
+                <div class="stat-card"><div class="label">Level</div><div class="value highlight" id="mLevel">1</div></div>
+                <div class="stat-card"><div class="label">Video Ditonton</div><div class="value green" id="mTotalWatch">0</div></div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-section">
+                <div class="header">
+                    <h4><i class="fas fa-film" style="color:#4ecdc4;"></i> Daftar Short Dracin</h4>
+                    <span class="badge-count"><i class="fas fa-video"></i> <span id="videoCount">0</span> video</span>
+                </div>
+                <div class="video-grid" id="videoGridDashboard">
+                    <!-- diisi JS -->
+                </div>
+            </div>
+
+            <!-- RABAT SECTION -->
+            <div class="rabat-section">
+                <h4><i class="fas fa-percent" style="color:#f5d742;"></i> Bonus Rabat</h4>
+                <div class="rabat-grid" id="rabatGrid">
+                    <div class="rabat-item"><div class="level">Level 1</div><div class="persen highlight">10%</div></div>
+                    <div class="rabat-item"><div class="level">Level 2</div><div class="persen">5%</div></div>
+                    <div class="rabat-item"><div class="level">Level 3</div><div class="persen">3%</div></div>
+                    <div class="rabat-item"><div class="level">Level 4</div><div class="persen">2%</div></div>
+                    <div class="rabat-item"><div class="level">Level 5</div><div class="persen">1%</div></div>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-history"></i> Riwayat</h4>
+                <table>
+                    <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Keterangan</th></tr></thead>
+                    <tbody id="historyTable">
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada riwayat</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== TAB: MISSIONS ===== -->
+        <div id="tabMissions" class="tab-content">
+            <div class="video-section">
+                <div class="header">
+                    <h4><i class="fas fa-film" style="color:#4ecdc4;"></i> Semua Short Dracin</h4>
+                    <span class="badge-count"><i class="fas fa-video"></i> <span id="videoCountFull">0</span> video</span>
+                </div>
+                <div class="video-grid" id="videoGridFull">
+                    <!-- diisi JS -->
+                </div>
+            </div>
+            
+            <div style="margin-top:16px; padding:16px; background:rgba(255,255,255,0.02); border-radius:14px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#8892b0; font-size:0.8rem; font-weight:400;"><i class="fas fa-info-circle"></i> Tonton video untuk dapat bonus. Setiap 1 tontonan = +1 progress misi harian!</h4>
+            </div>
+        </div>
+
+        <!-- ===== TAB: REFERRAL ===== -->
+        <div id="tabReferral" class="tab-content">
+            <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:16px;">
+                <div style="background:rgba(255,255,255,0.03); padding:10px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); flex:1;">
+                    <span style="color:#8892b0; font-size:0.8rem;">Kode Referral:</span>
+                    <span style="color:#f5d742; font-weight:700; font-size:1.1rem; margin-left:8px;" id="myRefCode">DEXTER001</span>
+                </div>
+                <button class="btn-success" onclick="copyRefCode()"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+            <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
+                <div class="stat-card"><div class="label">Total Referral</div><div class="value" id="rTotalRef">0</div></div>
+                <div class="stat-card"><div class="label">Bonus Referral</div><div class="value highlight" id="rBonusRef">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Komisi L1</div><div class="value green" id="rKomisiL1">Rp 0</div></div>
+            </div>
+            <div class="table-wrap">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-list"></i> Daftar Referral</h4>
+                <table>
+                    <thead><tr><th>Username</th><th>Level</th><th>Omset</th><th>Komisi</th></tr></thead>
+                    <tbody id="referralTable">
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada referral</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== TAB: REWARD ===== -->
+        <div id="tabReward" class="tab-content">
+            <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
+                <div class="stat-card"><div class="label">Level</div><div class="value highlight" id="rwLevel">1</div></div>
+                <div class="stat-card"><div class="label">Total Omset</div><div class="value" id="rwOmset">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Reward</div><div class="value green" id="rwReward">Rp 0</div></div>
+            </div>
+            <div class="table-wrap">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-trophy"></i> Level Reward</h4>
+                <table>
+                    <thead><tr><th>Level</th><th>Reward</th><th>Target Omset</th><th>Status</th></tr></thead>
+                    <tbody id="rewardTable"></tbody>
+                </table>
+            </div>
+            <div style="margin-top:16px; padding:16px; background:rgba(255,255,255,0.02); border-radius:14px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#f5d742; font-size:0.9rem;"><i class="fas fa-percent"></i> Bonus Rabat</h4>
+                <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:8px; text-align:center; color:#8892b0; font-size:0.8rem;">
+                    <div><span style="color:#fff;">L1</span> 10%</div>
+                    <div><span style="color:#fff;">L2</span> 5%</div>
+                    <div><span style="color:#fff;">L3</span> 3%</div>
+                    <div><span style="color:#fff;">L4</span> 2%</div>
+                    <div><span style="color:#fff;">L5</span> 1%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB: DEPOSIT ===== -->
+        <div id="tabDeposit" class="tab-content">
+            <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
+                <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="dSaldo">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Minimal WD</div><div class="value" style="color:#8892b0;">Rp 25.000</div></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div style="background:rgba(255,255,255,0.02); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.04);">
+                    <h4 style="color:#4ecdc4; font-size:0.95rem;"><i class="fas fa-arrow-down"></i> Deposit</h4>
+                    <div class="form-inline" style="flex-direction:column; align-items:stretch;">
+                        <input type="number" id="depositAmount" placeholder="Jumlah" value="10000">
+                        <button class="btn-success" onclick="doDeposit()"><i class="fas fa-check"></i> Deposit</button>
+                    </div>
+                    <div style="color:#475074; font-size:0.7rem; margin-top:8px;">Minimal: Rp 5.000</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.04);">
+                    <h4 style="color:#f5d742; font-size:0.95rem;"><i class="fas fa-arrow-up"></i> Withdraw</h4>
+                    <div class="form-inline" style="flex-direction:column; align-items:stretch;">
+                        <input type="number" id="wdAmount" placeholder="Jumlah" value="25000">
+                        <button class="btn-primary" onclick="doWithdraw()"><i class="fas fa-check"></i> Withdraw</button>
+                    </div>
+                    <div style="color:#475074; font-size:0.7rem; margin-top:8px;">Minimal: Rp 25.000 · Fee: Rp 1.000</div>
+                </div>
+            </div>
+            <div class="table-wrap" style="margin-top:16px;">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-clock"></i> Riwayat Transaksi</h4>
+                <table>
+                    <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Status</th></tr></thead>
+                    <tbody id="transactionTable">
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada transaksi</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== TAB: ADMIN ===== -->
+        <div id="tabAdmin" class="tab-content">
+            <h3 style="color:#f5d742; margin-bottom:16px; font-size:1.2rem;"><i class="fas fa-crown"></i> Admin Dashboard</h3>
+            <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
+                <div class="stat-card"><div class="label">Total Member</div><div class="value" id="aTotalMember">0</div></div>
+                <div class="stat-card"><div class="label">Total Omset</div><div class="value highlight" id="aTotalOmset">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Total Bonus</div><div class="value green" id="aTotalBonus">Rp 0</div></div>
+            </div>
+
+            <div class="admin-settings">
+                <div class="setting-group">
+                    <h4><i class="fas fa-video"></i> Kelola Video Short Dracin</h4>
+                    <div class="form-inline" style="flex-direction:column; align-items:stretch;">
+                        <input type="text" id="videoTitleInput" placeholder="Judul Video" value="Short Dracin - Episode 1">
+                        <input type="text" id="videoLinkInput" placeholder="Link YouTube Embed" value="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0">
+                        <input type="number" id="videoRewardInput" placeholder="Bonus per tontonan" value="100">
+                        <button class="btn-success" onclick="addVideo()"><i class="fas fa-plus"></i> Tambah Video</button>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <h5 style="color:#8892b0; font-size:0.8rem; margin-bottom:8px;">Daftar Video:</h5>
+                        <div class="video-list-admin" id="videoListAdmin">
+                            <!-- diisi JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4><i class="fas fa-sliders-h"></i> Pengaturan</h4>
+                    <div class="row"><span>Durasi Video (detik)</span><input type="number" id="videoDuration" value="180"></div>
+                    <div class="row"><span>Bonus Default</span><input type="number" id="bonusPerWatch" value="100"></div>
+                    <button class="btn-success" style="margin-top:12px; width:100%;" onclick="saveSettings()"><i class="fas fa-save"></i> Simpan</button>
+                </div>
+                <div class="setting-group">
+                    <h4><i class="fas fa-percent"></i> Bonus Referral</h4>
+                    <div class="row"><span>Level 1</span><input type="number" id="refL1" value="8"></div>
+                    <div class="row"><span>Level 2</span><input type="number" id="refL2" value="5"></div>
+                    <div class="row"><span>Level 3</span><input type="number" id="refL3" value="3"></div>
+                    <div class="row"><span>Level 4</span><input type="number" id="refL4" value="2"></div>
+                    <div class="row"><span>Level 5</span><input type="number" id="refL5" value="1"></div>
+                    <button class="btn-success" style="margin-top:12px; width:100%;" onclick="saveRefSettings()"><i class="fas fa-save"></i> Simpan</button>
+                </div>
+                <div class="setting-group">
+                    <h4><i class="fas fa-percent"></i> Bonus Rabat</h4>
+                    <div class="row"><span>Level 1</span><input type="number" id="rabatL1" value="10"></div>
+                    <div class="row"><span>Level 2</span><input type="number" id="rabatL2" value="5"></div>
+                    <div class="row"><span>Level 3</span><input type="number" id="rabatL3" value="3"></div>
+                    <div class="row"><span>Level 4</span><input type="number" id="rabatL4" value="2"></div>
+                    <div class="row"><span>Level 5</span><input type="number" id="rabatL5" value="1"></div>
+                    <button class="btn-success" style="margin-top:12px; width:100%;" onclick="saveRabatSettings()"><i class="fas fa-save"></i> Simpan</button>
+                </div>
+                <div class="setting-group">
+                    <h4><i class="fas fa-trophy"></i> Reward Level</h4>
+                    <div class="row"><span>Level 1</span><input type="number" id="rewardL1" value="25000"></div>
+                    <div class="row"><span>Level 2</span><input type="number" id="rewardL2" value="100000"></div>
+                    <div class="row"><span>Level 3</span><input type="number" id="rewardL3" value="500000"></div>
+                    <div class="row"><span>Level 4</span><input type="number" id="rewardL4" value="2500000"></div>
+                    <div class="row"><span>Level 5</span><input type="number" id="rewardL5" value="10000000"></div>
+                    <button class="btn-success" style="margin-top:12px; width:100%;" onclick="saveRewardSettings()"><i class="fas fa-save"></i> Simpan</button>
+                </div>
+            </div>
+
+            <div class="table-wrap" style="margin-top:16px;">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-users"></i> Data Member</h4>
+                <table>
+                    <thead><tr><th>Username</th><th>Level</th><th>Omset</th><th>Referral</th><th>Saldo</th></tr></thead>
+                    <tbody id="memberTable">
+                        <tr><td colspan="5" style="text-align:center; color:#475074; padding:20px;">Memuat data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-wrap" style="margin-top:16px;">
+                <h4 style="color:#f5d742; margin-bottom:8px; font-size:0.85rem;"><i class="fas fa-chart-bar"></i> Laporan</h4>
+                <table>
+                    <thead><tr><th>Periode</th><th>Referral</th><th>Rabat</th><th>Reward</th><th>Total</th></tr></thead>
+                    <tbody id="reportTable">
+                        <tr><td colspan="5" style="text-align:center; color:#475074; padding:20px;">Belum ada laporan</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================
+        // DATA STATE
+        // =========================================================
+        let currentUser = null;
+        let users = [];
+        let transactions = [];
+        let histories = [];
+        let referralData = [];
+        let videoList = [];
+        let videoIdCounter = 1;
+        
+        // Settings
+        let bonusPerWatch = 100;
+        let videoDuration = 180;
+        
+        // Rabat settings
+        let rabatSettings = { L1: 10, L2: 5, L3: 3, L4: 2, L5: 1 };
+        
+        let missions = [
+            { id: 1, title: 'Tonton 5 Video', desc: 'Tonton 5 short video', icon: '🎬', target: 5, reward: 1000 },
+            { id: 2, title: 'Tonton 15 Video', desc: 'Tonton 15 short video', icon: '📺', target: 15, reward: 3000 },
+            { id: 3, title: 'Tonton 30 Video', desc: 'Tonton 30 short video', icon: '🎥', target: 30, reward: 7000 },
+            { id: 4, title: 'Tonton 50 Video', desc: 'Tonton 50 short video', icon: '📱', target: 50, reward: 12000 },
+            { id: 5, title: 'Tonton 100 Video', desc: 'Tonton 100 short video', icon: '🔥', target: 100, reward: 25000 },
+        ];
+        
+        let rewardLevels = [
+            { level: 1, reward: 25000, omset: 50000 },
+            { level: 2, reward: 100000, omset: 200000 },
+            { level: 3, reward: 500000, omset: 1000000 },
+            { level: 4, reward: 2500000, omset: 5000000 },
+            { level: 5, reward: 10000000, omset: 20000000 },
+        ];
+        let refSettings = { L1: 8, L2: 5, L3: 3, L4: 2, L5: 1 };
+        let isAdmin = false;
+        let authMode = 'login';
+        let videoTimer = null;
+        let videoSeconds = 0;
+        let isWatching = false;
+        let currentVideoId = null;
+
+        // =========================================================
+        // TOAST
+        // =========================================================
+        function showToast(msg, icon = 'fa-check-circle') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.querySelector('i').className = 'fas ' + icon;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // =========================================================
+        // LANDING / AUTH
+        // =========================================================
+        function showAuth(mode) {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('authContainer').classList.add('active');
+            authMode = mode;
+            if (mode === 'login') {
+                document.getElementById('authTitle').textContent = 'DEXTER';
+                document.getElementById('authSubtitle').textContent = 'Masuk ke akun Anda';
+                document.getElementById('authBtn').innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+                document.getElementById('registerFields').style.display = 'none';
+                document.getElementById('authSwitchText').textContent = 'Belum punya akun?';
+                document.getElementById('authSwitchLink').textContent = 'Daftar sekarang';
+                document.getElementById('authError').style.display = 'none';
+            } else {
+                document.getElementById('authTitle').textContent = 'Daftar DEXTER';
+                document.getElementById('authSubtitle').textContent = 'Buat akun baru';
+                document.getElementById('authBtn').innerHTML = '<i class="fas fa-user-plus"></i> Daftar';
+                document.getElementById('registerFields').style.display = 'block';
+                document.getElementById('authSwitchText').textContent = 'Sudah punya akun?';
+                document.getElementById('authSwitchLink').textContent = 'Masuk sekarang';
+                document.getElementById('authError').style.display = 'none';
+            }
+        }
+
+        function toggleAuth() {
+            showAuth(authMode === 'login' ? 'register' : 'login');
+        }
+
+        // =========================================================
+        // AUTH HANDLER
+        // =========================================================
+        function handleAuth(e) {
+            e.preventDefault();
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+
+            if (!username || !password) {
+                showAuthError('Username dan password wajib diisi!');
+                return;
+            }
+
+            if (authMode === 'login') {
+                const user = users.find(u => u.username === username && u.password === password);
+                if (user) {
+                    loginUser(user);
+                } else {
+                    showAuthError('Username atau password salah!');
+                }
+            } else {
+                if (users.find(u => u.username === username)) {
+                    showAuthError('Username sudah terdaftar!');
+                    return;
+                }
+                const name = document.getElementById('regName').value.trim() || username;
+                const refCode = document.getElementById('regRef').value.trim();
+                const newUser = {
+                    username, password, name,
+                    level: 1, omset: 0, saldo: 0,
+                    bonusNonton: 0,
+                    bonusReferral: 0, bonusRabat: 0, bonusReward: 0,
+                    referralCount: 0, totalWatch: 0,
+                    refCode: 'DXT' + String(100 + users.length + 1).padStart(3, '0'),
+                    referredBy: refCode || null,
+                    isAdmin: users.length === 0,
+                    missionProgress: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+                    missionDone: { 1: false, 2: false, 3: false, 4: false, 5: false },
+                    watchedVideos: [],
+                    missionPoints: 0
+                };
+                users.push(newUser);
+                if (refCode) {
+                    referralData.push({ username, level: 1, omset: 0, referredBy: refCode });
+                }
+                showToast('Akun berhasil dibuat! Silakan login.', 'fa-user-plus');
+                showAuth('login');
+                document.getElementById('authUsername').value = username;
+                document.getElementById('authPassword').value = '';
+            }
+        }
+
+        function showAuthError(msg) {
+            document.getElementById('authErrorMsg').textContent = msg;
+            document.getElementById('authError').style.display = 'block';
+        }
+
+        // =========================================================
+        // LOGIN / LOGOUT
+        // =========================================================
+        function loginUser(user) {
+            currentUser = user;
+            document.getElementById('authContainer').classList.remove('active');
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('dashboard').classList.add('active');
+            isAdmin = user.isAdmin || false;
+
+            document.getElementById('adminTabBtn').style.display = isAdmin ? 'flex' : 'none';
+            document.getElementById('dashRole').textContent = isAdmin ? 'Admin' : 'Member';
+            document.getElementById('dashName').textContent = user.name || user.username;
+            document.getElementById('dashLevel').textContent = 'Level ' + user.level;
+            document.getElementById('myRefCode').textContent = user.refCode || 'DEXTER001';
+
+            calculateBonus();
+            showToast('Selamat datang, ' + (user.name || user.username) + '! 🚀');
+            updateAllTabs();
+            switchTab('tabMember');
+        }
+
+        function logout() {
+            if (isWatching) closeVideo();
+            currentUser = null;
+            document.getElementById('dashboard').classList.remove('active');
+            document.getElementById('landingPage').style.display = 'block';
+            showToast('Anda telah keluar.');
+        }
+
+        // =========================================================
+        // TAB SWITCHING
+        // =========================================================
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+            if (btn) btn.classList.add('active');
+            
+            const updates = {
+                tabAdmin: updateAdminTab,
+                tabReferral: updateReferralTab,
+                tabReward: updateRewardTab,
+                tabDeposit: updateDepositTab,
+                tabMember: updateMemberTab,
+                tabMissions: () => { renderVideos(true); }
+            };
+            if (updates[tabId]) updates[tabId]();
+        }
+
+        // =========================================================
+        // VIDEO MANAGEMENT
+        // =========================================================
+        function addVideo() {
+            if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
+            const title = document.getElementById('videoTitleInput').value.trim();
+            const link = document.getElementById('videoLinkInput').value.trim();
+            const reward = parseInt(document.getElementById('videoRewardInput').value) || 100;
+            
+            if (!title || !link) {
+                showToast('Judul dan link wajib diisi!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            videoList.push({
+                id: videoIdCounter++,
+                title: title,
+                link: link,
+                reward: reward,
+                createdAt: new Date().toLocaleString()
+            });
+            
+            document.getElementById('videoTitleInput').value = '';
+            document.getElementById('videoLinkInput').value = '';
+            document.getElementById('videoRewardInput').value = 100;
+            
+            showToast('Video berhasil ditambahkan!', 'fa-plus');
+            updateAdminTab();
+            renderVideos(false);
+            renderVideos(true);
+        }
+
+        function deleteVideo(id) {
+            if (!isAdmin) return;
+            if (!confirm('Hapus video ini?')) return;
+            videoList = videoList.filter(v => v.id !== id);
+            showToast('Video dihapus!', 'fa-trash');
+            updateAdminTab();
+            renderVideos(false);
+            renderVideos(true);
+        }
+
+        function renderVideos(full = false) {
+            const container = document.getElementById(full ? 'videoGridFull' : 'videoGridDashboard');
+            if (!container) return;
+            
+            const watched = currentUser?.watchedVideos || [];
+            
+            if (videoList.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:30px; color:#475074;">
+                        <i class="fas fa-video" style="font-size:2rem; display:block; margin-bottom:10px;"></i>
+                        Belum ada video. ${isAdmin ? 'Tambah video di menu Admin.' : 'Tunggu admin menambahkan video.'}
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = videoList.map((v, index) => {
+                const isWatched = watched.includes(v.id);
+                return `
+                    <div class="video-card" onclick="${!isWatched ? `openVideoById(${v.id})` : 'showToast(\'Sudah ditonton!\', \'fa-info-circle\')'}" style="${isWatched ? 'opacity:0.6;' : ''}">
+                        ${isWatched ? '<div class="status-watched"><i class="fas fa-check-circle"></i> Sudah</div>' : ''}
+                        <div class="video-number">#${index + 1}</div>
+                        <div class="thumbnail">
+                            <i class="fas fa-play-circle" style="font-size:3rem;"></i>
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="video-title">${v.title}</div>
+                        <div class="video-meta">
+                            <span>🎁 <span class="reward">+Rp ${v.reward.toLocaleString()}</span></span>
+                            <span>⏱️ ${Math.floor(videoDuration/60)}m</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('videoCount').textContent = videoList.length;
+            document.getElementById('videoCountFull').textContent = videoList.length;
+        }
+
+        // =========================================================
+        // VIDEO PLAYER
+        // =========================================================
+        function openVideoById(videoId) {
+            if (!currentUser) {
+                showToast('Silakan login dulu!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            const video = videoList.find(v => v.id === videoId);
+            if (!video) {
+                showToast('Video tidak ditemukan!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            if (currentUser.watchedVideos?.includes(videoId)) {
+                showToast('Video sudah ditonton!', 'fa-info-circle');
+                return;
+            }
+            
+            currentVideoId = videoId;
+            
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            
+            frame.src = video.link;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            videoSeconds = 0;
+            isWatching = true;
+            document.getElementById('timerFill').style.width = '0%';
+            document.getElementById('videoOverlay').textContent = '⏱️ 0:00 / ' + formatTime(videoDuration);
+            document.getElementById('skipBlock').classList.remove('show');
+            
+            if (videoTimer) clearInterval(videoTimer);
+            videoTimer = setInterval(() => {
+                videoSeconds++;
+                const pct = (videoSeconds / videoDuration) * 100;
+                document.getElementById('timerFill').style.width = Math.min(pct, 100) + '%';
+                document.getElementById('videoOverlay').textContent = '⏱️ ' + formatTime(videoSeconds) + ' / ' + formatTime(videoDuration);
+                
+                if (videoSeconds >= videoDuration) {
+                    clearInterval(videoTimer);
+                    videoTimer = null;
+                    isWatching = false;
+                    addWatchBonus(video);
+                    showToast('🎉 +1 tontonan! Bonus Rp ' + video.reward.toLocaleString(), 'fa-check-circle');
+                    setTimeout(() => closeVideo(), 1000);
+                }
+            }, 1000);
+            
+            setTimeout(() => {
+                document.getElementById('skipBlock').classList.add('show');
+            }, 2000);
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (videoTimer) {
+                clearInterval(videoTimer);
+                videoTimer = null;
+            }
+            isWatching = false;
+            document.getElementById('videoFrame').src = '';
+            currentVideoId = null;
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return m + ':' + String(s).padStart(2, '0');
+        }
+
+        function addWatchBonus(video) {
+            if (!currentUser) return;
+            
+            const bonus = video.reward || bonusPerWatch;
+            
+            currentUser.saldo = (currentUser.saldo || 0) + bonus;
+            currentUser.bonusNonton = (currentUser.bonusNonton || 0) + bonus;
+            currentUser.totalWatch = (currentUser.totalWatch || 0) + 1;
+            currentUser.omset = (currentUser.omset || 0) + bonus;
+            
+            if (!currentUser.watchedVideos) currentUser.watchedVideos = [];
+            if (!currentUser.watchedVideos.includes(video.id)) {
+                currentUser.watchedVideos.push(video.id);
+            }
+            
+            if (!currentUser.missionProgress) currentUser.missionProgress = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+            missions.forEach(m => {
+                if (!currentUser.missionDone[m.id]) {
+                    currentUser.missionProgress[m.id] = (currentUser.missionProgress[m.id] || 0) + 1;
+                }
+            });
+            
+            histories.push({
+                date: new Date().toLocaleString(),
+                type: 'Nonton Short Dracin',
+                amount: bonus,
+                note: video.title
+            });
+            
+            calculateBonus();
+            updateAllTabs();
+        }
+
+        // =========================================================
+        // MISSIONS
+        // =========================================================
+        function renderMissions() {
+            const container = document.getElementById('previewMissions');
+            if (!container) return;
+            
+            const userMissions = currentUser ? currentUser.missionProgress || {} : {};
+            const userDone = currentUser ? currentUser.missionDone || {} : {};
+            
+            let totalPoin = 0;
+            let html = missions.map(m => {
+                const progress = userMissions[m.id] || 0;
+                const done = userDone[m.id] || false;
+                const pct = Math.min((progress / m.target) * 100, 100);
+                const isComplete = progress >= m.target && !done;
+                if (done) totalPoin += m.reward;
+                
+                return `
+                    <div class="mission-card">
+                        <div class="mission-icon">${m.icon}</div>
+                        <div class="mission-title">${m.title}</div>
+                        <div class="mission-desc">${m.desc}</div>
+                        <div class="reward-bonus">🎁 +Rp ${m.reward.toLocaleString()}</div>
+                        <div class="mission-progress">
+                            <div class="progress-bar"><div class="fill" style="width:${pct}%"></div></div>
+                            <div class="progress-text">${progress}/${m.target}</div>
+                        </div>
+                        ${done ? '<div class="status-done"><i class="fas fa-check-circle"></i> Selesai</div>' :
+                          isComplete ? `<button class="btn-claim show" onclick="claimMission(${m.id})"><i class="fas fa-gift"></i> Klaim</button>` :
+                          `<div class="status-locked"><i class="fas fa-clock"></i> ${progress > 0 ? 'Tonton lagi' : 'Belum ditonton'}</div>`}
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = html;
+            document.getElementById('previewPoints').textContent = totalPoin;
+        }
+
+        function claimMission(id) {
+            if (!currentUser) return;
+            const mission = missions.find(m => m.id === id);
+            if (!mission) return;
+            
+            const progress = currentUser.missionProgress?.[id] || 0;
+            if (progress < mission.target) {
+                showToast('Belum mencapai target!', 'fa-exclamation-circle');
+                return;
+            }
+            if (currentUser.missionDone?.[id]) {
+                showToast('Sudah diklaim!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            if (!currentUser.missionDone) currentUser.missionDone = {};
+            currentUser.missionDone[id] = true;
+            currentUser.saldo = (currentUser.saldo || 0) + mission.reward;
+            currentUser.omset = (currentUser.omset || 0) + mission.reward;
+            
+            histories.push({
+                date: new Date().toLocaleString(),
+                type: 'Misi Short Dracin',
+                amount: mission.reward,
+                note: mission.title
+            });
+            
+            showToast(`🎉 Klaim ${mission.title} berhasil! +Rp ${mission.reward.toLocaleString()}`, 'fa-gift');
+            calculateBonus();
+            updateAllTabs();
+        }
+
+        // =========================================================
+        // UPDATE FUNCTIONS
+        // =========================================================
+        function updateAllTabs() {
+            updateMemberTab();
+            updateReferralTab();
+            updateRewardTab();
+            updateDepositTab();
+            renderMissions();
+            renderVideos(false);
+            if (document.getElementById('tabMissions').classList.contains('active')) {
+                renderVideos(true);
+            }
+        }
+
+        function updateMemberTab() {
+            if (!currentUser) return;
+            const u = currentUser;
+            document.getElementById('mTotalSaldo').textContent = 'Rp ' + formatRupiah(u.saldo);
+            document.getElementById('mBonusNonton').textContent = 'Rp ' + formatRupiah(u.bonusNonton || 0);
+            document.getElementById('mBonusRef').textContent = 'Rp ' + formatRupiah(u.bonusReferral);
+            document.getElementById('mBonusRabat').textContent = 'Rp ' + formatRupiah(u.bonusRabat || 0);
+            document.getElementById('mTotalRef').textContent = u.referralCount || 0;
+            document.getElementById('mLevel').textContent = u.level || 1;
+            document.getElementById('mTotalWatch').textContent = u.totalWatch || 0;
+
+            const tbody = document.getElementById('historyTable');
+            if (histories.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada riwayat</td></tr>';
+            } else {
+                tbody.innerHTML = histories.slice(0, 10).map(h =>
+                    `<tr><td>${h.date}</td><td>${h.type}</td><td>Rp ${formatRupiah(h.amount)}</td><td>${h.note || '-'}</td></tr>`
+                ).join('');
+            }
+            renderMissions();
+            renderVideos(false);
+        }
+
+        function updateReferralTab() {
+            if (!currentUser) return;
+            document.getElementById('rTotalRef').textContent = currentUser.referralCount || 0;
+            document.getElementById('rBonusRef').textContent = 'Rp ' + formatRupiah(currentUser.bonusReferral);
+            const komisiL1 = currentUser.referralCount * 10000 * 0.08;
+            document.getElementById('rKomisiL1').textContent = 'Rp ' + formatRupiah(Math.round(komisiL1));
+
+            const tbody = document.getElementById('referralTable');
+            const refs = referralData.filter(r => r.referredBy === currentUser.refCode);
+            if (refs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada referral</td></tr>';
+            } else {
+                tbody.innerHTML = refs.map(r =>
+                    `<tr><td>${r.username}</td><td>Level ${r.level}</td><td>Rp ${formatRupiah(r.omset || 0)}</td><td>Rp ${formatRupiah(Math.round((r.omset || 0) * 0.08))}</td></tr>`
+                ).join('');
+            }
+        }
+
+        function updateRewardTab() {
+            if (!currentUser) return;
+            const u = currentUser;
+            document.getElementById('rwLevel').textContent = u.level || 1;
+            document.getElementById('rwOmset').textContent = 'Rp ' + formatRupiah(u.omset || 0);
+            document.getElementById('rwReward').textContent = 'Rp ' + formatRupiah(u.bonusReward);
+
+            const tbody = document.getElementById('rewardTable');
+            tbody.innerHTML = rewardLevels.map(rl => {
+                const reached = (u.omset || 0) >= rl.omset;
+                const status = reached ?
+                    `<span style="color:#4ecdc4;"><i class="fas fa-check-circle"></i> Tercapai</span>` :
+                    `<span style="color:#475074;"><i class="fas fa-lock"></i> Target Rp ${formatRupiah(rl.omset)}</span>`;
+                return `<tr>
+                    <td><span class="badge-level">LEVEL ${rl.level}</span></td>
+                    <td>Rp ${formatRupiah(rl.reward)}</td>
+                    <td>Rp ${formatRupiah(rl.omset)}</td>
+                    <td>${status}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function updateDepositTab() {
+            if (!currentUser) return;
+            document.getElementById('dSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
+
+            const tbody = document.getElementById('transactionTable');
+            if (transactions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:20px;">Belum ada transaksi</td></tr>';
+            } else {
+                tbody.innerHTML = transactions.slice(0, 10).map(t =>
+                    `<tr><td>${t.date}</td><td>${t.type}</td><td>Rp ${formatRupiah(t.amount)}</td><td><span style="color:#4ecdc4;">${t.status}</span></td></tr>`
+                ).join('');
+            }
+        }
+
+        // =========================================================
+        // DEPOSIT & WD
+        // =========================================================
+        function doDeposit() {
+            if (!currentUser) { showToast('Silakan login dulu!', 'fa-exclamation-circle'); return; }
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            if (isNaN(amount) || amount < 5000) {
+                showToast('Minimal deposit Rp 5.000!', 'fa-exclamation-circle');
+                return;
+            }
+            currentUser.saldo += amount;
+            currentUser.omset = (currentUser.omset || 0) + amount;
+            transactions.push({ date: new Date().toLocaleString(), type: 'Deposit', amount, status: 'Berhasil' });
+            histories.push({ date: new Date().toLocaleString(), type: 'Deposit', amount, note: 'Deposit saldo' });
+            calculateBonus();
+            updateAllTabs();
+            showToast('Deposit Rp ' + formatRupiah(amount) + ' berhasil!', 'fa-check-circle');
+        }
+
+        function doWithdraw() {
+            if (!currentUser) { showToast('Silakan login dulu!', 'fa-exclamation-circle'); return; }
+            const amount = parseInt(document.getElementById('wdAmount').value);
+            const fee = 1000;
+            const total = amount + fee;
+            if (isNaN(amount) || amount < 25000) {
+                showToast('Minimal WD Rp 25.000!', 'fa-exclamation-circle');
+                return;
+            }
+            if (currentUser.saldo < total) {
+                showToast('Saldo tidak cukup!', 'fa-exclamation-circle');
+                return;
+            }
+            currentUser.saldo -= total;
+            transactions.push({ date: new Date().toLocaleString(), type: 'Withdraw', amount, status: 'Berhasil' });
+            histories.push({ date: new Date().toLocaleString(), type: 'Withdraw', amount, note: 'Fee Rp 1.000' });
+            updateAllTabs();
+            showToast('WD Rp ' + formatRupiah(amount) + ' berhasil!', 'fa-check-circle');
+        }
+
+        // =========================================================
+        // CALCULATE BONUS
+        // =========================================================
+        function calculateBonus() {
+            if (!currentUser) return;
+            const u = currentUser;
+
+            // Referral bonus
+            let refBonus = 0;
+            const refs = referralData.filter(r => r.referredBy === u.refCode);
+            u.referralCount = refs.length;
+            refs.forEach(ref => {
+                const omsetRef = ref.omset || 0;
+                refBonus += omsetRef * (refSettings.L1 / 100);
+                if (ref.level >= 2) refBonus += omsetRef * (refSettings.L2 / 100);
+                if (ref.level >= 3) refBonus += omsetRef * (refSettings.L3 / 100);
+                if (ref.level >= 4) refBonus += omsetRef * (refSettings.L4 / 100);
+                if (ref.level >= 5) refBonus += omsetRef * (refSettings.L5 / 100);
+            });
+            u.bonusReferral = Math.round(refBonus);
+
+            // Rabat bonus
+            let rabatBonus = 0;
+            const omsetPribadi = u.omset || 0;
+            if (omsetPribadi > 0) {
+                rabatBonus += omsetPribadi * (rabatSettings.L1 / 100);
+                if (omsetPribadi >= 50000) rabatBonus += omsetPribadi * (rabatSettings.L2 / 100);
+                if (omsetPribadi >= 200000) rabatBonus += omsetPribadi * (rabatSettings.L3 / 100);
+                if (omsetPribadi >= 1000000) rabatBonus += omsetPribadi * (rabatSettings.L4 / 100);
+                if (omsetPribadi >= 5000000) rabatBonus += omsetPribadi * (rabatSettings.L5 / 100);
+            }
+            u.bonusRabat = Math.round(rabatBonus);
+
+            // Reward
+            let rewardAmount = 0, highestLevel = 1;
+            rewardLevels.forEach(rl => {
+                if ((u.omset || 0) >= rl.omset) {
+                    rewardAmount = rl.reward;
+                    highestLevel = rl.level;
+                }
+            });
+            u.bonusReward = rewardAmount;
+            u.level = highestLevel;
+            
+            // Total saldo = bonus nonton + referral + rabat + reward
+            u.saldo = (u.bonusNonton || 0) + u.bonusReferral + u.bonusRabat + u.bonusReward;
+        }
+
+        // =========================================================
+        // ADMIN
+        // =========================================================
+        function updateAdminTab() {
+            if (!isAdmin) return;
+            
+            document.getElementById('aTotalMember').textContent = users.length;
+            let totalOmset = 0, totalBonus = 0;
+            users.forEach(u => {
+                totalOmset += u.omset || 0;
+                totalBonus += u.saldo || 0;
+            });
+            document.getElementById('aTotalOmset').textContent = 'Rp ' + formatRupiah(totalOmset);
+            document.getElementById('aTotalBonus').textContent = 'Rp ' + formatRupiah(totalBonus);
+
+            const videoContainer = document.getElementById('videoListAdmin');
+            if (videoList.length === 0) {
+                videoContainer.innerHTML = '<div style="color:#475074; padding:10px 0;">Belum ada video. Tambahkan di atas.</div>';
+            } else {
+                videoContainer.innerHTML = videoList.map(v => `
+                    <div class="video-item">
+                        <div class="info">
+                            <span class="title">${v.title}</span>
+                            <span class="link">${v.link}</span>
+                            <span style="color:#f5d742;">+Rp ${v.reward.toLocaleString()}</span>
+                        </div>
+                        <button class="btn-danger btn-sm" onclick="deleteVideo(${v.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            const tbody = document.getElementById('memberTable');
+            tbody.innerHTML = users.map(u =>
+                `<tr><td>${u.username}</td><td>Level ${u.level}</td><td>Rp ${formatRupiah(u.omset || 0)}</td><td>${u.referralCount || 0}</td><td>Rp ${formatRupiah(u.saldo)}</td></tr>`
+            ).join('') || '<tr><td colspan="5" style="text-align:center; color:#475074; padding:20px;">Belum ada member</td></tr>';
+
+            const reportBody = document.getElementById('reportTable');
+            const totalRef = users.reduce((s, u) => s + (u.bonusReferral || 0), 0);
+            const totalRabat = users.reduce((s, u) => s + (u.bonusRabat || 0), 0);
+            const totalReward = users.reduce((s, u) => s + (u.bonusReward || 0), 0);
+            const totalNonton = users.reduce((s, u) => s + (u.bonusNonton || 0), 0);
+            reportBody.innerHTML = `
+                <tr><td>${new Date().toLocaleDateString('id-ID', { month:'long', year:'numeric' })}</td>
+                    <td>Rp ${formatRupiah(totalRef)}</td>
+                    <td>Rp ${formatRupiah(totalRabat)}</td>
+                    <td>Rp ${formatRupiah(totalReward)}</td>
+                    <td>Rp ${formatRupiah(totalRef + totalRabat + totalReward + totalNonton)}</td></tr>
+            `;
+        }
+
+        function saveSettings() {
+            if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
+            videoDuration = parseInt(document.getElementById('videoDuration').value) || 180;
+            bonusPerWatch = parseInt(document.getElementById('bonusPerWatch').value) || 100;
+            showToast('Pengaturan disimpan!', 'fa-save');
+        }
+
+        function saveRefSettings() {
+            if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
+            refSettings.L1 = parseInt(document.getElementById('refL1').value) || 0;
+            refSettings.L2 = parseInt(document.getElementById('refL2').value) || 0;
+            refSettings.L3 = parseInt(document.getElementById('refL3').value) || 0;
+            refSettings.L4 = parseInt(document.getElementById('refL4').value) || 0;
+            refSettings.L5 = parseInt(document.getElementById('refL5').value) || 0;
+            users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
+            if (currentUser) { calculateBonus(); updateAllTabs(); }
+            showToast('Pengaturan referral disimpan!', 'fa-save');
+        }
+
+        function saveRabatSettings() {
+            if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
+            rabatSettings.L1 = parseInt(document.getElementById('rabatL1').value) || 0;
+            rabatSettings.L2 = parseInt(document.getElementById('rabatL2').value) || 0;
+            rabatSettings.L3 = parseInt(document.getElementById('rabatL3').value) || 0;
+            rabatSettings.L4 = parseInt(document.getElementById('rabatL4').value) || 0;
+            rabatSettings.L5 = parseInt(document.getElementById('rabatL5').value) || 0;
+            users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
+            if (currentUser) { calculateBonus(); updateAllTabs(); }
+            showToast('Pengaturan rabat disimpan!', 'fa-save');
+        }
+
+        function saveRewardSettings() {
+            if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
+            rewardLevels[0].reward = parseInt(document.getElementById('rewardL1').value) || 25000;
+            rewardLevels[1].reward = parseInt(document.getElementById('rewardL2').value) || 100000;
+            rewardLevels[2].reward = parseInt(document.getElementById('rewardL3').value) || 500000;
+            rewardLevels[3].reward = parseInt(document.getElementById('rewardL4').value) || 2500000;
+            rewardLevels[4].reward = parseInt(document.getElementById('rewardL5').value) || 10000000;
+            
+            users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
+            if (currentUser) { calculateBonus(); updateAllTabs(); }
+            showToast('Pengaturan reward disimpan!', 'fa-save');
+        }
+
+        // =========================================================
+        // UTILITY
+        // =========================================================
+        function formatRupiah(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function copyRefCode() {
+            const code = document.getElementById('myRefCode').textContent;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(() => showToast('Kode referral disalin!', 'fa-copy'));
+            } else {
+                const input = document.createElement('input');
+                input.value = code;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                showToast('Kode referral disalin!', 'fa-copy');
+            }
+        }
+
+        // =========================================================
+        // INIT
+        // =========================================================
+        (function init() {
+            // Default videos
+            if (videoList.length === 0) {
+                videoList = [
+                    { id: 1, title: 'Short Dracin - Episode 1: Petualangan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 100, createdAt: new Date().toLocaleString() },
+                    { id: 2, title: 'Short Dracin - Episode 2: Misi Rahasia', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 150, createdAt: new Date().toLocaleString() },
+                    { id: 3, title: 'Short Dracin - Episode 3: Pertarungan Epik', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 200, createdAt: new Date().toLocaleString() },
+                    { id: 4, title: 'Short Dracin - Episode 4: Kekuatan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 120, createdAt: new Date().toLocaleString() },
+                    { id: 5, title: 'Short Dracin - Episode 5: Final Boss', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 250, createdAt: new Date().toLocaleString() },
+                ];
+                videoIdCounter = 6;
+            }
+
+            // Default admin
+            if (users.length === 0) {
+                const admin = {
+                    username: 'admin', password: 'admin123', name: 'Administrator',
+                    level: 5, omset: 10000000, saldo: 0,
+                    bonusNonton: 0,
+                    bonusReferral: 0, bonusRabat: 0, bonusReward: 10000000,
+                    referralCount: 2, totalWatch: 0,
+                    refCode: 'DEXTER001', referredBy: null, isAdmin: true,
+                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
+                    missionDone: {1:false,2:false,3:false,4:false,5:false},
+                    watchedVideos: [],
+                    missionPoints: 0
+                };
+                users.push(admin);
+                referralData.push({ username: 'member1', level: 2, omset: 500000, referredBy: 'DEXTER001' });
+                referralData.push({ username: 'member2', level: 1, omset: 200000, referredBy: 'DEXTER001' });
+                admin.referralCount = 2;
+            }
+            
+            users.forEach(u => {
+                if (u.referredBy && !referralData.find(r => r.username === u.username)) {
+                    referralData.push({ username: u.username, level: u.level, omset: u.omset, referredBy: u.referredBy });
+                }
+                if (!u.missionProgress) u.missionProgress = {1:0,2:0,3:0,4:0,5:0};
+                if (!u.missionDone) u.missionDone = {1:false,2:false,3:false,4:false,5:false};
+                if (!u.watchedVideos) u.watchedVideos = [];
+                if (!u.bonusNonton) u.bonusNonton = 0;
+                if (!u.totalWatch) u.totalWatch = 0;
+            });
+            
+            document.getElementById('videoDuration').value = videoDuration;
+            document.getElementById('bonusPerWatch').value = bonusPerWatch;
+            
+            // Set rabat settings di admin
+            document.getElementById('rabatL1').value = rabatSettings.L1;
+            document.getElementById('rabatL2').value = rabatSettings.L2;
+            document.getElementById('rabatL3').value = rabatSettings.L3;
+            document.getElementById('rabatL4').value = rabatSettings.L4;
+            document.getElementById('rabatL5').value = rabatSettings.L5;
+        })();
+    </script>
+</body>
+</html>
