@@ -177,6 +177,21 @@
             transition: 0.3s;
         }
         .btn-outline-danger:hover { background: #ff6b6b; color: #fff; }
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3); }
 
         /* ===== AUTH ===== */
         .auth-container {
@@ -832,29 +847,14 @@
             width: 0%;
             transition: width 0.5s;
         }
+        /* Skip block dihapus - tidak ada tulisan merah */
         .video-modal .skip-block {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            font-weight: 700;
-            background: rgba(0,0,0,0.8);
-            padding: 16px 30px;
-            border-radius: 14px;
-            border: 2px solid #ff6b6b;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-            text-align: center;
+            display: none;
         }
-        .video-modal .skip-block.show { opacity: 1; }
 
         /* =========================================================
            RESPONSIVE
            ========================================================= */
-        /* Desktop: sidebar visible */
         @media (min-width: 769px) {
             .sidebar-overlay { display: none !important; }
             .sidebar {
@@ -878,7 +878,6 @@
             .stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
 
-        /* Mobile: bottom nav visible, sidebar hidden */
         @media (max-width: 768px) {
             .bottom-nav { display: flex; }
             .sidebar {
@@ -925,10 +924,6 @@
         <button class="close-btn" onclick="closeVideo()"><i class="fas fa-times"></i></button>
         <div class="video-wrapper">
             <iframe id="videoFrame" src="" allowfullscreen allow="autoplay; encrypted-media" frameborder="0"></iframe>
-            <div class="skip-block" id="skipBlock">
-                <i class="fas fa-ban"></i><br>
-                Tidak Bisa Skip!
-            </div>
             <div class="video-overlay" id="videoOverlay">⏱️ 0:00 / 3:00</div>
             <div class="timer-bar"><div class="fill" id="timerFill"></div></div>
         </div>
@@ -1023,6 +1018,9 @@
             <button class="nav-item" data-page="pageDeposit" onclick="navigateTo('pageDeposit')">
                 <i class="fas fa-wallet"></i> Deposit
             </button>
+            <button class="nav-item" data-page="pageWithdraw" onclick="navigateTo('pageWithdraw')">
+                <i class="fas fa-arrow-up"></i> Withdraw
+            </button>
             <button class="nav-item" data-page="pageAkun" onclick="navigateTo('pageAkun')">
                 <i class="fas fa-user-cog"></i> Akun
             </button>
@@ -1114,7 +1112,7 @@
                 <div class="video-grid" id="videoGridFull"></div>
             </div>
             <div style="padding:12px 16px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.04);">
-                <p style="color:#8892b0; font-size:0.75rem;"><i class="fas fa-info-circle"></i> Tonton video untuk dapat bonus. Setiap 1 tontonan = +1 progress misi!</p>
+                <p style="color:#8892b0; font-size:0.75rem;"><i class="fas fa-info-circle"></i> Tonton video sampai selesai (3 menit) untuk dapat bonus. Tidak bisa di-skip!</p>
             </div>
         </div>
 
@@ -1187,11 +1185,22 @@
         <div id="pageDeposit" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="dSaldo">Rp 0</div></div>
-                <div class="stat-card"><div class="label">Minimal WD</div><div class="value" style="color:#8892b0;">Rp 25.000</div></div>
+                <div class="stat-card"><div class="label">Minimal Deposit</div><div class="value" style="color:#8892b0;">Rp 5.000</div></div>
+            </div>
+
+            <!-- Rekening Admin -->
+            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(78,205,196,0.15); margin-bottom:12px;">
+                <h4 style="color:#4ecdc4; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-university"></i> Rekening Tujuan Deposit</h4>
+                <div style="color:#d6e0ff; font-size:0.8rem;">
+                    <div><strong style="color:#fff;">Bank:</strong> <span id="depositBank">BCA</span></div>
+                    <div><strong style="color:#fff;">No. Rekening:</strong> <span id="depositAccount">1234567890</span> <span style="color:#f5d742; font-weight:700;" id="depositCode">- 7A3</span></div>
+                    <div><strong style="color:#fff;">Atas Nama:</strong> <span id="depositName">Admin DEXTER</span></div>
+                    <div style="color:#8892b0; font-size:0.7rem; margin-top:4px;"><i class="fas fa-info-circle"></i> Gunakan kode unik <span style="color:#f5d742; font-weight:700;">7A3</span> di belakang nominal transfer</div>
+                </div>
             </div>
 
             <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04); margin-bottom:12px;">
-                <h4 style="color:#4ecdc4; font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-university"></i> Rekening Saya</h4>
+                <h4 style="color:#4ecdc4; font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-user"></i> Rekening Saya</h4>
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
                         <label>Bank</label>
@@ -1209,31 +1218,83 @@
                 <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveUserBank()"><i class="fas fa-save"></i> Simpan Rekening</button>
             </div>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-                <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                    <h4 style="color:#4ecdc4; font-size:0.8rem;"><i class="fas fa-arrow-down"></i> Deposit</h4>
-                    <div class="form-group" style="margin:8px 0;">
-                        <input type="number" id="depositAmount" placeholder="Jumlah" value="10000">
-                    </div>
-                    <button class="btn-success" style="width:100%;" onclick="doDeposit()"><i class="fas fa-check"></i> Deposit</button>
-                    <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 5.000</div>
+            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#4ecdc4; font-size:0.8rem;"><i class="fas fa-arrow-down"></i> Form Deposit</h4>
+                <div class="form-group" style="margin:8px 0;">
+                    <label>Jumlah Deposit</label>
+                    <input type="number" id="depositAmount" placeholder="Minimal Rp 5.000" value="10000">
                 </div>
-                <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                    <h4 style="color:#f5d742; font-size:0.8rem;"><i class="fas fa-arrow-up"></i> Withdraw</h4>
-                    <div class="form-group" style="margin:8px 0;">
-                        <input type="number" id="wdAmount" placeholder="Jumlah" value="25000">
-                    </div>
-                    <button class="btn-primary" style="width:100%;" onclick="doWithdraw()"><i class="fas fa-check"></i> Withdraw</button>
-                    <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 25.000 · Fee: Rp 1.000</div>
+                <div class="form-group" style="margin:8px 0;">
+                    <label>Kode Unik (dari rekening tujuan)</label>
+                    <input type="text" id="depositCodeInput" placeholder="Masukkan 3 digit kode" value="7A3">
                 </div>
+                <div class="form-group" style="margin:8px 0;">
+                    <label>Upload Bukti Transfer (opsional)</label>
+                    <input type="file" id="depositProof" accept="image/*">
+                </div>
+                <button class="btn-success" style="width:100%;" onclick="doDeposit()"><i class="fas fa-check"></i> Kirim Deposit</button>
+                <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 5.000 · Transfer ke rekening di atas</div>
             </div>
 
             <div class="table-wrap" style="margin-top:12px;">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-clock"></i> Riwayat Transaksi</h4>
+                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-clock"></i> Riwayat Deposit</h4>
                 <table>
-                    <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Status</th></tr></thead>
-                    <tbody id="transactionTable">
-                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada transaksi</td></tr>
+                    <thead><tr><th>Tanggal</th><th>Jumlah</th><th>Kode</th><th>Status</th></tr></thead>
+                    <tbody id="depositHistoryTable">
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada deposit</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- PAGE: WITHDRAW -->
+        <!-- ========================================================= -->
+        <div id="pageWithdraw" class="page">
+            <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
+                <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="wSaldo">Rp 0</div></div>
+                <div class="stat-card"><div class="label">Minimal WD</div><div class="value" style="color:#8892b0;">Rp 25.000</div></div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04); margin-bottom:12px;">
+                <h4 style="color:#f5d742; font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-user"></i> Rekening Tujuan WD</h4>
+                <div class="form-row">
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>Bank</label>
+                        <input type="text" id="wdBank" placeholder="Bank" disabled style="opacity:0.7;">
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>No. Rekening</label>
+                        <input type="text" id="wdBankAccount" placeholder="No. rekening" disabled style="opacity:0.7;">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0; margin-top:8px;">
+                    <label>Nama Pemilik</label>
+                    <input type="text" id="wdBankName" placeholder="Nama" disabled style="opacity:0.7;">
+                </div>
+                <div style="color:#8892b0; font-size:0.65rem; margin-top:6px;">
+                    <i class="fas fa-info-circle"></i> Gunakan rekening yang sudah disimpan di menu Akun
+                </div>
+                <button class="btn-ghost" style="margin-top:8px; width:100%;" onclick="navigateTo('pageAkun')"><i class="fas fa-edit"></i> Edit Rekening</button>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#f5d742; font-size:0.8rem;"><i class="fas fa-arrow-up"></i> Form Withdraw</h4>
+                <div class="form-group" style="margin:8px 0;">
+                    <label>Jumlah Withdraw</label>
+                    <input type="number" id="wdAmount" placeholder="Minimal Rp 25.000" value="25000">
+                </div>
+                <div style="color:#8892b0; font-size:0.65rem; margin-bottom:8px;">Fee: Rp 1.000 per transaksi</div>
+                <button class="btn-primary" style="width:100%;" onclick="doWithdraw()"><i class="fas fa-check"></i> Ajukan Withdraw</button>
+                <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 25.000 · Fee: Rp 1.000</div>
+            </div>
+
+            <div class="table-wrap" style="margin-top:12px;">
+                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-clock"></i> Riwayat Withdraw</h4>
+                <table>
+                    <thead><tr><th>Tanggal</th><th>Jumlah</th><th>Fee</th><th>Status</th></tr></thead>
+                    <tbody id="wdHistoryTable">
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada withdraw</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -1261,7 +1322,7 @@
             </div>
 
             <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                <h4 style="color:#f5d742; font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-university"></i> Rekening Saya</h4>
+                <h4 style="color:#4ecdc4; font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-university"></i> Rekening Saya (Untuk WD)</h4>
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
                         <label>Bank</label>
@@ -1317,10 +1378,11 @@
                 </div>
 
                 <div class="setting-group">
-                    <h4><i class="fas fa-university"></i> Rekening Admin</h4>
+                    <h4><i class="fas fa-university"></i> Rekening Admin (Untuk Deposit)</h4>
                     <div class="row"><span>Bank</span><input type="text" id="adminBank" value="BCA"></div>
                     <div class="row"><span>No. Rekening</span><input type="text" id="adminBankAccount" value="1234567890"></div>
                     <div class="row"><span>Atas Nama</span><input type="text" id="adminBankName" value="Admin DEXTER"></div>
+                    <div class="row"><span>Kode Unik</span><input type="text" id="adminBankCode" value="7A3" style="width:80px;"></div>
                     <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveAdminBank()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
 
@@ -1433,11 +1495,13 @@
         let videoIdCounter = 1;
         let pendingTransactions = [];
         let transactionIdCounter = 1;
+        let depositHistory = [];
+        let wdHistory = [];
         
         let bonusPerWatch = 100;
         let videoDuration = 180;
         let rabatSettings = { L1: 10, L2: 5, L3: 3, L4: 2, L5: 1 };
-        let adminBank = { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER' };
+        let adminBank = { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER', code: '7A3' };
         
         let missions = [
             { id: 1, title: 'Tonton 5 Video', desc: 'Tonton 5 short video', icon: '🎬', target: 5, reward: 1000 },
@@ -1521,6 +1585,7 @@
             if (pageId === 'pageReferral') updateReferralTab();
             if (pageId === 'pageReward') updateRewardTab();
             if (pageId === 'pageDeposit') updateDepositTab();
+            if (pageId === 'pageWithdraw') updateWithdrawTab();
             if (pageId === 'pageAkun') updateAkunPage();
             if (pageId === 'pageDashboard') updateMemberTab();
             if (pageId === 'pageDracin') renderVideos(true);
@@ -1635,19 +1700,17 @@
             document.getElementById('dashboard').classList.add('active');
             isAdmin = user.isAdmin || false;
 
-            // Update UI
             document.getElementById('dashRole').textContent = isAdmin ? 'Admin' : 'Member';
             document.getElementById('dashName').textContent = user.name || user.username;
             document.getElementById('dashLevel').textContent = 'Level ' + user.level;
             document.getElementById('myRefCode').textContent = user.refCode || 'DEXTER001';
             
-            // Admin nav items
             document.getElementById('adminNavItems').style.display = isAdmin ? 'block' : 'none';
             document.getElementById('adminPanelAkun').style.display = isAdmin ? 'block' : 'none';
             
             updateRefLink();
+            updateAdminBankDisplay();
 
-            // Load user bank
             if (user.bank) {
                 document.getElementById('userBank').value = user.bank.bank || '';
                 document.getElementById('userBankAccount').value = user.bank.account || '';
@@ -1655,6 +1718,10 @@
                 document.getElementById('akunBank').value = user.bank.bank || '';
                 document.getElementById('akunBankAccount').value = user.bank.account || '';
                 document.getElementById('akunBankName').value = user.bank.name || '';
+                // WD form
+                document.getElementById('wdBank').value = user.bank.bank || '';
+                document.getElementById('wdBankAccount').value = user.bank.account || '';
+                document.getElementById('wdBankName').value = user.bank.name || '';
             }
 
             calculateBonus();
@@ -1669,6 +1736,17 @@
             document.getElementById('dashboard').classList.remove('active');
             document.getElementById('landingPage').style.display = 'block';
             showToast('Anda telah keluar.');
+        }
+
+        // =========================================================
+        // ADMIN BANK DISPLAY
+        // =========================================================
+        function updateAdminBankDisplay() {
+            document.getElementById('depositBank').textContent = adminBank.bank || 'BCA';
+            document.getElementById('depositAccount').textContent = adminBank.account || '1234567890';
+            document.getElementById('depositCode').textContent = adminBank.code ? ' - ' + adminBank.code : '';
+            document.getElementById('depositName').textContent = adminBank.name || 'Admin DEXTER';
+            document.getElementById('depositCodeInput').value = adminBank.code || '7A3';
         }
 
         // =========================================================
@@ -1721,10 +1799,12 @@
                 account: document.getElementById('userBankAccount').value.trim(),
                 name: document.getElementById('userBankName').value.trim()
             };
-            // Sync with akun page
             document.getElementById('akunBank').value = currentUser.bank.bank;
             document.getElementById('akunBankAccount').value = currentUser.bank.account;
             document.getElementById('akunBankName').value = currentUser.bank.name;
+            document.getElementById('wdBank').value = currentUser.bank.bank;
+            document.getElementById('wdBankAccount').value = currentUser.bank.account;
+            document.getElementById('wdBankName').value = currentUser.bank.name;
             showToast('Rekening berhasil disimpan!', 'fa-save');
         }
 
@@ -1738,6 +1818,9 @@
             document.getElementById('userBank').value = currentUser.bank.bank;
             document.getElementById('userBankAccount').value = currentUser.bank.account;
             document.getElementById('userBankName').value = currentUser.bank.name;
+            document.getElementById('wdBank').value = currentUser.bank.bank;
+            document.getElementById('wdBankAccount').value = currentUser.bank.account;
+            document.getElementById('wdBankName').value = currentUser.bank.name;
             showToast('Rekening berhasil disimpan!', 'fa-save');
         }
 
@@ -1749,6 +1832,8 @@
             adminBank.bank = document.getElementById('adminBank').value.trim();
             adminBank.account = document.getElementById('adminBankAccount').value.trim();
             adminBank.name = document.getElementById('adminBankName').value.trim();
+            adminBank.code = document.getElementById('adminBankCode').value.trim() || '7A3';
+            updateAdminBankDisplay();
             showToast('Rekening admin disimpan!', 'fa-save');
         }
 
@@ -1775,6 +1860,9 @@
             document.getElementById('akunBank').value = currentUser.bank?.bank || '';
             document.getElementById('akunBankAccount').value = currentUser.bank?.account || '';
             document.getElementById('akunBankName').value = currentUser.bank?.name || '';
+            document.getElementById('wdBank').value = currentUser.bank?.bank || '';
+            document.getElementById('wdBankAccount').value = currentUser.bank?.account || '';
+            document.getElementById('wdBankName').value = currentUser.bank?.name || '';
         }
 
         // =========================================================
@@ -1855,7 +1943,7 @@
         }
 
         // =========================================================
-        // VIDEO PLAYER
+        // VIDEO PLAYER - NO SKIP BLOCK (hanya timer)
         // =========================================================
         function openVideoById(videoId) {
             if (!currentUser) {
@@ -1885,7 +1973,6 @@
             isWatching = true;
             document.getElementById('timerFill').style.width = '0%';
             document.getElementById('videoOverlay').textContent = '⏱️ 0:00 / ' + formatTime(videoDuration);
-            document.getElementById('skipBlock').classList.remove('show');
             
             if (videoTimer) clearInterval(videoTimer);
             videoTimer = setInterval(() => {
@@ -1903,10 +1990,6 @@
                     setTimeout(() => closeVideo(), 1000);
                 }
             }, 1000);
-            
-            setTimeout(() => {
-                document.getElementById('skipBlock').classList.add('show');
-            }, 2000);
         }
 
         function closeVideo() {
@@ -2039,6 +2122,7 @@
             updateReferralTab();
             updateRewardTab();
             updateDepositTab();
+            updateWithdrawTab();
             renderMissions();
             renderVideos(false);
             if (document.getElementById('pageDracin').classList.contains('active')) {
@@ -2120,16 +2204,43 @@
         function updateDepositTab() {
             if (!currentUser) return;
             document.getElementById('dSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
+            updateAdminBankDisplay();
 
-            const tbody = document.getElementById('transactionTable');
-            if (transactions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada transaksi</td></tr>';
+            const tbody = document.getElementById('depositHistoryTable');
+            if (depositHistory.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada deposit</td></tr>';
             } else {
-                tbody.innerHTML = transactions.slice(0, 8).map(t =>
+                tbody.innerHTML = depositHistory.slice(0, 8).map(t =>
                     `<tr>
                         <td style="font-size:0.7rem;">${t.date}</td>
-                        <td style="font-size:0.7rem;">${t.type}</td>
                         <td style="font-size:0.7rem;">Rp ${formatRupiah(t.amount)}</td>
+                        <td style="font-size:0.7rem;">${t.code || '-'}</td>
+                        <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.6rem;">${t.status}</span></td>
+                    </tr>`
+                ).join('');
+            }
+        }
+
+        function updateWithdrawTab() {
+            if (!currentUser) return;
+            document.getElementById('wSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
+            
+            // Update WD form with user bank
+            if (currentUser.bank) {
+                document.getElementById('wdBank').value = currentUser.bank.bank || '';
+                document.getElementById('wdBankAccount').value = currentUser.bank.account || '';
+                document.getElementById('wdBankName').value = currentUser.bank.name || '';
+            }
+
+            const tbody = document.getElementById('wdHistoryTable');
+            if (wdHistory.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada withdraw</td></tr>';
+            } else {
+                tbody.innerHTML = wdHistory.slice(0, 8).map(t =>
+                    `<tr>
+                        <td style="font-size:0.7rem;">${t.date}</td>
+                        <td style="font-size:0.7rem;">Rp ${formatRupiah(t.amount)}</td>
+                        <td style="font-size:0.7rem;">Rp ${formatRupiah(t.fee || 1000)}</td>
                         <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.6rem;">${t.status}</span></td>
                     </tr>`
                 ).join('');
@@ -2137,13 +2248,26 @@
         }
 
         // =========================================================
-        // DEPOSIT & WD with Approval
+        // DEPOSIT with Code
         // =========================================================
         function doDeposit() {
             if (!currentUser) { showToast('Silakan login dulu!', 'fa-exclamation-circle'); return; }
             const amount = parseInt(document.getElementById('depositAmount').value);
+            const code = document.getElementById('depositCodeInput').value.trim();
+            
             if (isNaN(amount) || amount < 5000) {
                 showToast('Minimal deposit Rp 5.000!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            if (!code) {
+                showToast('Masukkan kode unik dari rekening tujuan!', 'fa-exclamation-circle');
+                return;
+            }
+            
+            // Check code match
+            if (code !== adminBank.code) {
+                showToast('Kode unik salah! Gunakan kode: ' + adminBank.code, 'fa-exclamation-circle');
                 return;
             }
             
@@ -2152,20 +2276,29 @@
                 return;
             }
             
+            // File upload (optional)
+            const fileInput = document.getElementById('depositProof');
+            let proofName = '';
+            if (fileInput.files && fileInput.files.length > 0) {
+                proofName = fileInput.files[0].name;
+            }
+            
             pendingTransactions.push({
                 id: transactionIdCounter++,
                 username: currentUser.username,
                 type: 'Deposit',
                 amount: amount,
+                code: code,
+                proof: proofName || 'Tidak ada bukti',
                 bank: currentUser.bank,
                 date: new Date().toLocaleString(),
                 status: 'Pending'
             });
             
-            transactions.push({
+            depositHistory.push({
                 date: new Date().toLocaleString(),
-                type: 'Deposit',
                 amount: amount,
+                code: code,
                 status: 'Pending'
             });
             
@@ -2173,7 +2306,7 @@
                 date: new Date().toLocaleString(),
                 type: 'Deposit',
                 amount: amount,
-                note: 'Menunggu approve admin'
+                note: 'Kode: ' + code + (proofName ? ' | Bukti: ' + proofName : '')
             });
             
             showToast('Deposit Rp ' + formatRupiah(amount) + ' menunggu approve!', 'fa-clock');
@@ -2181,11 +2314,15 @@
             if (isAdmin) updateAdminTab();
         }
 
+        // =========================================================
+        // WITHDRAW
+        // =========================================================
         function doWithdraw() {
             if (!currentUser) { showToast('Silakan login dulu!', 'fa-exclamation-circle'); return; }
             const amount = parseInt(document.getElementById('wdAmount').value);
             const fee = 1000;
             const total = amount + fee;
+            
             if (isNaN(amount) || amount < 25000) {
                 showToast('Minimal WD Rp 25.000!', 'fa-exclamation-circle');
                 return;
@@ -2196,7 +2333,7 @@
             }
             
             if (!currentUser.bank || !currentUser.bank.account) {
-                showToast('Silakan isi rekening Anda dulu!', 'fa-exclamation-circle');
+                showToast('Silakan isi rekening Anda dulu di menu Akun!', 'fa-exclamation-circle');
                 return;
             }
             
@@ -2211,10 +2348,10 @@
                 status: 'Pending'
             });
             
-            transactions.push({
+            wdHistory.push({
                 date: new Date().toLocaleString(),
-                type: 'Withdraw',
                 amount: amount,
+                fee: fee,
                 status: 'Pending'
             });
             
@@ -2222,7 +2359,7 @@
                 date: new Date().toLocaleString(),
                 type: 'Withdraw',
                 amount: amount,
-                note: 'Menunggu approve admin'
+                note: 'Fee Rp ' + formatRupiah(fee) + ' | Menunggu approve'
             });
             
             showToast('WD Rp ' + formatRupiah(amount) + ' menunggu approve!', 'fa-clock');
@@ -2246,6 +2383,9 @@
                 if (pending.type === 'Deposit') {
                     user.saldo = (user.saldo || 0) + pending.amount;
                     user.omset = (user.omset || 0) + pending.amount;
+                    // Update deposit history
+                    const dep = depositHistory.find(d => d.date === pending.date && d.amount === pending.amount);
+                    if (dep) dep.status = 'Berhasil';
                 } else if (pending.type === 'Withdraw') {
                     const total = pending.amount + (pending.fee || 1000);
                     if (user.saldo >= total) {
@@ -2254,10 +2394,9 @@
                         showToast('Saldo user tidak cukup!', 'fa-exclamation-circle');
                         return;
                     }
+                    const wd = wdHistory.find(w => w.date === pending.date && w.amount === pending.amount);
+                    if (wd) wd.status = 'Berhasil';
                 }
-                
-                const trans = transactions.find(t => t.date === pending.date && t.type === pending.type);
-                if (trans) trans.status = 'Berhasil';
                 
                 const hist = histories.find(h => h.date === pending.date && h.type === pending.type);
                 if (hist) hist.note = 'Disetujui admin';
@@ -2266,8 +2405,13 @@
                 showToast('Transaksi ' + pending.type + ' disetujui!', 'fa-check-circle');
             } else {
                 pending.status = 'Rejected';
-                const trans = transactions.find(t => t.date === pending.date && t.type === pending.type);
-                if (trans) trans.status = 'Ditolak';
+                if (pending.type === 'Deposit') {
+                    const dep = depositHistory.find(d => d.date === pending.date && d.amount === pending.amount);
+                    if (dep) dep.status = 'Ditolak';
+                } else {
+                    const wd = wdHistory.find(w => w.date === pending.date && w.amount === pending.amount);
+                    if (wd) wd.status = 'Ditolak';
+                }
                 const hist = histories.find(h => h.date === pending.date && h.type === pending.type);
                 if (hist) hist.note = 'Ditolak admin';
                 showToast('Transaksi ditolak!', 'fa-times-circle');
@@ -2339,7 +2483,6 @@
             document.getElementById('aTotalOmset').textContent = 'Rp ' + formatRupiah(totalOmset);
             document.getElementById('aTotalBonus').textContent = 'Rp ' + formatRupiah(totalBonus);
 
-            // Video list
             const videoContainer = document.getElementById('videoListAdmin');
             if (videoList.length === 0) {
                 videoContainer.innerHTML = '<div style="color:#475074; padding:6px 0; font-size:0.8rem;">Belum ada video.</div>';
@@ -2356,7 +2499,6 @@
                 `).join('');
             }
 
-            // Pending transactions
             const pendingContainer = document.getElementById('pendingTransactions');
             if (pendingTransactions.length === 0) {
                 pendingContainer.innerHTML = '<div style="color:#475074; padding:6px 0; text-align:center; font-size:0.8rem;">✅ Tidak ada transaksi pending</div>';
@@ -2366,7 +2508,9 @@
                         <div class="info">
                             <div class="user">${t.username} - ${t.type}</div>
                             <div class="detail">Rp ${formatRupiah(t.amount)} · ${t.date}</div>
+                            <div class="detail" style="font-size:0.55rem;">${t.type === 'Deposit' ? 'Kode: ' + (t.code || '-') : 'Fee: Rp ' + formatRupiah(t.fee || 1000)}</div>
                             <div class="detail" style="font-size:0.55rem;">Bank: ${t.bank?.bank || '-'} - ${t.bank?.account || '-'}</div>
+                            ${t.proof ? '<div class="detail" style="font-size:0.55rem; color:#4ecdc4;">📎 ' + t.proof + '</div>' : ''}
                         </div>
                         <div class="actions">
                             <button class="btn-outline-success btn-sm" onclick="approveTransaction(${t.id}, 'approve')"><i class="fas fa-check"></i></button>
@@ -2376,7 +2520,6 @@
                 `).join('');
             }
 
-            // Member table
             const tbody = document.getElementById('memberTable');
             tbody.innerHTML = users.map(u => {
                 const bankInfo = u.bank ? `${u.bank.bank || '-'} - ${u.bank.account || '-'}` : '-';
@@ -2390,7 +2533,6 @@
                 </tr>`;
             }).join('') || '<tr><td colspan="6" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada member</td></tr>';
 
-            // Report
             const reportBody = document.getElementById('reportTable');
             const totalRef = users.reduce((s, u) => s + (u.bonusReferral || 0), 0);
             const totalRabat = users.reduce((s, u) => s + (u.bonusRabat || 0), 0);
@@ -2521,6 +2663,8 @@
             document.getElementById('adminBank').value = adminBank.bank;
             document.getElementById('adminBankAccount').value = adminBank.account;
             document.getElementById('adminBankName').value = adminBank.name;
+            document.getElementById('adminBankCode').value = adminBank.code || '7A3';
+            updateAdminBankDisplay();
         })();
     </script>
 </body>
