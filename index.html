@@ -17,7 +17,11 @@
         body {
             background: #0a0e1a;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-image: radial-gradient(ellipse at 30% 20%, #1a1f3a 0%, #0a0e1a 70%);
+            padding: 20px;
         }
 
         .toast {
@@ -48,20 +52,16 @@
 
         /* ===== LANDING ===== */
         #landingPage {
-            max-width: 500px;
+            max-width: 480px;
             width: 100%;
-            margin: 0 auto;
-            padding: 40px 30px;
             background: rgba(20, 26, 43, 0.8);
             backdrop-filter: blur(30px);
             border-radius: 32px;
+            padding: 40px 30px;
             border: 1px solid rgba(245, 215, 66, 0.15);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
         }
-        #landingPage .logo { text-align: center; margin-bottom: 24px; }
+        #landingPage .logo { text-align: center; margin-bottom: 20px; }
         #landingPage .logo h1 {
             font-size: 3rem;
             font-weight: 900;
@@ -76,29 +76,29 @@
             50% { background-position: 100% 50%; }
         }
         #landingPage .logo p { color: #8892b0; font-size: 0.85rem; letter-spacing: 3px; font-weight: 300; }
-        #landingPage .hero { text-align: center; padding: 20px 0; }
-        #landingPage .hero h2 { font-size: 1.5rem; color: #fff; font-weight: 700; margin-bottom: 12px; }
+        #landingPage .hero { text-align: center; padding: 16px 0; }
+        #landingPage .hero h2 { font-size: 1.4rem; color: #fff; font-weight: 700; margin-bottom: 8px; }
         #landingPage .hero h2 span {
             background: linear-gradient(135deg, #f5d742, #f0b400);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        #landingPage .hero p { color: #8892b0; font-size: 0.95rem; }
+        #landingPage .hero p { color: #8892b0; font-size: 0.9rem; }
         .landing-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 24px;
+            margin-top: 20px;
         }
         .btn-primary {
             background: linear-gradient(135deg, #f5d742, #e6a800);
             color: #0a0e1a;
-            padding: 12px 36px;
+            padding: 12px 32px;
             border: none;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
@@ -110,11 +110,11 @@
         .btn-secondary {
             background: rgba(255,255,255,0.05);
             color: #f5d742;
-            padding: 12px 36px;
+            padding: 12px 32px;
             border: 1px solid rgba(245, 215, 66, 0.3);
             border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
@@ -192,27 +192,76 @@
             font-size: 0.85rem;
         }
         .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3); }
+        .btn-ghost {
+            background: rgba(255,255,255,0.05);
+            color: #b9c4e0;
+            padding: 8px 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+        
+        /* Demo User Buttons */
+        .demo-users {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .demo-btn {
+            background: rgba(255,255,255,0.04);
+            color: #8892b0;
+            padding: 8px 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .demo-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(245, 215, 66, 0.2);
+            color: #fff;
+        }
+        .demo-btn .badge-demo {
+            background: rgba(245, 215, 66, 0.15);
+            color: #f5d742;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.55rem;
+            font-weight: 600;
+        }
 
         /* ===== AUTH ===== */
         .auth-container {
             display: none;
             max-width: 400px;
             width: 100%;
-            margin: 0 auto;
             background: rgba(20, 26, 43, 0.9);
             backdrop-filter: blur(30px);
             border-radius: 28px;
             padding: 35px 28px;
             border: 1px solid rgba(245, 215, 66, 0.12);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
         }
         .auth-container.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-50%) scale(0.95); }
-            to { opacity: 1; transform: translateY(-50%) scale(1); }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         .auth-container .logo h1 {
             font-size: 2rem;
@@ -222,17 +271,17 @@
             -webkit-text-fill-color: transparent;
             text-align: center;
         }
-        .auth-container .logo p { text-align: center; color: #8892b0; font-size: 0.8rem; margin-bottom: 24px; }
-        .auth-container label { color: #b9c4e0; font-size: 0.75rem; font-weight: 500; display: block; margin-bottom: 6px; }
+        .auth-container .logo p { text-align: center; color: #8892b0; font-size: 0.8rem; margin-bottom: 20px; }
+        .auth-container label { color: #b9c4e0; font-size: 0.75rem; font-weight: 500; display: block; margin-bottom: 4px; }
         .auth-container input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 11px 16px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.06);
             background: rgba(255,255,255,0.04);
             color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 14px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
             outline: none;
             transition: 0.3s;
         }
@@ -255,7 +304,7 @@
             gap: 10px;
         }
         .auth-container .btn-auth:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245, 215, 66, 0.25); }
-        .auth-switch { text-align: center; margin-top: 14px; color: #7a87b0; font-size: 0.85rem; }
+        .auth-switch { text-align: center; margin-top: 12px; color: #7a87b0; font-size: 0.85rem; }
         .auth-switch a { color: #f5d742; cursor: pointer; font-weight: 600; }
         .auth-switch a:hover { text-decoration: underline; }
         .auth-error { color: #ff6b6b; font-size: 0.8rem; text-align: center; margin-top: 10px; display: none; }
@@ -268,6 +317,9 @@
             min-height: 100vh;
             padding: 12px;
             padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
         #dashboard.active { display: block; }
 
@@ -451,9 +503,13 @@
            ========================================================= */
         .page {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: fadeInPage 0.25s ease;
         }
         .page.active { display: block; }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* Stats Grid */
         .stats-grid {
@@ -847,10 +903,6 @@
             width: 0%;
             transition: width 0.5s;
         }
-        /* Skip block dihapus - tidak ada tulisan merah */
-        .video-modal .skip-block {
-            display: none;
-        }
 
         /* =========================================================
            RESPONSIVE
@@ -867,8 +919,6 @@
                 padding-left: 260px;
                 padding-right: 20px;
                 padding-bottom: 20px;
-                max-width: 1200px;
-                margin: 0 auto;
             }
             .bottom-nav { display: none !important; }
             .menu-toggle { display: none; }
@@ -876,6 +926,7 @@
             .admin-settings { grid-template-columns: 1fr 1fr; }
             .video-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
             .stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+            #landingPage, .auth-container { margin: 0; }
         }
 
         @media (max-width: 768px) {
@@ -893,7 +944,7 @@
             .form-row { grid-template-columns: 1fr; }
             .dash-header .brand span { display: none; }
             .dash-header .user-badge .name { display: none; }
-            #landingPage, .auth-container { margin: 20px auto; top: auto; transform: none; }
+            #landingPage, .auth-container { margin: 0; }
         }
 
         @media (max-width: 480px) {
@@ -945,7 +996,20 @@
                 <button class="btn-secondary" onclick="showAuth('register')"><i class="fas fa-user-plus"></i> Daftar</button>
             </div>
         </div>
-        <div style="text-align:center; color:#475074; font-size:0.65rem; margin-top:16px; border-top:1px solid rgba(255,255,255,0.04); padding-top:14px;">
+        
+        <!-- Demo Users -->
+        <div class="demo-users">
+            <button class="demo-btn" onclick="quickLogin('admin')">
+                <i class="fas fa-crown" style="color:#f5d742;"></i> Admin
+                <span class="badge-demo">admin</span>
+            </button>
+            <button class="demo-btn" onclick="quickLogin('user')">
+                <i class="fas fa-user" style="color:#4ecdc4;"></i> User
+                <span class="badge-demo">user</span>
+            </button>
+        </div>
+        
+        <div style="text-align:center; color:#475074; font-size:0.6rem; margin-top:14px; border-top:1px solid rgba(255,255,255,0.04); padding-top:12px;">
             <i class="fas fa-shield-alt"></i> Bonus setiap tontonan &nbsp;·&nbsp; WWW.DEXTERMOVIE.COM
         </div>
     </div>
@@ -1193,9 +1257,13 @@
                 <h4 style="color:#4ecdc4; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-university"></i> Rekening Tujuan Deposit</h4>
                 <div style="color:#d6e0ff; font-size:0.8rem;">
                     <div><strong style="color:#fff;">Bank:</strong> <span id="depositBank">BCA</span></div>
-                    <div><strong style="color:#fff;">No. Rekening:</strong> <span id="depositAccount">1234567890</span> <span style="color:#f5d742; font-weight:700;" id="depositCode">- 7A3</span></div>
+                    <div><strong style="color:#fff;">No. Rekening:</strong> <span id="depositAccount">1234567890</span></div>
                     <div><strong style="color:#fff;">Atas Nama:</strong> <span id="depositName">Admin DEXTER</span></div>
-                    <div style="color:#8892b0; font-size:0.7rem; margin-top:4px;"><i class="fas fa-info-circle"></i> Gunakan kode unik <span style="color:#f5d742; font-weight:700;">7A3</span> di belakang nominal transfer</div>
+                    <div style="color:#f5d742; font-size:0.75rem; margin-top:4px; font-weight:700;">
+                        <i class="fas fa-info-circle"></i> Kode Unik: <span id="depositCode">7A3</span> 
+                        <span style="color:#8892b0; font-weight:400;">(3 digit terakhir dari nominal transfer)</span>
+                    </div>
+                    <div style="color:#8892b0; font-size:0.7rem; margin-top:2px;">Contoh: Transfer Rp 10.000 + kode 321 = Rp 10.321</div>
                 </div>
             </div>
 
@@ -1221,12 +1289,17 @@
             <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
                 <h4 style="color:#4ecdc4; font-size:0.8rem;"><i class="fas fa-arrow-down"></i> Form Deposit</h4>
                 <div class="form-group" style="margin:8px 0;">
-                    <label>Jumlah Deposit</label>
+                    <label>Jumlah Deposit (tanpa kode)</label>
                     <input type="number" id="depositAmount" placeholder="Minimal Rp 5.000" value="10000">
                 </div>
                 <div class="form-group" style="margin:8px 0;">
-                    <label>Kode Unik (dari rekening tujuan)</label>
-                    <input type="text" id="depositCodeInput" placeholder="Masukkan 3 digit kode" value="7A3">
+                    <label>3 Digit Kode Unik</label>
+                    <input type="text" id="depositCodeInput" placeholder="Masukkan 3 digit kode" value="321" maxlength="3">
+                    <div style="color:#8892b0; font-size:0.6rem; margin-top:4px;">Masukkan 3 digit kode dari rekening tujuan di atas</div>
+                </div>
+                <div class="form-group" style="margin:8px 0;">
+                    <label>Total Transfer (otomatis)</label>
+                    <input type="text" id="depositTotal" disabled style="opacity:0.7;">
                 </div>
                 <div class="form-group" style="margin:8px 0;">
                     <label>Upload Bukti Transfer (opsional)</label>
@@ -1382,7 +1455,7 @@
                     <div class="row"><span>Bank</span><input type="text" id="adminBank" value="BCA"></div>
                     <div class="row"><span>No. Rekening</span><input type="text" id="adminBankAccount" value="1234567890"></div>
                     <div class="row"><span>Atas Nama</span><input type="text" id="adminBankName" value="Admin DEXTER"></div>
-                    <div class="row"><span>Kode Unik</span><input type="text" id="adminBankCode" value="7A3" style="width:80px;"></div>
+                    <div class="row"><span>Kode Unik (3 digit)</span><input type="text" id="adminBankCode" value="321" maxlength="3" style="width:80px;"></div>
                     <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveAdminBank()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
 
@@ -1501,7 +1574,7 @@
         let bonusPerWatch = 100;
         let videoDuration = 180;
         let rabatSettings = { L1: 10, L2: 5, L3: 3, L4: 2, L5: 1 };
-        let adminBank = { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER', code: '7A3' };
+        let adminBank = { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER', code: '321' };
         
         let missions = [
             { id: 1, title: 'Tonton 5 Video', desc: 'Tonton 5 short video', icon: '🎬', target: 5, reward: 1000 },
@@ -1557,38 +1630,67 @@
             }
         }
 
+        // Fix: Gunakan requestAnimationFrame untuk navigasi lebih mulus
         function navigateTo(pageId) {
             // Close sidebar on mobile
             if (window.innerWidth <= 768) {
                 toggleSidebar(false);
             }
             
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Gunakan requestAnimationFrame untuk menghindari layout thrashing
+            requestAnimationFrame(() => {
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                
+                // Show target page
+                const target = document.getElementById(pageId);
+                if (target) {
+                    target.classList.add('active');
+                }
+                
+                // Update sidebar nav
+                document.querySelectorAll('.sidebar .nav-item').forEach(n => n.classList.remove('active'));
+                const sidebarBtn = document.querySelector(`.sidebar .nav-item[data-page="${pageId}"]`);
+                if (sidebarBtn) sidebarBtn.classList.add('active');
+                
+                // Update bottom nav
+                document.querySelectorAll('.bottom-nav .nav-btn').forEach(n => n.classList.remove('active'));
+                const bottomBtn = document.querySelector(`.bottom-nav .nav-btn[data-page="${pageId}"]`);
+                if (bottomBtn) bottomBtn.classList.add('active');
+            });
             
-            // Show target page
-            const target = document.getElementById(pageId);
-            if (target) target.classList.add('active');
-            
-            // Update sidebar nav
-            document.querySelectorAll('.sidebar .nav-item').forEach(n => n.classList.remove('active'));
-            const sidebarBtn = document.querySelector(`.sidebar .nav-item[data-page="${pageId}"]`);
-            if (sidebarBtn) sidebarBtn.classList.add('active');
-            
-            // Update bottom nav
-            document.querySelectorAll('.bottom-nav .nav-btn').forEach(n => n.classList.remove('active'));
-            const bottomBtn = document.querySelector(`.bottom-nav .nav-btn[data-page="${pageId}"]`);
-            if (bottomBtn) bottomBtn.classList.add('active');
-            
-            // Update page specific content
-            if (pageId === 'pageAdmin') updateAdminTab();
-            if (pageId === 'pageReferral') updateReferralTab();
-            if (pageId === 'pageReward') updateRewardTab();
-            if (pageId === 'pageDeposit') updateDepositTab();
-            if (pageId === 'pageWithdraw') updateWithdrawTab();
-            if (pageId === 'pageAkun') updateAkunPage();
-            if (pageId === 'pageDashboard') updateMemberTab();
-            if (pageId === 'pageDracin') renderVideos(true);
+            // Update page specific content setelah render
+            setTimeout(() => {
+                if (pageId === 'pageAdmin') updateAdminTab();
+                if (pageId === 'pageReferral') updateReferralTab();
+                if (pageId === 'pageReward') updateRewardTab();
+                if (pageId === 'pageDeposit') updateDepositTab();
+                if (pageId === 'pageWithdraw') updateWithdrawTab();
+                if (pageId === 'pageAkun') updateAkunPage();
+                if (pageId === 'pageDashboard') updateMemberTab();
+                if (pageId === 'pageDracin') renderVideos(true);
+            }, 50);
+        }
+
+        // =========================================================
+        // QUICK LOGIN (Demo Users)
+        // =========================================================
+        function quickLogin(type) {
+            if (type === 'admin') {
+                const admin = users.find(u => u.username === 'admin');
+                if (admin) {
+                    loginUser(admin);
+                } else {
+                    showToast('Admin tidak ditemukan!', 'fa-exclamation-circle');
+                }
+            } else if (type === 'user') {
+                const user = users.find(u => u.username === 'user');
+                if (user) {
+                    loginUser(user);
+                } else {
+                    showToast('User tidak ditemukan!', 'fa-exclamation-circle');
+                }
+            }
         }
 
         // =========================================================
@@ -1662,7 +1764,7 @@
                     referralCount: 0, totalWatch: 0,
                     refCode: 'DXT' + String(100 + users.length + 1).padStart(3, '0'),
                     referredBy: refCode || null,
-                    isAdmin: users.length === 0,
+                    isAdmin: false,
                     missionProgress: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
                     missionDone: { 1: false, 2: false, 3: false, 4: false, 5: false },
                     watchedVideos: [],
@@ -1718,7 +1820,6 @@
                 document.getElementById('akunBank').value = user.bank.bank || '';
                 document.getElementById('akunBankAccount').value = user.bank.account || '';
                 document.getElementById('akunBankName').value = user.bank.name || '';
-                // WD form
                 document.getElementById('wdBank').value = user.bank.bank || '';
                 document.getElementById('wdBankAccount').value = user.bank.account || '';
                 document.getElementById('wdBankName').value = user.bank.name || '';
@@ -1744,10 +1845,26 @@
         function updateAdminBankDisplay() {
             document.getElementById('depositBank').textContent = adminBank.bank || 'BCA';
             document.getElementById('depositAccount').textContent = adminBank.account || '1234567890';
-            document.getElementById('depositCode').textContent = adminBank.code ? ' - ' + adminBank.code : '';
             document.getElementById('depositName').textContent = adminBank.name || 'Admin DEXTER';
-            document.getElementById('depositCodeInput').value = adminBank.code || '7A3';
+            document.getElementById('depositCode').textContent = adminBank.code || '321';
+            document.getElementById('depositCodeInput').value = adminBank.code || '321';
+            
+            // Auto calculate total transfer
+            calculateDepositTotal();
         }
+
+        function calculateDepositTotal() {
+            const amount = parseInt(document.getElementById('depositAmount').value) || 0;
+            const code = document.getElementById('depositCodeInput').value.trim() || '000';
+            const total = amount + parseInt(code) || 0;
+            document.getElementById('depositTotal').value = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        // Add event listeners for auto calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('depositAmount').addEventListener('input', calculateDepositTotal);
+            document.getElementById('depositCodeInput').addEventListener('input', calculateDepositTotal);
+        });
 
         // =========================================================
         // REFERRAL LINK
@@ -1832,7 +1949,7 @@
             adminBank.bank = document.getElementById('adminBank').value.trim();
             adminBank.account = document.getElementById('adminBankAccount').value.trim();
             adminBank.name = document.getElementById('adminBankName').value.trim();
-            adminBank.code = document.getElementById('adminBankCode').value.trim() || '7A3';
+            adminBank.code = document.getElementById('adminBankCode').value.trim() || '321';
             updateAdminBankDisplay();
             showToast('Rekening admin disimpan!', 'fa-save');
         }
@@ -1943,7 +2060,7 @@
         }
 
         // =========================================================
-        // VIDEO PLAYER - NO SKIP BLOCK (hanya timer)
+        // VIDEO PLAYER
         // =========================================================
         function openVideoById(videoId) {
             if (!currentUser) {
@@ -2225,7 +2342,6 @@
             if (!currentUser) return;
             document.getElementById('wSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
             
-            // Update WD form with user bank
             if (currentUser.bank) {
                 document.getElementById('wdBank').value = currentUser.bank.bank || '';
                 document.getElementById('wdBankAccount').value = currentUser.bank.account || '';
@@ -2260,8 +2376,8 @@
                 return;
             }
             
-            if (!code) {
-                showToast('Masukkan kode unik dari rekening tujuan!', 'fa-exclamation-circle');
+            if (!code || code.length !== 3) {
+                showToast('Masukkan 3 digit kode unik!', 'fa-exclamation-circle');
                 return;
             }
             
@@ -2276,7 +2392,6 @@
                 return;
             }
             
-            // File upload (optional)
             const fileInput = document.getElementById('depositProof');
             let proofName = '';
             if (fileInput.files && fileInput.files.length > 0) {
@@ -2383,7 +2498,6 @@
                 if (pending.type === 'Deposit') {
                     user.saldo = (user.saldo || 0) + pending.amount;
                     user.omset = (user.omset || 0) + pending.amount;
-                    // Update deposit history
                     const dep = depositHistory.find(d => d.date === pending.date && d.amount === pending.amount);
                     if (dep) dep.status = 'Berhasil';
                 } else if (pending.type === 'Withdraw') {
@@ -2607,19 +2721,7 @@
         // INIT
         // =========================================================
         (function init() {
-            // Default videos
-            if (videoList.length === 0) {
-                videoList = [
-                    { id: 1, title: 'Short Dracin - Episode 1: Petualangan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 100, createdAt: new Date().toLocaleString() },
-                    { id: 2, title: 'Short Dracin - Episode 2: Misi Rahasia', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 150, createdAt: new Date().toLocaleString() },
-                    { id: 3, title: 'Short Dracin - Episode 3: Pertarungan Epik', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 200, createdAt: new Date().toLocaleString() },
-                    { id: 4, title: 'Short Dracin - Episode 4: Kekuatan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 120, createdAt: new Date().toLocaleString() },
-                    { id: 5, title: 'Short Dracin - Episode 5: Final Boss', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 250, createdAt: new Date().toLocaleString() },
-                ];
-                videoIdCounter = 6;
-            }
-
-            // Default admin
+            // Create default admin
             if (users.length === 0) {
                 const admin = {
                     username: 'admin', password: 'admin123', name: 'Administrator',
@@ -2634,9 +2736,37 @@
                     missionPoints: 0
                 };
                 users.push(admin);
+                
+                // Create default user
+                const user = {
+                    username: 'user', password: 'user123', name: 'User Biasa',
+                    level: 1, omset: 0, saldo: 0,
+                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 0,
+                    referralCount: 0, totalWatch: 0,
+                    refCode: 'DXT001', referredBy: null, isAdmin: false,
+                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
+                    missionDone: {1:false,2:false,3:false,4:false,5:false},
+                    watchedVideos: [],
+                    bank: { bank: 'BCA', account: '9876543210', name: 'User Biasa' },
+                    missionPoints: 0
+                };
+                users.push(user);
+                
                 referralData.push({ username: 'member1', level: 2, omset: 500000, referredBy: 'DEXTER001' });
                 referralData.push({ username: 'member2', level: 1, omset: 200000, referredBy: 'DEXTER001' });
                 admin.referralCount = 2;
+            }
+            
+            // Default videos
+            if (videoList.length === 0) {
+                videoList = [
+                    { id: 1, title: 'Short Dracin - Episode 1: Petualangan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 100, createdAt: new Date().toLocaleString() },
+                    { id: 2, title: 'Short Dracin - Episode 2: Misi Rahasia', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 150, createdAt: new Date().toLocaleString() },
+                    { id: 3, title: 'Short Dracin - Episode 3: Pertarungan Epik', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 200, createdAt: new Date().toLocaleString() },
+                    { id: 4, title: 'Short Dracin - Episode 4: Kekuatan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 120, createdAt: new Date().toLocaleString() },
+                    { id: 5, title: 'Short Dracin - Episode 5: Final Boss', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 250, createdAt: new Date().toLocaleString() },
+                ];
+                videoIdCounter = 6;
             }
             
             users.forEach(u => {
@@ -2663,7 +2793,7 @@
             document.getElementById('adminBank').value = adminBank.bank;
             document.getElementById('adminBankAccount').value = adminBank.account;
             document.getElementById('adminBankName').value = adminBank.name;
-            document.getElementById('adminBankCode').value = adminBank.code || '7A3';
+            document.getElementById('adminBankCode').value = adminBank.code || '321';
             updateAdminBankDisplay();
         })();
     </script>
