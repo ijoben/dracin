@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DEXTER · Short Dracin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,11 +17,7 @@
         body {
             background: #0a0e1a;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background-image: radial-gradient(ellipse at 30% 20%, #1a1f3a 0%, #0a0e1a 70%);
-            padding: 20px;
         }
 
         .toast {
@@ -32,350 +28,96 @@
             background: rgba(30, 38, 63, 0.95);
             backdrop-filter: blur(20px);
             color: #fff;
-            padding: 14px 28px;
-            border-radius: 16px;
-            border: 1px solid rgba(245, 215, 66, 0.2);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(245, 215, 66, 0.15);
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             font-weight: 500;
             z-index: 9999;
             display: none;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             max-width: 90%;
+            font-size: 0.85rem;
         }
-        .toast.show { display: flex; animation: slideUp 0.4s ease; }
-        .toast i { color: #f5d742; font-size: 1.2rem; }
+        .toast.show { display: flex; animation: slideUp 0.3s ease; }
+        .toast i { color: #f5d742; font-size: 1rem; }
         @keyframes slideUp {
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* ===== LANDING ===== */
-        #landingPage {
-            max-width: 480px;
-            width: 100%;
-            background: rgba(20, 26, 43, 0.8);
-            backdrop-filter: blur(30px);
-            border-radius: 32px;
-            padding: 40px 30px;
-            border: 1px solid rgba(245, 215, 66, 0.15);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        /* ===== LANDING PAGE - TIDAK DIPAKAI ===== */
+        #landingPage, #authContainer {
+            display: none !important;
         }
-        #landingPage .logo { text-align: center; margin-bottom: 20px; }
-        #landingPage .logo h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #f5d742, #f0b400, #f5d742);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        #landingPage .logo p { color: #8892b0; font-size: 0.85rem; letter-spacing: 3px; font-weight: 300; }
-        #landingPage .hero { text-align: center; padding: 16px 0; }
-        #landingPage .hero h2 { font-size: 1.4rem; color: #fff; font-weight: 700; margin-bottom: 8px; }
-        #landingPage .hero h2 span {
-            background: linear-gradient(135deg, #f5d742, #f0b400);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        #landingPage .hero p { color: #8892b0; font-size: 0.9rem; }
-        .landing-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #f5d742, #e6a800);
-            color: #0a0e1a;
-            padding: 12px 32px;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 24px rgba(245, 215, 66, 0.25);
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(245, 215, 66, 0.35); }
-        .btn-secondary {
-            background: rgba(255,255,255,0.05);
-            color: #f5d742;
-            padding: 12px 32px;
-            border: 1px solid rgba(245, 215, 66, 0.3);
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-secondary:hover { background: rgba(245, 215, 66, 0.1); border-color: #f5d742; transform: translateY(-2px); }
-        .btn-danger {
-            background: rgba(255, 107, 107, 0.1);
-            color: #ff6b6b;
-            padding: 8px 18px;
-            border: 1px solid rgba(255, 107, 107, 0.2);
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-        }
-        .btn-danger:hover { background: rgba(255, 107, 107, 0.2); border-color: #ff6b6b; }
-        .btn-success {
-            background: linear-gradient(135deg, #4ecdc4, #2ea89e);
-            color: #0a0e1a;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-        }
-        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3); }
-        .btn-sm { padding: 5px 14px; font-size: 0.7rem; border-radius: 8px; }
-        .btn-outline-success {
-            background: transparent;
-            color: #4ecdc4;
-            padding: 5px 14px;
-            border: 1px solid #4ecdc4;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-outline-success:hover { background: #4ecdc4; color: #0a0e1a; }
-        .btn-outline-danger {
-            background: transparent;
-            color: #ff6b6b;
-            padding: 5px 14px;
-            border: 1px solid #ff6b6b;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-outline-danger:hover { background: #ff6b6b; color: #fff; }
-        .btn-warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #fff;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-        }
-        .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3); }
-        .btn-ghost {
-            background: rgba(255,255,255,0.05);
-            color: #b9c4e0;
-            padding: 8px 18px;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-        }
-        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
-        
-        /* Demo User Buttons */
-        .demo-users {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .demo-btn {
-            background: rgba(255,255,255,0.04);
-            color: #8892b0;
-            padding: 8px 20px;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px;
-            font-weight: 500;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .demo-btn:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(245, 215, 66, 0.2);
-            color: #fff;
-        }
-        .demo-btn .badge-demo {
-            background: rgba(245, 215, 66, 0.15);
-            color: #f5d742;
-            padding: 1px 8px;
-            border-radius: 10px;
-            font-size: 0.55rem;
-            font-weight: 600;
-        }
-
-        /* ===== AUTH ===== */
-        .auth-container {
-            display: none;
-            max-width: 400px;
-            width: 100%;
-            background: rgba(20, 26, 43, 0.9);
-            backdrop-filter: blur(30px);
-            border-radius: 28px;
-            padding: 35px 28px;
-            border: 1px solid rgba(245, 215, 66, 0.12);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-        }
-        .auth-container.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .auth-container .logo h1 {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #f5d742, #f0b400);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-        }
-        .auth-container .logo p { text-align: center; color: #8892b0; font-size: 0.8rem; margin-bottom: 20px; }
-        .auth-container label { color: #b9c4e0; font-size: 0.75rem; font-weight: 500; display: block; margin-bottom: 4px; }
-        .auth-container input {
-            width: 100%;
-            padding: 11px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.06);
-            background: rgba(255,255,255,0.04);
-            color: #fff;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .auth-container input:focus { border-color: #f5d742; box-shadow: 0 0 0 3px rgba(245, 215, 66, 0.1); }
-        .auth-container input::placeholder { color: #475074; }
-        .auth-container .btn-auth {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #f5d742, #e6a800);
-            color: #0a0e1a;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .auth-container .btn-auth:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245, 215, 66, 0.25); }
-        .auth-switch { text-align: center; margin-top: 12px; color: #7a87b0; font-size: 0.85rem; }
-        .auth-switch a { color: #f5d742; cursor: pointer; font-weight: 600; }
-        .auth-switch a:hover { text-decoration: underline; }
-        .auth-error { color: #ff6b6b; font-size: 0.8rem; text-align: center; margin-top: 10px; display: none; }
 
         /* =========================================================
-           DASHBOARD LAYOUT
+           DASHBOARD
            ========================================================= */
         #dashboard {
-            display: none;
+            display: block !important;
             min-height: 100vh;
-            padding: 12px;
-            padding-bottom: 80px;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            width: 100%;
+            padding: 8px;
+            padding-bottom: 80px;
         }
-        #dashboard.active { display: block; }
 
-        /* Header */
+        /* ===== HEADER ===== */
         .dash-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
-            background: rgba(20, 26, 43, 0.8);
+            padding: 10px 14px;
+            background: rgba(20, 26, 43, 0.85);
             backdrop-filter: blur(20px);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 12px;
+            width: 100%;
         }
         .dash-header .brand {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 900;
             color: #f5d742;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
-        .dash-header .brand span { color: #8892b0; font-weight: 400; font-size: 0.7rem; }
+        .dash-header .brand span { color: #8892b0; font-weight: 400; font-size: 0.65rem; }
         .dash-header .user-badge {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .dash-header .user-badge .avatar {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: linear-gradient(135deg, #f5d74220, #f0b40020);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #f5d742;
-            border: 2px solid rgba(245, 215, 66, 0.2);
-            font-size: 0.9rem;
+            border: 2px solid rgba(245, 215, 66, 0.12);
+            font-size: 0.85rem;
+            cursor: pointer;
         }
-        .dash-header .user-badge .name { color: #fff; font-weight: 600; font-size: 0.85rem; }
-        .dash-header .user-badge .role { color: #8892b0; font-size: 0.65rem; }
+        .dash-header .user-badge .name { color: #fff; font-weight: 600; font-size: 0.8rem; }
+        .dash-header .user-badge .role { color: #8892b0; font-size: 0.6rem; }
         .menu-toggle {
             background: none;
             border: none;
             color: #8892b0;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             cursor: pointer;
             padding: 4px 8px;
         }
         .menu-toggle:hover { color: #fff; }
 
-        /* =========================================================
-           SIDEBAR (Desktop)
-           ========================================================= */
+        /* ===== SIDEBAR ===== */
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -396,7 +138,7 @@
             height: 100%;
             background: rgba(20, 26, 43, 0.98);
             backdrop-filter: blur(30px);
-            border-right: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid rgba(255,255,255,0.04);
             z-index: 1000;
             transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 20px 16px;
@@ -407,24 +149,24 @@
         .sidebar.open { left: 0; }
 
         .sidebar .sidebar-brand {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: #f5d742;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 12px;
         }
-        .sidebar .sidebar-brand small { color: #8892b0; font-weight: 400; font-size: 0.7rem; }
+        .sidebar .sidebar-brand small { color: #8892b0; font-weight: 400; font-size: 0.65rem; }
 
         .sidebar .nav-item {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 12px 16px;
-            border-radius: 12px;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
             color: #8892b0;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: 0.3s;
             border: none;
@@ -434,72 +176,84 @@
         }
         .sidebar .nav-item:hover { background: rgba(255,255,255,0.04); color: #fff; }
         .sidebar .nav-item.active {
-            background: linear-gradient(135deg, #f5d74220, #f0b40010);
+            background: linear-gradient(135deg, #f5d74215, #f0b40008);
             color: #f5d742;
-            border: 1px solid rgba(245, 215, 66, 0.15);
+            border: 1px solid rgba(245, 215, 66, 0.08);
         }
-        .sidebar .nav-item i { width: 22px; font-size: 1.1rem; }
+        .sidebar .nav-item i { width: 20px; font-size: 1rem; }
         .sidebar .nav-item .badge-nav {
             margin-left: auto;
-            background: rgba(245, 215, 66, 0.15);
+            background: rgba(245, 215, 66, 0.08);
             color: #f5d742;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 0.6rem;
             font-weight: 600;
         }
         .sidebar .nav-divider {
             height: 1px;
-            background: rgba(255,255,255,0.05);
-            margin: 8px 0;
+            background: rgba(255,255,255,0.04);
+            margin: 6px 0;
         }
         .sidebar .nav-footer {
             margin-top: auto;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.04);
         }
 
-        /* =========================================================
-           BOTTOM NAV (Mobile)
-           ========================================================= */
+        /* ===== BOTTOM NAV ===== */
         .bottom-nav {
-            display: none;
+            display: flex;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: rgba(20, 26, 43, 0.95);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 6px 0 env(safe-area-inset-bottom, 6px);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding: 8px 4px env(safe-area-inset-bottom, 8px);
             z-index: 100;
             justify-content: space-around;
             align-items: center;
         }
-        .bottom-nav.active { display: flex; }
 
         .bottom-nav .nav-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            padding: 6px 12px;
+            gap: 1px;
+            padding: 4px 10px;
             border: none;
             background: none;
             color: #8892b0;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 500;
             cursor: pointer;
             transition: 0.3s;
-            border-radius: 10px;
-            min-width: 50px;
+            border-radius: 8px;
+            min-width: 52px;
+            position: relative;
         }
         .bottom-nav .nav-btn i { font-size: 1.2rem; }
         .bottom-nav .nav-btn.active { color: #f5d742; }
-        .bottom-nav .nav-btn .nav-label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .bottom-nav .nav-btn .nav-label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 1px; }
+        .bottom-nav .nav-btn .badge-nav {
+            position: absolute;
+            top: -2px;
+            right: 2px;
+            background: rgba(245, 215, 66, 0.15);
+            color: #f5d742;
+            padding: 0 6px;
+            border-radius: 8px;
+            font-size: 0.45rem;
+            font-weight: 600;
+            min-width: 16px;
+            text-align: center;
+            line-height: 16px;
+        }
 
         /* =========================================================
-           CONTENT PAGES
+           PAGE
            ========================================================= */
         .page {
             display: none;
@@ -507,69 +261,318 @@
         }
         .page.active { display: block; }
         @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Stats Grid */
+        /* =========================================================
+           BERANDA - DESAIN BARU (Sesuai Gambar)
+           ========================================================= */
+
+        /* ----- CAROUSEL SLIDER ----- */
+        .carousel-section {
+            margin-bottom: 14px;
+            overflow: hidden;
+            border-radius: 12px;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 8px;
+        }
+        .carousel-item {
+            min-width: 140px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #1a1f3a, #2d3655);
+            position: relative;
+            cursor: pointer;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+        .carousel-item .overlay .title {
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .carousel-item .overlay .sub {
+            color: #8892b0;
+            font-size: 0.5rem;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 0;
+        }
+        .carousel-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .carousel-dots .dot.active {
+            background: #f5d742;
+            width: 24px;
+            border-radius: 4px;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .carousel-btn:hover { background: rgba(0,0,0,0.8); }
+        .carousel-btn.prev { left: 4px; }
+        .carousel-btn.next { right: 4px; }
+
+        /* ----- BANNER PROGRAM MITRA ----- */
+        .banner-mitra {
+            background: linear-gradient(135deg, #1a2a4a, #2d1b4a);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(245, 215, 66, 0.06);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .banner-mitra::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(245, 215, 66, 0.04), transparent 70%);
+            border-radius: 50%;
+        }
+        .banner-mitra .badge-pro {
+            display: inline-block;
+            background: rgba(245, 215, 66, 0.12);
+            color: #f5d742;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+        .banner-mitra .title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 4px 0 2px;
+        }
+        .banner-mitra .title span { color: #f5d742; }
+        .banner-mitra .desc {
+            color: #8892b0;
+            font-size: 0.65rem;
+            margin-bottom: 4px;
+        }
+        .banner-mitra .stats {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 6px 10px;
+        }
+        .banner-mitra .stats .item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #b9c4e0;
+            font-size: 0.65rem;
+        }
+        .banner-mitra .stats .item i { color: #f5d742; font-size: 0.65rem; }
+        .banner-mitra .stats .item strong { color: #fff; }
+
+        /* ----- SECTION FILM ----- */
+        .film-section {
+            margin-bottom: 14px;
+        }
+        .film-section .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .film-section .header h4 {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .film-section .header .see-all {
+            color: #8892b0;
+            font-size: 0.6rem;
+            cursor: pointer;
+        }
+        .film-section .header .see-all:hover { color: #f5d742; }
+
+        .film-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 4px 2px 8px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .film-scroll::-webkit-scrollbar {
+            height: 3px;
+        }
+        .film-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .film-scroll::-webkit-scrollbar-thumb {
+            background: rgba(245, 215, 66, 0.3);
+            border-radius: 10px;
+        }
+
+        .film-item {
+            min-width: 70px;
+            max-width: 70px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #1a1f3a, #2d3655);
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .film-item:hover { transform: scale(1.05); }
+        .film-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .film-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4px 6px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+        .film-item .overlay .title {
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .film-item .badge-ep {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(245, 215, 66, 0.15);
+            color: #f5d742;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.4rem;
+            font-weight: 600;
+        }
+
+        /* ----- STATS ----- */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-            margin-bottom: 16px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
         }
         .stat-card {
             background: rgba(255,255,255,0.03);
-            border-radius: 14px;
-            padding: 14px 16px;
+            border-radius: 10px;
+            padding: 8px 10px;
             border: 1px solid rgba(255,255,255,0.04);
         }
-        .stat-card .label { color: #8892b0; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .stat-card .value { font-size: 1.2rem; font-weight: 800; color: #fff; margin-top: 4px; }
+        .stat-card .label { color: #8892b0; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+        .stat-card .value { font-size: 1rem; font-weight: 800; color: #fff; margin-top: 1px; }
         .stat-card .value.highlight { color: #f5d742; }
         .stat-card .value.green { color: #4ecdc4; }
         .stat-card .value.purple { color: #a78bfa; }
 
-        /* Video Grid */
+        /* ===== TABEL RIWAYAT ===== */
+        .table-wrap { overflow-x: auto; margin-top: 8px; }
+        .table-wrap table { width: 100%; border-collapse: collapse; min-width: 280px; }
+        .table-wrap th {
+            text-align: left;
+            padding: 6px 6px 6px 0;
+            color: #f5d742;
+            font-weight: 600;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .table-wrap td { padding: 6px 6px 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: #d6e0ff; font-size: 0.7rem; }
+
+        /* ===== HALAMAN LAIN ===== */
         .video-section {
             background: rgba(255,255,255,0.02);
-            border-radius: 14px;
-            padding: 16px;
+            border-radius: 12px;
+            padding: 12px;
             border: 1px solid rgba(255,255,255,0.04);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .video-section .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
         }
         .video-section .header h4 {
             color: #f5d742;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-        .video-section .header .badge-count {
-            background: rgba(245, 215, 66, 0.12);
-            color: #f5d742;
-            padding: 2px 12px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 600;
+            gap: 6px;
         }
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
         .video-card {
             background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 8px;
             border: 1px solid rgba(255,255,255,0.04);
             transition: 0.3s;
             cursor: pointer;
@@ -577,209 +580,127 @@
         }
         .video-card:hover {
             background: rgba(255,255,255,0.06);
-            transform: translateY(-2px);
-            border-color: rgba(245, 215, 66, 0.2);
+            border-color: rgba(245, 215, 66, 0.1);
         }
         .video-card .thumbnail {
             width: 100%;
             aspect-ratio: 16/9;
             background: linear-gradient(135deg, #1a1f3a, #2d3655);
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: #f5d742;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             position: relative;
             overflow: hidden;
         }
         .video-card .thumbnail .play-overlay {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: rgba(245, 215, 66, 0.9);
+            background: rgba(245, 215, 66, 0.85);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0a0e1a;
-            font-size: 1rem;
+            font-size: 0.7rem;
             transition: 0.3s;
         }
         .video-card:hover .thumbnail .play-overlay { transform: scale(1.1); }
         .video-card .video-title {
             color: #fff;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 32px;
+            min-height: 24px;
+            line-height: 1.2;
         }
         .video-card .video-meta {
             color: #8892b0;
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 4px;
+            margin-top: 2px;
         }
         .video-card .video-meta .reward { color: #f5d742; font-weight: 600; }
         .video-card .status-watched {
             position: absolute;
-            top: 6px;
-            right: 6px;
-            background: rgba(78, 205, 196, 0.2);
+            top: 3px;
+            right: 3px;
+            background: rgba(78, 205, 196, 0.12);
             color: #4ecdc4;
-            padding: 1px 8px;
-            border-radius: 12px;
-            font-size: 0.5rem;
-            font-weight: 600;
-        }
-        .video-card .video-number {
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            background: rgba(0,0,0,0.6);
-            color: #8892b0;
-            padding: 1px 8px;
-            border-radius: 12px;
-            font-size: 0.5rem;
+            padding: 1px 5px;
+            border-radius: 6px;
+            font-size: 0.45rem;
             font-weight: 600;
         }
 
-        /* Tables */
-        .table-wrap { overflow-x: auto; margin-top: 10px; }
-        .table-wrap table { width: 100%; border-collapse: collapse; min-width: 300px; }
-        .table-wrap th {
-            text-align: left;
-            padding: 8px 8px 8px 0;
-            color: #f5d742;
-            font-weight: 600;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        /* RABAT */
+        .rabat-section {
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(255,255,255,0.04);
+            margin-top: 10px;
         }
-        .table-wrap td { padding: 8px 8px 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: #d6e0ff; font-size: 0.8rem; }
-        .badge-level {
-            background: rgba(245, 215, 66, 0.12);
-            padding: 1px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.65rem;
-            color: #f5d742;
+        .rabat-section h4 { color: #f5d742; font-size: 0.75rem; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+        .rabat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+            gap: 4px;
         }
-        .badge-pending {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
-            padding: 1px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 600;
+        .rabat-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            padding: 4px 6px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.04);
         }
-        .badge-success {
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ecdc4;
-            padding: 1px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 600;
-        }
-        .badge-danger {
-            background: rgba(255, 107, 107, 0.15);
-            color: #ff6b6b;
-            padding: 1px 10px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            font-weight: 600;
-        }
+        .rabat-item .level { color: #8892b0; font-size: 0.5rem; font-weight: 600; text-transform: uppercase; }
+        .rabat-item .persen { color: #fff; font-size: 0.85rem; font-weight: 700; }
+        .rabat-item .persen.highlight { color: #f5d742; }
 
-        /* Forms */
-        .form-group { margin-bottom: 12px; }
-        .form-group label { color: #b9c4e0; font-size: 0.75rem; font-weight: 500; display: block; margin-bottom: 4px; }
+        /* FORM */
+        .form-group { margin-bottom: 8px; }
+        .form-group label { color: #b9c4e0; font-size: 0.7rem; font-weight: 500; display: block; margin-bottom: 3px; }
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             border: 1px solid rgba(255,255,255,0.06);
             background: rgba(255,255,255,0.04);
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             outline: none;
             transition: 0.3s;
         }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             border-color: #f5d742;
-            box-shadow: 0 0 0 3px rgba(245, 215, 66, 0.08);
+            box-shadow: 0 0 0 3px rgba(245, 215, 66, 0.05);
         }
-        .form-group textarea { min-height: 60px; resize: vertical; }
-        .form-group select option { background: #1a1f3a; color: #fff; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-        /* Rabat */
-        .rabat-section {
-            background: rgba(255,255,255,0.02);
-            border-radius: 14px;
-            padding: 14px 16px;
-            border: 1px solid rgba(255,255,255,0.04);
-            margin-top: 12px;
-        }
-        .rabat-section h4 { color: #f5d742; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-        .rabat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 6px;
-        }
-        .rabat-item {
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            padding: 8px 12px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.04);
-        }
-        .rabat-item .level { color: #8892b0; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; }
-        .rabat-item .persen { color: #fff; font-size: 1rem; font-weight: 700; }
-        .rabat-item .persen.highlight { color: #f5d742; }
-
-        /* Referral Link */
-        .ref-link-box {
-            background: rgba(255,255,255,0.03);
-            border-radius: 10px;
-            padding: 10px 14px;
-            border: 1px solid rgba(255,255,255,0.04);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .ref-link-box .link-text {
-            color: #8892b0;
-            font-size: 0.75rem;
-            flex: 1;
-            word-break: break-all;
-            min-width: 120px;
-        }
-        .ref-link-box .link-text strong { color: #f5d742; }
-
-        /* Admin Settings */
-        .admin-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        /* ADMIN */
+        .admin-settings { display: grid; grid-template-columns: 1fr; gap: 10px; }
         .admin-settings .setting-group {
             background: rgba(255,255,255,0.02);
-            border-radius: 14px;
-            padding: 14px 16px;
+            border-radius: 10px;
+            padding: 12px 14px;
             border: 1px solid rgba(255,255,255,0.04);
         }
         .admin-settings .setting-group h4 {
             color: #f5d742;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-size: 0.8rem;
         }
         .admin-settings .setting-group .row {
@@ -788,18 +709,18 @@
             padding: 4px 0;
             color: #d6e0ff;
             border-bottom: 1px solid rgba(255,255,255,0.03);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             align-items: center;
         }
         .admin-settings .setting-group .row input {
-            width: 70px;
-            padding: 3px 8px;
-            border-radius: 6px;
+            width: 60px;
+            padding: 3px 6px;
+            border-radius: 4px;
             border: 1px solid rgba(255,255,255,0.06);
             background: rgba(0,0,0,0.3);
             color: #fff;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .admin-settings .setting-group .row input[type="text"] { width: 100%; text-align: left; }
 
@@ -807,28 +728,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
-        .video-list-admin .video-item .info { color: #d6e0ff; font-size: 0.75rem; flex: 1; }
+        .video-list-admin .video-item .info { color: #d6e0ff; font-size: 0.7rem; flex: 1; }
         .video-list-admin .video-item .info .title { color: #fff; font-weight: 500; }
-        .video-list-admin .video-item .info .link { color: #8892b0; font-size: 0.6rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px; }
+        .video-list-admin .video-item .info .link { color: #8892b0; font-size: 0.55rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 120px; }
 
         .pending-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
         .pending-item .info { flex: 1; }
-        .pending-item .info .user { color: #fff; font-size: 0.8rem; }
-        .pending-item .info .detail { color: #8892b0; font-size: 0.65rem; }
+        .pending-item .info .user { color: #fff; font-size: 0.75rem; }
+        .pending-item .info .detail { color: #8892b0; font-size: 0.6rem; }
         .pending-item .actions { display: flex; gap: 4px; }
 
-        /* =========================================================
-           VIDEO MODAL
-           ========================================================= */
+        /* ===== VIDEO MODAL ===== */
         .video-modal {
             display: none;
             position: fixed;
@@ -845,15 +764,15 @@
         .video-modal.active { display: flex; animation: fadeIn 0.3s ease; }
         .video-modal .close-btn {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 12px;
+            right: 12px;
             color: #fff;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             cursor: pointer;
             z-index: 10001;
             background: rgba(0,0,0,0.5);
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -864,9 +783,9 @@
         .video-modal .close-btn:hover { background: rgba(255,255,255,0.1); transform: rotate(90deg); }
         .video-modal .video-wrapper {
             width: 100%;
-            max-width: 450px;
+            max-width: 420px;
             height: 100%;
-            max-height: 700px;
+            max-height: 650px;
             position: relative;
         }
         .video-modal iframe {
@@ -877,14 +796,14 @@
         }
         .video-modal .video-overlay {
             position: absolute;
-            bottom: 50px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             color: #8892b0;
             font-size: 0.7rem;
             background: rgba(0,0,0,0.7);
-            padding: 6px 16px;
-            border-radius: 16px;
+            padding: 4px 14px;
+            border-radius: 10px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.05);
             pointer-events: none;
@@ -911,57 +830,73 @@
             .sidebar-overlay { display: none !important; }
             .sidebar {
                 left: 0 !important;
-                width: 240px;
-                border-right: 1px solid rgba(255,255,255,0.05);
+                width: 230px;
+                border-right: 1px solid rgba(255,255,255,0.04);
                 background: rgba(20, 26, 43, 0.95);
             }
             #dashboard {
-                padding-left: 260px;
-                padding-right: 20px;
-                padding-bottom: 20px;
+                padding-left: 250px;
+                padding-right: 16px;
+                padding-bottom: 16px;
             }
-            .bottom-nav { display: none !important; }
             .menu-toggle { display: none; }
-            .dash-header { padding-left: 20px; }
+            .dash-header { padding: 12px 20px; }
+            .dash-header .brand span { display: inline; }
+            .dash-header .user-badge .name { display: inline; }
+            .stats-grid { grid-template-columns: 1fr 1fr 1fr; }
             .admin-settings { grid-template-columns: 1fr 1fr; }
-            .video-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-            .stats-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-            #landingPage, .auth-container { margin: 0; }
+            .carousel-item { min-width: 180px; height: 250px; }
+            .film-item { min-width: 90px; max-width: 90px; height: 130px; }
         }
 
         @media (max-width: 768px) {
-            .bottom-nav { display: flex; }
-            .sidebar {
-                left: -300px;
-                width: 300px;
-            }
-            .sidebar.open { left: 0; }
-            .sidebar-overlay.active { display: block; }
-            #dashboard { padding: 10px; padding-bottom: 80px; padding-left: 10px; }
-            .admin-settings { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-            .stats-grid { grid-template-columns: repeat(3, 1fr); }
-            .form-row { grid-template-columns: 1fr; }
+            #dashboard { padding: 6px; padding-bottom: 76px; }
             .dash-header .brand span { display: none; }
             .dash-header .user-badge .name { display: none; }
-            #landingPage, .auth-container { margin: 0; }
+            .dash-header .user-badge .role { display: none; }
+            .dash-header .brand { font-size: 0.95rem; }
+            .dash-header .user-badge .avatar { width: 28px; height: 28px; font-size: 0.7rem; }
+            .dash-header { padding: 8px 10px; }
+            .toast { font-size: 0.75rem; padding: 10px 18px; bottom: 74px; }
+            .bottom-nav .nav-btn { min-width: 44px; padding: 3px 6px; }
+            .bottom-nav .nav-btn i { font-size: 1rem; }
+            .bottom-nav .nav-btn .nav-label { font-size: 0.4rem; }
+            .bottom-nav .nav-btn .badge-nav { font-size: 0.4rem; min-width: 14px; line-height: 14px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .stat-card { padding: 6px 8px; }
+            .stat-card .value { font-size: 0.85rem; }
+            .carousel-item { min-width: 120px; height: 170px; }
+            .film-item { min-width: 60px; max-width: 60px; height: 85px; }
+            .form-row { grid-template-columns: 1fr; }
+            .admin-settings { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .video-card { padding: 6px; }
+            .video-card .video-title { font-size: 0.55rem; min-height: 20px; }
+            .video-card .thumbnail .play-overlay { width: 24px; height: 24px; font-size: 0.6rem; }
+            .banner-mitra .title { font-size: 0.95rem; }
+            .banner-mitra .stats .item { font-size: 0.55rem; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-            .stat-card { padding: 10px 12px; }
-            .stat-card .value { font-size: 1rem; }
-            .video-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .video-card { padding: 8px; }
-            .video-card .video-title { font-size: 0.65rem; min-height: 28px; }
-            .video-card .thumbnail .play-overlay { width: 30px; height: 30px; font-size: 0.7rem; }
-            .video-section { padding: 12px; }
-            #landingPage, .auth-container { padding: 24px 16px; }
-            .sidebar { width: 280px; }
-            .admin-settings { grid-template-columns: 1fr; }
-            .bottom-nav .nav-btn { padding: 4px 8px; min-width: 40px; }
-            .bottom-nav .nav-btn i { font-size: 1rem; }
-            .bottom-nav .nav-btn .nav-label { font-size: 0.4rem; }
+            .stats-grid { gap: 4px; }
+            .stat-card { padding: 4px 6px; }
+            .stat-card .value { font-size: 0.7rem; }
+            .stat-card .label { font-size: 0.45rem; }
+            .bottom-nav .nav-btn { min-width: 36px; padding: 2px 4px; }
+            .bottom-nav .nav-btn i { font-size: 0.85rem; }
+            .bottom-nav .nav-btn .nav-label { font-size: 0.35rem; }
+            .dash-header .brand { font-size: 0.8rem; }
+            .dash-header .user-badge .avatar { width: 24px; height: 24px; font-size: 0.6rem; }
+            .carousel-item { min-width: 100px; height: 140px; }
+            .film-item { min-width: 50px; max-width: 50px; height: 70px; }
+            .carousel-btn { width: 20px; height: 20px; font-size: 0.5rem; }
+            .banner-mitra { padding: 10px 12px; }
+            .banner-mitra .title { font-size: 0.85rem; }
+            .video-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+            .video-card { padding: 4px; }
+            .video-card .video-title { font-size: 0.45rem; min-height: 16px; }
+            .video-card .thumbnail { font-size: 1rem; }
+            .video-card .thumbnail .play-overlay { width: 18px; height: 18px; font-size: 0.5rem; }
         }
     </style>
 </head>
@@ -981,84 +916,12 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- LANDING PAGE -->
-    <!-- ========================================================= -->
-    <div id="landingPage">
-        <div class="logo">
-            <h1>DEXTER</h1>
-            <p>✦ SHORT DRACIN · NONTON CUAN ✦</p>
-        </div>
-        <div class="hero">
-            <h2>Nonton <span>Short Dracin</span>, Dapat <span>Cuan</span>!</h2>
-            <p>Tonton video pendek, kumpulkan poin, dapatkan bonus setiap hari!</p>
-            <div class="landing-buttons">
-                <button class="btn-primary" onclick="showAuth('login')"><i class="fas fa-sign-in-alt"></i> Login</button>
-                <button class="btn-secondary" onclick="showAuth('register')"><i class="fas fa-user-plus"></i> Daftar</button>
-            </div>
-        </div>
-        
-        <!-- Demo Users -->
-        <div class="demo-users">
-            <button class="demo-btn" onclick="quickLogin('admin')">
-                <i class="fas fa-crown" style="color:#f5d742;"></i> Admin
-                <span class="badge-demo">admin</span>
-            </button>
-            <button class="demo-btn" onclick="quickLogin('user')">
-                <i class="fas fa-user" style="color:#4ecdc4;"></i> User
-                <span class="badge-demo">user</span>
-            </button>
-        </div>
-        
-        <div style="text-align:center; color:#475074; font-size:0.6rem; margin-top:14px; border-top:1px solid rgba(255,255,255,0.04); padding-top:12px;">
-            <i class="fas fa-shield-alt"></i> Bonus setiap tontonan &nbsp;·&nbsp; WWW.DEXTERMOVIE.COM
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- AUTH -->
-    <!-- ========================================================= -->
-    <div id="authContainer" class="auth-container">
-        <div class="logo">
-            <h1 id="authTitle">DEXTER</h1>
-            <p id="authSubtitle">Masuk ke akun Anda</p>
-        </div>
-        <form id="authForm" onsubmit="handleAuth(event)">
-            <div id="registerFields" style="display:none;">
-                <div class="form-group">
-                    <label for="regName">Nama Lengkap</label>
-                    <input type="text" id="regName" placeholder="Masukkan nama">
-                </div>
-                <div class="form-group">
-                    <label for="regRef">Kode Referral (opsional)</label>
-                    <input type="text" id="regRef" placeholder="Masukkan kode referral">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="authUsername">Username</label>
-                <input type="text" id="authUsername" placeholder="Masukkan username" value="admin">
-            </div>
-            <div class="form-group">
-                <label for="authPassword">Password</label>
-                <input type="password" id="authPassword" placeholder="Masukkan password" value="admin123">
-            </div>
-            <button type="submit" class="btn-auth" id="authBtn"><i class="fas fa-sign-in-alt"></i> Masuk</button>
-            <div id="authError" class="auth-error"><i class="fas fa-exclamation-circle"></i> <span id="authErrorMsg">Error</span></div>
-        </form>
-        <div class="auth-switch">
-            <span id="authSwitchText">Belum punya akun?</span>
-            <a id="authSwitchLink" onclick="toggleAuth()">Daftar sekarang</a>
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- DASHBOARD -->
+    <!-- DASHBOARD - LANGSUNG TANPA LOGIN -->
     <!-- ========================================================= -->
     <div id="dashboard">
 
-        <!-- SIDEBAR OVERLAY -->
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
-
         <!-- SIDEBAR -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
         <div class="sidebar" id="sidebar">
             <div class="sidebar-brand">DEXTER <small>| Member</small></div>
             
@@ -1089,7 +952,6 @@
                 <i class="fas fa-user-cog"></i> Akun
             </button>
             
-            <!-- Admin Menu - hanya terlihat oleh admin -->
             <div id="adminNavItems" style="display:none;">
                 <div class="nav-divider"></div>
                 <button class="nav-item" data-page="pageAdmin" onclick="navigateTo('pageAdmin')">
@@ -1098,7 +960,7 @@
             </div>
             
             <div class="nav-footer">
-                <button class="nav-item" onclick="logout()" style="color:#ff6b6b;">
+                <button class="nav-item" onclick="handleLogout()" style="color:#ff6b6b;">
                     <i class="fas fa-sign-out-alt"></i> Keluar
                 </button>
             </div>
@@ -1106,11 +968,11 @@
 
         <!-- HEADER -->
         <div class="dash-header">
-            <div style="display:flex; align-items:center; gap:10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
                 <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
                 <div class="brand">DEXTER <span>| <span id="dashRole">Member</span></span></div>
             </div>
-            <div class="user-badge">
+            <div class="user-badge" onclick="navigateTo('pageAkun')">
                 <div>
                     <div class="name" id="dashName">User</div>
                     <div class="role" id="dashLevel">Level 1</div>
@@ -1120,9 +982,55 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- PAGE: DASHBOARD -->
+        <!-- PAGE: DASHBOARD / BERANDA - DESAIN BARU -->
         <!-- ========================================================= -->
         <div id="pageDashboard" class="page active">
+            
+            <!-- CAROUSEL SLIDER -->
+            <div class="carousel-section">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- diisi JS -->
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+
+            <!-- BANNER PROGRAM MITRA -->
+            <div class="banner-mitra" onclick="navigateTo('pageReward')">
+                <span class="badge-pro">#Short Pro</span>
+                <div class="title"><span>10000</span> PROGRAM MITRA</div>
+                <div class="desc">GAS KOIN · Pertama kali upgrade LV3-LV7 · Gaji X2 Lipat</div>
+                <div class="stats">
+                    <span class="item"><i class="fas fa-users"></i> <strong>33</strong> saling bantu</span>
+                    <span class="item"><i class="fas fa-arrow-up"></i> Undang 3 teman capai <strong>LV3</strong></span>
+                    <span class="item"><i class="fas fa-coins"></i> <strong>60</strong> KOIN</span>
+                </div>
+            </div>
+
+            <!-- FILM FAVORIT -->
+            <div class="film-section">
+                <div class="header">
+                    <h4>⭐ Favorit</h4>
+                    <span class="see-all" onclick="showToast('Semua Favorit', 'fa-star')">Lihat Semua →</span>
+                </div>
+                <div class="film-scroll" id="favoriteScroll">
+                    <!-- diisi JS -->
+                </div>
+            </div>
+
+            <!-- FILM BARU -->
+            <div class="film-section">
+                <div class="header">
+                    <h4>🔥 Baru</h4>
+                    <span class="see-all" onclick="showToast('Semua Film Baru', 'fa-fire')">Lihat Semua →</span>
+                </div>
+                <div class="film-scroll" id="newScroll">
+                    <!-- diisi JS -->
+                </div>
+            </div>
+
+            <!-- STATS -->
             <div class="stats-grid">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="mTotalSaldo">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Bonus Nonton</div><div class="value" id="mBonusNonton">Rp 0</div></div>
@@ -1132,16 +1040,7 @@
                 <div class="stat-card"><div class="label">Level</div><div class="value highlight" id="mLevel">1</div></div>
             </div>
 
-            <!-- Video Grid Preview -->
-            <div class="video-section">
-                <div class="header">
-                    <h4><i class="fas fa-film" style="color:#4ecdc4;"></i> Short Dracin</h4>
-                    <span class="badge-count"><i class="fas fa-video"></i> <span id="videoCount">0</span></span>
-                </div>
-                <div class="video-grid" id="videoGridDashboard"></div>
-            </div>
-
-            <!-- Rabat -->
+            <!-- RABAT -->
             <div class="rabat-section">
                 <h4><i class="fas fa-percent" style="color:#f5d742;"></i> Bonus Rabat</h4>
                 <div class="rabat-grid">
@@ -1153,71 +1052,58 @@
                 </div>
             </div>
 
+            <!-- RIWAYAT -->
             <div class="table-wrap">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-history"></i> Riwayat</h4>
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-history"></i> Riwayat</h4>
                 <table>
                     <thead><tr><th>Tanggal</th><th>Jenis</th><th>Jumlah</th><th>Ket</th></tr></thead>
                     <tbody id="historyTable">
-                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada riwayat</td></tr>
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Belum ada riwayat</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
         <!-- ========================================================= -->
-        <!-- PAGE: DRACIN -->
+        <!-- PAGE LAINNYA (Dracin, Referral, Reward, Deposit, Withdraw, Akun, Admin) -->
         <!-- ========================================================= -->
         <div id="pageDracin" class="page">
             <div class="video-section">
                 <div class="header">
                     <h4><i class="fas fa-film" style="color:#4ecdc4;"></i> Semua Short Dracin</h4>
-                    <span class="badge-count"><i class="fas fa-video"></i> <span id="videoCountFull">0</span></span>
+                    <span class="badge-count" style="background:rgba(245,215,66,0.08); color:#f5d742; padding:1px 10px; border-radius:12px; font-size:0.6rem; font-weight:600;"><i class="fas fa-video"></i> <span id="videoCountFull">0</span></span>
                 </div>
                 <div class="video-grid" id="videoGridFull"></div>
             </div>
-            <div style="padding:12px 16px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(255,255,255,0.04);">
-                <p style="color:#8892b0; font-size:0.75rem;"><i class="fas fa-info-circle"></i> Tonton video sampai selesai (3 menit) untuk dapat bonus. Tidak bisa di-skip!</p>
+            <div style="padding:8px 12px; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.04);">
+                <p style="color:#8892b0; font-size:0.7rem;"><i class="fas fa-info-circle"></i> Tonton 3 menit untuk dapat bonus. Tidak bisa di-skip!</p>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: REFERRAL -->
-        <!-- ========================================================= -->
         <div id="pageReferral" class="page">
-            <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px;">
-                <div style="background:rgba(255,255,255,0.03); padding:8px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); flex:1;">
-                    <span style="color:#8892b0; font-size:0.7rem;">Kode Referral:</span>
-                    <span style="color:#f5d742; font-weight:700; font-size:1rem; margin-left:6px;" id="myRefCode">DEXTER001</span>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px;">
+                <div style="background:rgba(255,255,255,0.03); padding:6px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); flex:1;">
+                    <span style="color:#8892b0; font-size:0.65rem;">Kode:</span>
+                    <span style="color:#f5d742; font-weight:700; font-size:0.9rem; margin-left:4px;" id="myRefCode">DEXTER001</span>
                 </div>
                 <button class="btn-success btn-sm" onclick="copyRefCode()"><i class="fas fa-copy"></i> Salin</button>
             </div>
-
-            <div class="ref-link-box">
-                <span style="color:#8892b0; font-size:0.7rem;"><i class="fas fa-link"></i> Link:</span>
-                <span class="link-text" id="refLinkText"><strong>https://dracinplus.vercel.app/?ref=DEXTER001</strong></span>
-                <button class="btn-success btn-sm" onclick="copyRefLink()"><i class="fas fa-copy"></i></button>
-            </div>
-
             <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
                 <div class="stat-card"><div class="label">Total Referral</div><div class="value" id="rTotalRef">0</div></div>
                 <div class="stat-card"><div class="label">Bonus Referral</div><div class="value highlight" id="rBonusRef">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Komisi L1</div><div class="value green" id="rKomisiL1">Rp 0</div></div>
             </div>
-
             <div class="table-wrap">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-list"></i> Daftar Referral</h4>
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-list"></i> Daftar Referral</h4>
                 <table>
                     <thead><tr><th>Username</th><th>Level</th><th>Omset</th><th>Komisi</th></tr></thead>
                     <tbody id="referralTable">
-                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada referral</td></tr>
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Belum ada referral</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: REWARD -->
-        <!-- ========================================================= -->
         <div id="pageReward" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
                 <div class="stat-card"><div class="label">Level</div><div class="value highlight" id="rwLevel">1</div></div>
@@ -1225,7 +1111,7 @@
                 <div class="stat-card"><div class="label">Reward</div><div class="value green" id="rwReward">Rp 0</div></div>
             </div>
             <div class="table-wrap">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-trophy"></i> Level Reward</h4>
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-trophy"></i> Level Reward</h4>
                 <table>
                     <thead><tr><th>Level</th><th>Reward</th><th>Target</th><th>Status</th></tr></thead>
                     <tbody id="rewardTable"></tbody>
@@ -1233,7 +1119,7 @@
             </div>
             <div class="rabat-section">
                 <h4><i class="fas fa-percent"></i> Bonus Rabat</h4>
-                <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:6px; text-align:center; color:#8892b0; font-size:0.7rem;">
+                <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:4px; text-align:center; color:#8892b0; font-size:0.7rem;">
                     <div><span style="color:#fff;">L1</span> 10%</div>
                     <div><span style="color:#fff;">L2</span> 5%</div>
                     <div><span style="color:#fff;">L3</span> 3%</div>
@@ -1243,94 +1129,81 @@
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: DEPOSIT -->
-        <!-- ========================================================= -->
         <div id="pageDeposit" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="dSaldo">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Minimal Deposit</div><div class="value" style="color:#8892b0;">Rp 5.000</div></div>
             </div>
-
-            <!-- Rekening Admin -->
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(78,205,196,0.15); margin-bottom:12px;">
-                <h4 style="color:#4ecdc4; font-size:0.85rem; margin-bottom:6px;"><i class="fas fa-university"></i> Rekening Tujuan Deposit</h4>
-                <div style="color:#d6e0ff; font-size:0.8rem;">
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:10px 12px; border:1px solid rgba(78,205,196,0.08); margin-bottom:10px;">
+                <h4 style="color:#4ecdc4; font-size:0.8rem; margin-bottom:4px;"><i class="fas fa-university"></i> Rekening Tujuan</h4>
+                <div style="color:#d6e0ff; font-size:0.75rem;">
                     <div><strong style="color:#fff;">Bank:</strong> <span id="depositBank">BCA</span></div>
                     <div><strong style="color:#fff;">No. Rekening:</strong> <span id="depositAccount">1234567890</span></div>
                     <div><strong style="color:#fff;">Atas Nama:</strong> <span id="depositName">Admin DEXTER</span></div>
-                    <div style="color:#f5d742; font-size:0.75rem; margin-top:4px; font-weight:700;">
-                        <i class="fas fa-info-circle"></i> Kode Unik: <span id="depositCode">7A3</span> 
-                        <span style="color:#8892b0; font-weight:400;">(3 digit terakhir dari nominal transfer)</span>
+                    <div style="color:#f5d742; font-size:0.7rem; margin-top:2px; font-weight:700;">
+                        <i class="fas fa-info-circle"></i> Kode Unik: <span id="depositCode">321</span>
+                        <span style="color:#8892b0; font-weight:400;">(3 digit terakhir)</span>
                     </div>
-                    <div style="color:#8892b0; font-size:0.7rem; margin-top:2px;">Contoh: Transfer Rp 10.000 + kode 321 = Rp 10.321</div>
+                    <div style="color:#8892b0; font-size:0.6rem;">Contoh: Rp 10.000 + 321 = Rp 10.321</div>
                 </div>
             </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04); margin-bottom:12px;">
-                <h4 style="color:#4ecdc4; font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-user"></i> Rekening Saya</h4>
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:10px 12px; border:1px solid rgba(255,255,255,0.04); margin-bottom:10px;">
+                <h4 style="color:#4ecdc4; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-user"></i> Rekening Saya</h4>
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
                         <label>Bank</label>
-                        <input type="text" id="userBank" placeholder="Contoh: BCA" value="BCA">
+                        <input type="text" id="userBank" placeholder="BCA" value="BCA">
                     </div>
                     <div class="form-group" style="margin-bottom:0;">
                         <label>No. Rekening</label>
-                        <input type="text" id="userBankAccount" placeholder="Nomor rekening" value="1234567890">
+                        <input type="text" id="userBankAccount" placeholder="Nomor" value="1234567890">
                     </div>
                 </div>
-                <div class="form-group" style="margin-bottom:0; margin-top:8px;">
+                <div class="form-group" style="margin-bottom:0; margin-top:4px;">
                     <label>Nama Pemilik</label>
-                    <input type="text" id="userBankName" placeholder="Nama lengkap" value="John Doe">
+                    <input type="text" id="userBankName" placeholder="Nama" value="John Doe">
                 </div>
-                <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveUserBank()"><i class="fas fa-save"></i> Simpan Rekening</button>
+                <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveUserBank()"><i class="fas fa-save"></i> Simpan</button>
             </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                <h4 style="color:#4ecdc4; font-size:0.8rem;"><i class="fas fa-arrow-down"></i> Form Deposit</h4>
-                <div class="form-group" style="margin:8px 0;">
-                    <label>Jumlah Deposit (tanpa kode)</label>
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#4ecdc4; font-size:0.75rem;"><i class="fas fa-arrow-down"></i> Form Deposit</h4>
+                <div class="form-group" style="margin:4px 0;">
+                    <label>Jumlah Deposit</label>
                     <input type="number" id="depositAmount" placeholder="Minimal Rp 5.000" value="10000">
                 </div>
-                <div class="form-group" style="margin:8px 0;">
+                <div class="form-group" style="margin:4px 0;">
                     <label>3 Digit Kode Unik</label>
-                    <input type="text" id="depositCodeInput" placeholder="Masukkan 3 digit kode" value="321" maxlength="3">
-                    <div style="color:#8892b0; font-size:0.6rem; margin-top:4px;">Masukkan 3 digit kode dari rekening tujuan di atas</div>
+                    <input type="text" id="depositCodeInput" placeholder="Masukkan 3 digit" value="321" maxlength="3">
                 </div>
-                <div class="form-group" style="margin:8px 0;">
-                    <label>Total Transfer (otomatis)</label>
+                <div class="form-group" style="margin:4px 0;">
+                    <label>Total Transfer</label>
                     <input type="text" id="depositTotal" disabled style="opacity:0.7;">
                 </div>
-                <div class="form-group" style="margin:8px 0;">
-                    <label>Upload Bukti Transfer (opsional)</label>
+                <div class="form-group" style="margin:4px 0;">
+                    <label>Upload Bukti (opsional)</label>
                     <input type="file" id="depositProof" accept="image/*">
                 </div>
                 <button class="btn-success" style="width:100%;" onclick="doDeposit()"><i class="fas fa-check"></i> Kirim Deposit</button>
-                <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 5.000 · Transfer ke rekening di atas</div>
+                <div style="color:#475074; font-size:0.6rem; margin-top:4px;">Minimal: Rp 5.000</div>
             </div>
-
-            <div class="table-wrap" style="margin-top:12px;">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-clock"></i> Riwayat Deposit</h4>
+            <div class="table-wrap" style="margin-top:10px;">
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-clock"></i> Riwayat Deposit</h4>
                 <table>
                     <thead><tr><th>Tanggal</th><th>Jumlah</th><th>Kode</th><th>Status</th></tr></thead>
                     <tbody id="depositHistoryTable">
-                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada deposit</td></tr>
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Belum ada deposit</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: WITHDRAW -->
-        <!-- ========================================================= -->
         <div id="pageWithdraw" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="wSaldo">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Minimal WD</div><div class="value" style="color:#8892b0;">Rp 25.000</div></div>
             </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04); margin-bottom:12px;">
-                <h4 style="color:#f5d742; font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-user"></i> Rekening Tujuan WD</h4>
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:10px 12px; border:1px solid rgba(255,255,255,0.04); margin-bottom:10px;">
+                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-user"></i> Rekening Tujuan WD</h4>
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
                         <label>Bank</label>
@@ -1341,44 +1214,35 @@
                         <input type="text" id="wdBankAccount" placeholder="No. rekening" disabled style="opacity:0.7;">
                     </div>
                 </div>
-                <div class="form-group" style="margin-bottom:0; margin-top:8px;">
+                <div class="form-group" style="margin-bottom:0; margin-top:4px;">
                     <label>Nama Pemilik</label>
                     <input type="text" id="wdBankName" placeholder="Nama" disabled style="opacity:0.7;">
                 </div>
-                <div style="color:#8892b0; font-size:0.65rem; margin-top:6px;">
-                    <i class="fas fa-info-circle"></i> Gunakan rekening yang sudah disimpan di menu Akun
-                </div>
-                <button class="btn-ghost" style="margin-top:8px; width:100%;" onclick="navigateTo('pageAkun')"><i class="fas fa-edit"></i> Edit Rekening</button>
+                <button class="btn-ghost" style="margin-top:6px; width:100%;" onclick="navigateTo('pageAkun')"><i class="fas fa-edit"></i> Edit Rekening</button>
             </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                <h4 style="color:#f5d742; font-size:0.8rem;"><i class="fas fa-arrow-up"></i> Form Withdraw</h4>
-                <div class="form-group" style="margin:8px 0;">
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#f5d742; font-size:0.75rem;"><i class="fas fa-arrow-up"></i> Form Withdraw</h4>
+                <div class="form-group" style="margin:4px 0;">
                     <label>Jumlah Withdraw</label>
                     <input type="number" id="wdAmount" placeholder="Minimal Rp 25.000" value="25000">
                 </div>
-                <div style="color:#8892b0; font-size:0.65rem; margin-bottom:8px;">Fee: Rp 1.000 per transaksi</div>
-                <button class="btn-primary" style="width:100%;" onclick="doWithdraw()"><i class="fas fa-check"></i> Ajukan Withdraw</button>
-                <div style="color:#475074; font-size:0.6rem; margin-top:6px;">Minimal: Rp 25.000 · Fee: Rp 1.000</div>
+                <div style="color:#8892b0; font-size:0.6rem; margin-bottom:4px;">Fee: Rp 1.000</div>
+                <button class="btn-primary" style="width:100%;" onclick="doWithdraw()"><i class="fas fa-check"></i> Ajukan WD</button>
             </div>
-
-            <div class="table-wrap" style="margin-top:12px;">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-clock"></i> Riwayat Withdraw</h4>
+            <div class="table-wrap" style="margin-top:10px;">
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-clock"></i> Riwayat Withdraw</h4>
                 <table>
                     <thead><tr><th>Tanggal</th><th>Jumlah</th><th>Fee</th><th>Status</th></tr></thead>
                     <tbody id="wdHistoryTable">
-                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada withdraw</td></tr>
+                        <tr><td colspan="4" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Belum ada withdraw</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: AKUN -->
-        <!-- ========================================================= -->
         <div id="pageAkun" class="page">
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04); margin-bottom:12px;">
-                <h4 style="color:#f5d742; font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-user-circle"></i> Profil Saya</h4>
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.04); margin-bottom:10px;">
+                <h4 style="color:#f5d742; font-size:0.85rem; margin-bottom:8px;"><i class="fas fa-user-circle"></i> Profil Saya</h4>
                 <div class="form-group">
                     <label>Username</label>
                     <input type="text" id="akunUsername" disabled style="opacity:0.6;">
@@ -1391,11 +1255,10 @@
                     <label>Level</label>
                     <input type="text" id="akunLevel" disabled style="opacity:0.6;">
                 </div>
-                <button class="btn-success" style="width:100%;" onclick="updateProfile()"><i class="fas fa-save"></i> Update Profil</button>
+                <button class="btn-success" style="width:100%;" onclick="updateProfile()"><i class="fas fa-save"></i> Update</button>
             </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(255,255,255,0.04);">
-                <h4 style="color:#4ecdc4; font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-university"></i> Rekening Saya (Untuk WD)</h4>
+            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.04);">
+                <h4 style="color:#4ecdc4; font-size:0.85rem; margin-bottom:8px;"><i class="fas fa-university"></i> Rekening Saya (WD)</h4>
                 <div class="form-row">
                     <div class="form-group" style="margin-bottom:0;">
                         <label>Bank</label>
@@ -1406,73 +1269,62 @@
                         <input type="text" id="akunBankAccount" placeholder="No. rekening">
                     </div>
                 </div>
-                <div class="form-group" style="margin-bottom:0; margin-top:8px;">
+                <div class="form-group" style="margin-bottom:0; margin-top:4px;">
                     <label>Nama Pemilik</label>
-                    <input type="text" id="akunBankName" placeholder="Nama pemilik">
+                    <input type="text" id="akunBankName" placeholder="Nama">
                 </div>
-                <button class="btn-success" style="width:100%; margin-top:10px;" onclick="saveAkunBank()"><i class="fas fa-save"></i> Simpan Rekening</button>
+                <button class="btn-success" style="width:100%; margin-top:6px;" onclick="saveAkunBank()"><i class="fas fa-save"></i> Simpan</button>
             </div>
-
-            <!-- Admin Panel - hanya terlihat oleh admin -->
-            <div id="adminPanelAkun" style="display:none; margin-top:12px;">
-                <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:16px; border:1px solid rgba(245,215,66,0.15);">
-                    <h4 style="color:#f5d742; font-size:0.9rem; margin-bottom:12px;"><i class="fas fa-crown"></i> Admin Panel</h4>
-                    <button class="btn-primary" style="width:100%;" onclick="navigateTo('pageAdmin')"><i class="fas fa-arrow-right"></i> Buka Admin Panel</button>
+            <div id="adminPanelAkun" style="display:none; margin-top:10px;">
+                <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:12px; border:1px solid rgba(245,215,66,0.08);">
+                    <h4 style="color:#f5d742; font-size:0.85rem; margin-bottom:8px;"><i class="fas fa-crown"></i> Admin Panel</h4>
+                    <button class="btn-primary" style="width:100%;" onclick="navigateTo('pageAdmin')"><i class="fas fa-arrow-right"></i> Buka Admin</button>
                 </div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE: ADMIN (Full Admin Dashboard) -->
-        <!-- ========================================================= -->
         <div id="pageAdmin" class="page">
-            <h3 style="color:#f5d742; margin-bottom:16px; font-size:1.1rem;"><i class="fas fa-crown"></i> Admin Dashboard</h3>
-            
+            <h3 style="color:#f5d742; margin-bottom:10px; font-size:1rem;"><i class="fas fa-crown"></i> Admin Dashboard</h3>
             <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
                 <div class="stat-card"><div class="label">Total Member</div><div class="value" id="aTotalMember">0</div></div>
                 <div class="stat-card"><div class="label">Total Omset</div><div class="value highlight" id="aTotalOmset">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Total Bonus</div><div class="value green" id="aTotalBonus">Rp 0</div></div>
             </div>
-
             <div class="admin-settings">
                 <div class="setting-group">
                     <h4><i class="fas fa-video"></i> Kelola Video</h4>
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <input type="text" id="videoTitleInput" placeholder="Judul Video" value="Short Dracin - Episode 1">
+                    <div class="form-group" style="margin-bottom:4px;">
+                        <input type="text" id="videoTitleInput" placeholder="Judul" value="Short Dracin - Episode 1">
                     </div>
-                    <div class="form-group" style="margin-bottom:8px;">
+                    <div class="form-group" style="margin-bottom:4px;">
                         <input type="text" id="videoLinkInput" placeholder="Link YouTube" value="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0">
                     </div>
-                    <div class="form-group" style="margin-bottom:8px;">
+                    <div class="form-group" style="margin-bottom:4px;">
                         <input type="number" id="videoRewardInput" placeholder="Bonus" value="100">
                     </div>
                     <button class="btn-success" style="width:100%;" onclick="addVideo()"><i class="fas fa-plus"></i> Tambah</button>
-                    <div class="video-list-admin" id="videoListAdmin" style="margin-top:10px;"></div>
+                    <div class="video-list-admin" id="videoListAdmin" style="margin-top:6px;"></div>
                 </div>
-
                 <div class="setting-group">
-                    <h4><i class="fas fa-university"></i> Rekening Admin (Untuk Deposit)</h4>
+                    <h4><i class="fas fa-university"></i> Rekening Admin</h4>
                     <div class="row"><span>Bank</span><input type="text" id="adminBank" value="BCA"></div>
                     <div class="row"><span>No. Rekening</span><input type="text" id="adminBankAccount" value="1234567890"></div>
                     <div class="row"><span>Atas Nama</span><input type="text" id="adminBankName" value="Admin DEXTER"></div>
-                    <div class="row"><span>Kode Unik (3 digit)</span><input type="text" id="adminBankCode" value="321" maxlength="3" style="width:80px;"></div>
-                    <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveAdminBank()"><i class="fas fa-save"></i> Simpan</button>
+                    <div class="row"><span>Kode Unik</span><input type="text" id="adminBankCode" value="321" maxlength="3" style="width:70px;"></div>
+                    <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveAdminBank()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
-
                 <div class="setting-group">
                     <h4><i class="fas fa-check-double"></i> Approve Transaksi</h4>
-                    <div id="pendingTransactions" style="min-height:40px;">
-                        <div style="color:#475074; padding:8px 0; text-align:center; font-size:0.8rem;">✅ Tidak ada pending</div>
+                    <div id="pendingTransactions" style="min-height:30px;">
+                        <div style="color:#475074; padding:4px 0; text-align:center; font-size:0.7rem;">✅ Tidak ada pending</div>
                     </div>
                 </div>
-
                 <div class="setting-group">
                     <h4><i class="fas fa-sliders-h"></i> Pengaturan</h4>
                     <div class="row"><span>Durasi Video</span><input type="number" id="videoDuration" value="180"></div>
                     <div class="row"><span>Bonus Default</span><input type="number" id="bonusPerWatch" value="100"></div>
-                    <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveSettings()"><i class="fas fa-save"></i> Simpan</button>
+                    <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveSettings()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
-
                 <div class="setting-group">
                     <h4><i class="fas fa-percent"></i> Bonus Referral</h4>
                     <div class="row"><span>Level 1</span><input type="number" id="refL1" value="8"></div>
@@ -1480,9 +1332,8 @@
                     <div class="row"><span>Level 3</span><input type="number" id="refL3" value="3"></div>
                     <div class="row"><span>Level 4</span><input type="number" id="refL4" value="2"></div>
                     <div class="row"><span>Level 5</span><input type="number" id="refL5" value="1"></div>
-                    <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveRefSettings()"><i class="fas fa-save"></i> Simpan</button>
+                    <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveRefSettings()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
-
                 <div class="setting-group">
                     <h4><i class="fas fa-percent"></i> Bonus Rabat</h4>
                     <div class="row"><span>Level 1</span><input type="number" id="rabatL1" value="10"></div>
@@ -1490,9 +1341,8 @@
                     <div class="row"><span>Level 3</span><input type="number" id="rabatL3" value="3"></div>
                     <div class="row"><span>Level 4</span><input type="number" id="rabatL4" value="2"></div>
                     <div class="row"><span>Level 5</span><input type="number" id="rabatL5" value="1"></div>
-                    <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveRabatSettings()"><i class="fas fa-save"></i> Simpan</button>
+                    <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveRabatSettings()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
-
                 <div class="setting-group">
                     <h4><i class="fas fa-trophy"></i> Reward Level</h4>
                     <div class="row"><span>Level 1</span><input type="number" id="rewardL1" value="25000"></div>
@@ -1500,33 +1350,31 @@
                     <div class="row"><span>Level 3</span><input type="number" id="rewardL3" value="500000"></div>
                     <div class="row"><span>Level 4</span><input type="number" id="rewardL4" value="2500000"></div>
                     <div class="row"><span>Level 5</span><input type="number" id="rewardL5" value="10000000"></div>
-                    <button class="btn-success" style="margin-top:10px; width:100%;" onclick="saveRewardSettings()"><i class="fas fa-save"></i> Simpan</button>
+                    <button class="btn-success" style="margin-top:6px; width:100%;" onclick="saveRewardSettings()"><i class="fas fa-save"></i> Simpan</button>
                 </div>
             </div>
-
-            <div class="table-wrap" style="margin-top:16px;">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-users"></i> Data Member</h4>
+            <div class="table-wrap" style="margin-top:10px;">
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-users"></i> Data Member</h4>
                 <table>
                     <thead><tr><th>Username</th><th>Level</th><th>Omset</th><th>Referral</th><th>Saldo</th><th>Rekening</th></tr></thead>
                     <tbody id="memberTable">
-                        <tr><td colspan="6" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Memuat data...</td></tr>
+                        <tr><td colspan="6" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Memuat data...</td></tr>
                     </tbody>
                 </table>
             </div>
-            
-            <div class="table-wrap" style="margin-top:12px;">
-                <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-chart-bar"></i> Laporan</h4>
+            <div class="table-wrap" style="margin-top:8px;">
+                <h4 style="color:#f5d742; font-size:0.7rem; margin-bottom:4px;"><i class="fas fa-chart-bar"></i> Laporan</h4>
                 <table>
                     <thead><tr><th>Periode</th><th>Referral</th><th>Rabat</th><th>Reward</th><th>Total</th></tr></thead>
                     <tbody id="reportTable">
-                        <tr><td colspan="5" style="text-align:center; color:#475074; padding:12px; font-size:0.8rem;">Belum ada laporan</td></tr>
+                        <tr><td colspan="5" style="text-align:center; color:#475074; padding:8px; font-size:0.7rem;">Belum ada laporan</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
         <!-- ========================================================= -->
-        <!-- BOTTOM NAV (Mobile) -->
+        <!-- BOTTOM NAV -->
         <!-- ========================================================= -->
         <div class="bottom-nav" id="bottomNav">
             <button class="nav-btn active" data-page="pageDashboard" onclick="navigateTo('pageDashboard')">
@@ -1536,12 +1384,12 @@
             <button class="nav-btn" data-page="pageDracin" onclick="navigateTo('pageDracin')">
                 <i class="fas fa-film"></i>
                 <span class="nav-label">Dracin</span>
-                <span class="badge-nav" id="bottomNavVideo" style="font-size:0.4rem; background:#f5d74220; color:#f5d742; padding:0 6px; border-radius:10px;">0</span>
+                <span class="badge-nav" id="bottomNavVideo">0</span>
             </button>
             <button class="nav-btn" data-page="pageReferral" onclick="navigateTo('pageReferral')">
                 <i class="fas fa-users"></i>
                 <span class="nav-label">Referral</span>
-                <span class="badge-nav" id="bottomNavRef" style="font-size:0.4rem; background:#f5d74220; color:#f5d742; padding:0 6px; border-radius:10px;">0</span>
+                <span class="badge-nav" id="bottomNavRef">0</span>
             </button>
             <button class="nav-btn" data-page="pageReward" onclick="navigateTo('pageReward')">
                 <i class="fas fa-trophy"></i>
@@ -1557,7 +1405,7 @@
 
     <script>
         // =========================================================
-        // DATA STATE
+        // DATA - LOCAL STORAGE
         // =========================================================
         let currentUser = null;
         let users = [];
@@ -1575,6 +1423,7 @@
         let videoDuration = 180;
         let rabatSettings = { L1: 10, L2: 5, L3: 3, L4: 2, L5: 1 };
         let adminBank = { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER', code: '321' };
+        let uniqueCodeCounter = 100;
         
         let missions = [
             { id: 1, title: 'Tonton 5 Video', desc: 'Tonton 5 short video', icon: '🎬', target: 5, reward: 1000 },
@@ -1599,6 +1448,234 @@
         let isWatching = false;
 
         // =========================================================
+        // CAROUSEL DATA
+        // =========================================================
+        let carouselItems = [
+            { title: 'Short Dracin Ep 1', sub: '🔥 2.5M views', color: '#1a1f3a' },
+            { title: 'Short Dracin Ep 2', sub: '🔥 1.8M views', color: '#2d1b4a' },
+            { title: 'Short Dracin Ep 3', sub: '🔥 3.2M views', color: '#1a2a4a' },
+            { title: 'Short Dracin Ep 4', sub: '🔥 4.1M views', color: '#3a1a2a' },
+            { title: 'Short Dracin Ep 5', sub: '🔥 5.0M views', color: '#1a3a2a' },
+        ];
+        let currentCarousel = 0;
+
+        let favoriteFilms = [
+            { title: 'NeneMuda', ep: '12' },
+            { title: 'Yunmiao 1: Sang', ep: '8' },
+            { title: 'Kabur dari Pul', ep: '15' },
+            { title: 'Kebangkitan Keluarga', ep: '20' },
+            { title: 'Penyeberang Jiwa', ep: '6' },
+            { title: 'Short Dracin', ep: '45' },
+        ];
+
+        let newFilms = [
+            { title: 'Short Dracin Ep 6', ep: '1' },
+            { title: 'Dunia Lain', ep: '3' },
+            { title: 'Petualangan Baru', ep: '2' },
+            { title: 'Misi Rahasia', ep: '5' },
+            { title: 'Pertarungan Epik', ep: '4' },
+            { title: 'Kekuatan Baru', ep: '7' },
+        ];
+
+        // =========================================================
+        // LOAD DATA
+        // =========================================================
+        function loadData() {
+            try {
+                const saved = localStorage.getItem('dexter_data');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    users = data.users || [];
+                    videoList = data.videoList || [];
+                    referralData = data.referralData || [];
+                    pendingTransactions = data.pendingTransactions || [];
+                    depositHistory = data.depositHistory || [];
+                    wdHistory = data.wdHistory || [];
+                    histories = data.histories || [];
+                    transactions = data.transactions || [];
+                    adminBank = data.adminBank || { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER', code: '321' };
+                    rabatSettings = data.rabatSettings || { L1: 10, L2: 5, L3: 3, L4: 2, L5: 1 };
+                    refSettings = data.refSettings || { L1: 8, L2: 5, L3: 3, L4: 2, L5: 1 };
+                    rewardLevels = data.rewardLevels || [
+                        { level: 1, reward: 25000, omset: 50000 },
+                        { level: 2, reward: 100000, omset: 200000 },
+                        { level: 3, reward: 500000, omset: 1000000 },
+                        { level: 4, reward: 2500000, omset: 5000000 },
+                        { level: 5, reward: 10000000, omset: 20000000 },
+                    ];
+                    bonusPerWatch = data.bonusPerWatch || 100;
+                    videoDuration = data.videoDuration || 180;
+                    videoIdCounter = data.videoIdCounter || 6;
+                    transactionIdCounter = data.transactionIdCounter || 1;
+                    uniqueCodeCounter = data.uniqueCodeCounter || 100;
+                }
+            } catch (e) { console.log('Load data error:', e); }
+        }
+
+        function saveData() {
+            try {
+                const data = {
+                    users, videoList, referralData, pendingTransactions,
+                    depositHistory, wdHistory, histories, transactions,
+                    adminBank, rabatSettings, refSettings, rewardLevels,
+                    bonusPerWatch, videoDuration, videoIdCounter,
+                    transactionIdCounter, uniqueCodeCounter
+                };
+                localStorage.setItem('dexter_data', JSON.stringify(data));
+            } catch (e) { console.log('Save data error:', e); }
+        }
+
+        function autoSave() { saveData(); }
+
+        // =========================================================
+        // INIT - BUAT DEFAULT USER
+        // =========================================================
+        (function init() {
+            loadData();
+            
+            if (users.length === 0) {
+                const admin = {
+                    username: 'admin', password: 'admin123', name: 'Administrator',
+                    level: 5, omset: 10000000, saldo: 0,
+                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 10000000,
+                    referralCount: 2, totalWatch: 0,
+                    refCode: 'DEXTER001', referredBy: null, isAdmin: true,
+                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
+                    missionDone: {1:false,2:false,3:false,4:false,5:false},
+                    watchedVideos: [],
+                    bank: { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER' },
+                    missionPoints: 0
+                };
+                users.push(admin);
+                
+                const user = {
+                    username: 'user', password: 'user123', name: 'User Biasa',
+                    level: 1, omset: 0, saldo: 0,
+                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 0,
+                    referralCount: 0, totalWatch: 0,
+                    refCode: 'DXT001', referredBy: null, isAdmin: false,
+                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
+                    missionDone: {1:false,2:false,3:false,4:false,5:false},
+                    watchedVideos: [],
+                    bank: { bank: 'BCA', account: '9876543210', name: 'User Biasa' },
+                    missionPoints: 0
+                };
+                users.push(user);
+                
+                referralData.push({ username: 'member1', level: 2, omset: 500000, referredBy: 'DEXTER001' });
+                referralData.push({ username: 'member2', level: 1, omset: 200000, referredBy: 'DEXTER001' });
+                admin.referralCount = 2;
+                autoSave();
+            }
+            
+            if (videoList.length === 0) {
+                videoList = [
+                    { id: 1, title: 'Short Dracin - Episode 1: Petualangan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 100, createdAt: new Date().toLocaleString() },
+                    { id: 2, title: 'Short Dracin - Episode 2: Misi Rahasia', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 150, createdAt: new Date().toLocaleString() },
+                    { id: 3, title: 'Short Dracin - Episode 3: Pertarungan Epik', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 200, createdAt: new Date().toLocaleString() },
+                    { id: 4, title: 'Short Dracin - Episode 4: Kekuatan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 120, createdAt: new Date().toLocaleString() },
+                    { id: 5, title: 'Short Dracin - Episode 5: Final Boss', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 250, createdAt: new Date().toLocaleString() },
+                ];
+                videoIdCounter = 6;
+                autoSave();
+            }
+            
+            // Login default user
+            const defaultUser = users.find(u => u.username === 'user');
+            if (defaultUser) loginUser(defaultUser);
+            
+            document.getElementById('videoDuration').value = videoDuration;
+            document.getElementById('bonusPerWatch').value = bonusPerWatch;
+            document.getElementById('rabatL1').value = rabatSettings.L1;
+            document.getElementById('rabatL2').value = rabatSettings.L2;
+            document.getElementById('rabatL3').value = rabatSettings.L3;
+            document.getElementById('rabatL4').value = rabatSettings.L4;
+            document.getElementById('rabatL5').value = rabatSettings.L5;
+            document.getElementById('adminBank').value = adminBank.bank;
+            document.getElementById('adminBankAccount').value = adminBank.account;
+            document.getElementById('adminBankName').value = adminBank.name;
+            document.getElementById('adminBankCode').value = adminBank.code || '321';
+            updateAdminBankDisplay();
+            
+            renderCarousel();
+            renderFilms();
+            renderVideos(false);
+            updateAllTabs();
+        })();
+
+        // =========================================================
+        // CAROUSEL
+        // =========================================================
+        function renderCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.getElementById('carouselDots');
+            
+            track.innerHTML = carouselItems.map(item => `
+                <div class="carousel-item" style="background: ${item.color};">
+                    <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:16px;text-align:center;">
+                        <i class="fas fa-play-circle" style="font-size:2.5rem;color:#f5d742;margin-bottom:8px;"></i>
+                        <div style="font-weight:700;font-size:0.75rem;">${item.title}</div>
+                        <div style="font-size:0.55rem;color:#8892b0;">${item.sub}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            dots.innerHTML = carouselItems.map((_, i) => `
+                <div class="dot ${i === currentCarousel ? 'active' : ''}" onclick="goToCarousel(${i})"></div>
+            `).join('');
+        }
+
+        function moveCarousel(dir) {
+            currentCarousel = (currentCarousel + dir + carouselItems.length) % carouselItems.length;
+            updateCarousel();
+        }
+
+        function goToCarousel(index) {
+            currentCarousel = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            const itemWidth = window.innerWidth < 480 ? 100 : window.innerWidth < 768 ? 120 : 180;
+            const gap = 8;
+            const offset = currentCarousel * (itemWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentCarousel));
+        }
+
+        // =========================================================
+        // FILMS
+        // =========================================================
+        function renderFilms() {
+            const favScroll = document.getElementById('favoriteScroll');
+            const newScroll = document.getElementById('newScroll');
+            
+            favScroll.innerHTML = favoriteFilms.map(f => `
+                <div class="film-item" onclick="showToast('${f.title}', 'fa-play')">
+                    <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg, #1a1f3a, #2d3655);padding:4px;">
+                        <i class="fas fa-play-circle" style="font-size:1.5rem;color:#f5d742;margin-bottom:4px;"></i>
+                        <div style="font-size:0.4rem;text-align:center;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${f.title}</div>
+                        <div style="font-size:0.35rem;color:#8892b0;">Ep ${f.ep}</div>
+                    </div>
+                    <div class="badge-ep">EP</div>
+                </div>
+            `).join('');
+            
+            newScroll.innerHTML = newFilms.map(f => `
+                <div class="film-item" onclick="showToast('${f.title}', 'fa-play')">
+                    <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg, #2d1b4a, #1a2a4a);padding:4px;">
+                        <i class="fas fa-fire" style="font-size:1.5rem;color:#ff6b6b;margin-bottom:4px;"></i>
+                        <div style="font-size:0.4rem;text-align:center;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${f.title}</div>
+                        <div style="font-size:0.35rem;color:#8892b0;">Ep ${f.ep}</div>
+                    </div>
+                    <div class="badge-ep">NEW</div>
+                </div>
+            `).join('');
+        }
+
+        // =========================================================
         // TOAST
         // =========================================================
         function showToast(msg, icon = 'fa-check-circle') {
@@ -1607,7 +1684,7 @@
             toast.querySelector('i').className = 'fas ' + icon;
             toast.classList.add('show');
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 2800);
         }
 
         // =========================================================
@@ -1630,36 +1707,23 @@
             }
         }
 
-        // Fix: Gunakan requestAnimationFrame untuk navigasi lebih mulus
         function navigateTo(pageId) {
-            // Close sidebar on mobile
-            if (window.innerWidth <= 768) {
-                toggleSidebar(false);
-            }
+            if (window.innerWidth <= 768) toggleSidebar(false);
             
-            // Gunakan requestAnimationFrame untuk menghindari layout thrashing
             requestAnimationFrame(() => {
-                // Hide all pages
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                
-                // Show target page
                 const target = document.getElementById(pageId);
-                if (target) {
-                    target.classList.add('active');
-                }
+                if (target) target.classList.add('active');
                 
-                // Update sidebar nav
                 document.querySelectorAll('.sidebar .nav-item').forEach(n => n.classList.remove('active'));
                 const sidebarBtn = document.querySelector(`.sidebar .nav-item[data-page="${pageId}"]`);
                 if (sidebarBtn) sidebarBtn.classList.add('active');
                 
-                // Update bottom nav
                 document.querySelectorAll('.bottom-nav .nav-btn').forEach(n => n.classList.remove('active'));
                 const bottomBtn = document.querySelector(`.bottom-nav .nav-btn[data-page="${pageId}"]`);
                 if (bottomBtn) bottomBtn.classList.add('active');
             });
             
-            // Update page specific content setelah render
             setTimeout(() => {
                 if (pageId === 'pageAdmin') updateAdminTab();
                 if (pageId === 'pageReferral') updateReferralTab();
@@ -1673,133 +1737,10 @@
         }
 
         // =========================================================
-        // QUICK LOGIN (Demo Users)
-        // =========================================================
-        function quickLogin(type) {
-            if (type === 'admin') {
-                const admin = users.find(u => u.username === 'admin');
-                if (admin) {
-                    loginUser(admin);
-                } else {
-                    showToast('Admin tidak ditemukan!', 'fa-exclamation-circle');
-                }
-            } else if (type === 'user') {
-                const user = users.find(u => u.username === 'user');
-                if (user) {
-                    loginUser(user);
-                } else {
-                    showToast('User tidak ditemukan!', 'fa-exclamation-circle');
-                }
-            }
-        }
-
-        // =========================================================
-        // LANDING / AUTH
-        // =========================================================
-        function showAuth(mode) {
-            document.getElementById('landingPage').style.display = 'none';
-            document.getElementById('authContainer').classList.add('active');
-            authMode = mode;
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const ref = urlParams.get('ref');
-            if (ref && mode === 'register') {
-                document.getElementById('regRef').value = ref;
-            }
-            
-            if (mode === 'login') {
-                document.getElementById('authTitle').textContent = 'DEXTER';
-                document.getElementById('authSubtitle').textContent = 'Masuk ke akun Anda';
-                document.getElementById('authBtn').innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
-                document.getElementById('registerFields').style.display = 'none';
-                document.getElementById('authSwitchText').textContent = 'Belum punya akun?';
-                document.getElementById('authSwitchLink').textContent = 'Daftar sekarang';
-                document.getElementById('authError').style.display = 'none';
-            } else {
-                document.getElementById('authTitle').textContent = 'Daftar DEXTER';
-                document.getElementById('authSubtitle').textContent = 'Buat akun baru';
-                document.getElementById('authBtn').innerHTML = '<i class="fas fa-user-plus"></i> Daftar';
-                document.getElementById('registerFields').style.display = 'block';
-                document.getElementById('authSwitchText').textContent = 'Sudah punya akun?';
-                document.getElementById('authSwitchLink').textContent = 'Masuk sekarang';
-                document.getElementById('authError').style.display = 'none';
-            }
-        }
-
-        function toggleAuth() {
-            showAuth(authMode === 'login' ? 'register' : 'login');
-        }
-
-        // =========================================================
-        // AUTH HANDLER
-        // =========================================================
-        function handleAuth(e) {
-            e.preventDefault();
-            const username = document.getElementById('authUsername').value.trim();
-            const password = document.getElementById('authPassword').value.trim();
-
-            if (!username || !password) {
-                showAuthError('Username dan password wajib diisi!');
-                return;
-            }
-
-            if (authMode === 'login') {
-                const user = users.find(u => u.username === username && u.password === password);
-                if (user) {
-                    loginUser(user);
-                } else {
-                    showAuthError('Username atau password salah!');
-                }
-            } else {
-                if (users.find(u => u.username === username)) {
-                    showAuthError('Username sudah terdaftar!');
-                    return;
-                }
-                const name = document.getElementById('regName').value.trim() || username;
-                const refCode = document.getElementById('regRef').value.trim();
-                const newUser = {
-                    username, password, name,
-                    level: 1, omset: 0, saldo: 0,
-                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 0,
-                    referralCount: 0, totalWatch: 0,
-                    refCode: 'DXT' + String(100 + users.length + 1).padStart(3, '0'),
-                    referredBy: refCode || null,
-                    isAdmin: false,
-                    missionProgress: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-                    missionDone: { 1: false, 2: false, 3: false, 4: false, 5: false },
-                    watchedVideos: [],
-                    bank: { bank: '', account: '', name: '' },
-                    missionPoints: 0
-                };
-                users.push(newUser);
-                
-                if (refCode) {
-                    const referrer = users.find(u => u.refCode === refCode);
-                    if (referrer) {
-                        referralData.push({ username, level: 1, omset: 0, referredBy: refCode });
-                        referrer.referralCount = (referrer.referralCount || 0) + 1;
-                    }
-                }
-                showToast('Akun berhasil dibuat! Silakan login.', 'fa-user-plus');
-                showAuth('login');
-                document.getElementById('authUsername').value = username;
-                document.getElementById('authPassword').value = '';
-            }
-        }
-
-        function showAuthError(msg) {
-            document.getElementById('authErrorMsg').textContent = msg;
-            document.getElementById('authError').style.display = 'block';
-        }
-
-        // =========================================================
         // LOGIN / LOGOUT
         // =========================================================
         function loginUser(user) {
             currentUser = user;
-            document.getElementById('authContainer').classList.remove('active');
-            document.getElementById('landingPage').style.display = 'none';
-            document.getElementById('dashboard').classList.add('active');
             isAdmin = user.isAdmin || false;
 
             document.getElementById('dashRole').textContent = isAdmin ? 'Admin' : 'Member';
@@ -1809,9 +1750,6 @@
             
             document.getElementById('adminNavItems').style.display = isAdmin ? 'block' : 'none';
             document.getElementById('adminPanelAkun').style.display = isAdmin ? 'block' : 'none';
-            
-            updateRefLink();
-            updateAdminBankDisplay();
 
             if (user.bank) {
                 document.getElementById('userBank').value = user.bank.bank || '';
@@ -1825,18 +1763,31 @@
                 document.getElementById('wdBankName').value = user.bank.name || '';
             }
 
+            const uniqueCode = generateUniqueCode();
+            document.getElementById('depositCodeInput').value = uniqueCode;
+            document.getElementById('depositCode').textContent = uniqueCode;
+
             calculateBonus();
-            showToast('Selamat datang, ' + (user.name || user.username) + '! 🚀');
             updateAllTabs();
             navigateTo('pageDashboard');
         }
 
-        function logout() {
+        function handleLogout() {
             if (isWatching) closeVideo();
             currentUser = null;
-            document.getElementById('dashboard').classList.remove('active');
-            document.getElementById('landingPage').style.display = 'block';
             showToast('Anda telah keluar.');
+            // Login ulang ke user default
+            const defaultUser = users.find(u => u.username === 'user');
+            if (defaultUser) loginUser(defaultUser);
+        }
+
+        // =========================================================
+        // GENERATE UNIQUE CODE
+        // =========================================================
+        function generateUniqueCode() {
+            uniqueCodeCounter++;
+            autoSave();
+            return String(uniqueCodeCounter).padStart(3, '0');
         }
 
         // =========================================================
@@ -1846,10 +1797,8 @@
             document.getElementById('depositBank').textContent = adminBank.bank || 'BCA';
             document.getElementById('depositAccount').textContent = adminBank.account || '1234567890';
             document.getElementById('depositName').textContent = adminBank.name || 'Admin DEXTER';
-            document.getElementById('depositCode').textContent = adminBank.code || '321';
-            document.getElementById('depositCodeInput').value = adminBank.code || '321';
-            
-            // Auto calculate total transfer
+            const uniqueCode = document.getElementById('depositCodeInput').value || adminBank.code || '321';
+            document.getElementById('depositCode').textContent = uniqueCode;
             calculateDepositTotal();
         }
 
@@ -1860,37 +1809,16 @@
             document.getElementById('depositTotal').value = 'Rp ' + total.toLocaleString('id-ID');
         }
 
-        // Add event listeners for auto calculation
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('depositAmount').addEventListener('input', calculateDepositTotal);
-            document.getElementById('depositCodeInput').addEventListener('input', calculateDepositTotal);
+            const depAmount = document.getElementById('depositAmount');
+            const depCode = document.getElementById('depositCodeInput');
+            if (depAmount) depAmount.addEventListener('input', calculateDepositTotal);
+            if (depCode) depCode.addEventListener('input', calculateDepositTotal);
         });
 
         // =========================================================
-        // REFERRAL LINK
+        // COPY REFERRAL
         // =========================================================
-        function updateRefLink() {
-            if (!currentUser) return;
-            const baseUrl = window.location.origin + window.location.pathname;
-            const refLink = baseUrl + '?ref=' + currentUser.refCode;
-            document.getElementById('refLinkText').innerHTML = '<strong>' + refLink + '</strong>';
-        }
-
-        function copyRefLink() {
-            const text = document.getElementById('refLinkText').textContent.trim();
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => showToast('Link referral disalin!', 'fa-copy'));
-            } else {
-                const input = document.createElement('input');
-                input.value = text;
-                document.body.appendChild(input);
-                input.select();
-                document.execCommand('copy');
-                document.body.removeChild(input);
-                showToast('Link referral disalin!', 'fa-copy');
-            }
-        }
-
         function copyRefCode() {
             const code = document.getElementById('myRefCode').textContent;
             if (navigator.clipboard) {
@@ -1922,6 +1850,7 @@
             document.getElementById('wdBank').value = currentUser.bank.bank;
             document.getElementById('wdBankAccount').value = currentUser.bank.account;
             document.getElementById('wdBankName').value = currentUser.bank.name;
+            autoSave();
             showToast('Rekening berhasil disimpan!', 'fa-save');
         }
 
@@ -1938,6 +1867,7 @@
             document.getElementById('wdBank').value = currentUser.bank.bank;
             document.getElementById('wdBankAccount').value = currentUser.bank.account;
             document.getElementById('wdBankName').value = currentUser.bank.name;
+            autoSave();
             showToast('Rekening berhasil disimpan!', 'fa-save');
         }
 
@@ -1950,6 +1880,7 @@
             adminBank.account = document.getElementById('adminBankAccount').value.trim();
             adminBank.name = document.getElementById('adminBankName').value.trim();
             adminBank.code = document.getElementById('adminBankCode').value.trim() || '321';
+            autoSave();
             updateAdminBankDisplay();
             showToast('Rekening admin disimpan!', 'fa-save');
         }
@@ -1963,6 +1894,7 @@
             if (name) {
                 currentUser.name = name;
                 document.getElementById('dashName').textContent = name;
+                autoSave();
                 showToast('Profil berhasil diupdate!', 'fa-save');
             } else {
                 showToast('Nama tidak boleh kosong!', 'fa-exclamation-circle');
@@ -2000,7 +1932,7 @@
             document.getElementById('videoTitleInput').value = '';
             document.getElementById('videoLinkInput').value = '';
             document.getElementById('videoRewardInput').value = 100;
-            
+            autoSave();
             showToast('Video berhasil ditambahkan!', 'fa-plus');
             updateAdminTab();
             renderVideos(false);
@@ -2011,6 +1943,7 @@
             if (!isAdmin) return;
             if (!confirm('Hapus video ini?')) return;
             videoList = videoList.filter(v => v.id !== id);
+            autoSave();
             showToast('Video dihapus!', 'fa-trash');
             updateAdminTab();
             renderVideos(false);
@@ -2018,42 +1951,39 @@
         }
 
         function renderVideos(full = false) {
-            const container = document.getElementById(full ? 'videoGridFull' : 'videoGridDashboard');
-            if (!container) return;
+            const gridContainer = document.getElementById('videoGridFull');
+            if (!gridContainer) return;
             
             const watched = currentUser?.watchedVideos || [];
             
             if (videoList.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column:1/-1; text-align:center; padding:20px; color:#475074; font-size:0.8rem;">
-                        <i class="fas fa-video" style="font-size:1.5rem; display:block; margin-bottom:6px;"></i>
-                        Belum ada video. ${isAdmin ? 'Tambah di Admin.' : 'Tunggu admin.'}
+                gridContainer.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:16px; color:#475074; font-size:0.7rem;">
+                        <i class="fas fa-video" style="font-size:1.2rem; display:block; margin-bottom:4px;"></i>
+                        Belum ada video.
                     </div>
                 `;
-                return;
+            } else {
+                gridContainer.innerHTML = videoList.map((v) => {
+                    const isWatched = watched.includes(v.id);
+                    return `
+                        <div class="video-card" onclick="${!isWatched ? `openVideoById(${v.id})` : 'showToast(\'Sudah ditonton!\', \'fa-info-circle\')'}" style="${isWatched ? 'opacity:0.5;' : ''}">
+                            ${isWatched ? '<div class="status-watched"><i class="fas fa-check-circle"></i> Sudah</div>' : ''}
+                            <div class="thumbnail">
+                                <i class="fas fa-play-circle" style="font-size:1.4rem;"></i>
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-title">${v.title}</div>
+                            <div class="video-meta">
+                                <span>🎁 <span class="reward">+Rp ${v.reward.toLocaleString()}</span></span>
+                                <span>⏱️ ${Math.floor(videoDuration/60)}m</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
             }
             
-            container.innerHTML = videoList.map((v, index) => {
-                const isWatched = watched.includes(v.id);
-                return `
-                    <div class="video-card" onclick="${!isWatched ? `openVideoById(${v.id})` : 'showToast(\'Sudah ditonton!\', \'fa-info-circle\')'}" style="${isWatched ? 'opacity:0.5;' : ''}">
-                        ${isWatched ? '<div class="status-watched"><i class="fas fa-check-circle"></i> Sudah</div>' : ''}
-                        <div class="video-number">#${index + 1}</div>
-                        <div class="thumbnail">
-                            <i class="fas fa-play-circle" style="font-size:2rem;"></i>
-                            <div class="play-overlay"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="video-title">${v.title}</div>
-                        <div class="video-meta">
-                            <span>🎁 <span class="reward">+Rp ${v.reward.toLocaleString()}</span></span>
-                            <span>⏱️ ${Math.floor(videoDuration/60)}m</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
             const count = videoList.length;
-            document.getElementById('videoCount').textContent = count;
             document.getElementById('videoCountFull').textContent = count;
             document.getElementById('navVideoCount').textContent = count;
             document.getElementById('bottomNavVideo').textContent = count;
@@ -2156,77 +2086,7 @@
                 note: video.title
             });
             
-            calculateBonus();
-            updateAllTabs();
-        }
-
-        // =========================================================
-        // MISSIONS
-        // =========================================================
-        function renderMissions() {
-            const container = document.getElementById('previewMissions');
-            if (!container) return;
-            
-            const userMissions = currentUser ? currentUser.missionProgress || {} : {};
-            const userDone = currentUser ? currentUser.missionDone || {} : {};
-            
-            let totalPoin = 0;
-            let html = missions.map(m => {
-                const progress = userMissions[m.id] || 0;
-                const done = userDone[m.id] || false;
-                const pct = Math.min((progress / m.target) * 100, 100);
-                const isComplete = progress >= m.target && !done;
-                if (done) totalPoin += m.reward;
-                
-                return `
-                    <div class="mission-card">
-                        <div class="mission-icon">${m.icon}</div>
-                        <div class="mission-title">${m.title}</div>
-                        <div class="mission-desc">${m.desc}</div>
-                        <div class="reward-bonus">🎁 +Rp ${m.reward.toLocaleString()}</div>
-                        <div class="mission-progress">
-                            <div class="progress-bar"><div class="fill" style="width:${pct}%"></div></div>
-                            <div class="progress-text">${progress}/${m.target}</div>
-                        </div>
-                        ${done ? '<div class="status-done"><i class="fas fa-check-circle"></i> Selesai</div>' :
-                          isComplete ? `<button class="btn-claim show" onclick="claimMission(${m.id})"><i class="fas fa-gift"></i> Klaim</button>` :
-                          `<div class="status-locked"><i class="fas fa-clock"></i> ${progress > 0 ? 'Tonton lagi' : 'Belum ditonton'}</div>`}
-                    </div>
-                `;
-            }).join('');
-            
-            container.innerHTML = html;
-            document.getElementById('previewPoints').textContent = totalPoin;
-        }
-
-        function claimMission(id) {
-            if (!currentUser) return;
-            const mission = missions.find(m => m.id === id);
-            if (!mission) return;
-            
-            const progress = currentUser.missionProgress?.[id] || 0;
-            if (progress < mission.target) {
-                showToast('Belum mencapai target!', 'fa-exclamation-circle');
-                return;
-            }
-            if (currentUser.missionDone?.[id]) {
-                showToast('Sudah diklaim!', 'fa-exclamation-circle');
-                return;
-            }
-            
-            if (!currentUser.missionDone) currentUser.missionDone = {};
-            currentUser.missionDone[id] = true;
-            currentUser.saldo = (currentUser.saldo || 0) + mission.reward;
-            currentUser.omset = (currentUser.omset || 0) + mission.reward;
-            
-            histories.push({
-                date: new Date().toLocaleString(),
-                type: 'Misi Short Dracin',
-                amount: mission.reward,
-                note: mission.title
-            });
-            
-            showToast(`🎉 Klaim ${mission.title} berhasil! +Rp ${mission.reward.toLocaleString()}`, 'fa-gift');
+            autoSave();
             calculateBonus();
             updateAllTabs();
         }
@@ -2240,11 +2100,8 @@
             updateRewardTab();
             updateDepositTab();
             updateWithdrawTab();
-            renderMissions();
             renderVideos(false);
-            if (document.getElementById('pageDracin').classList.contains('active')) {
-                renderVideos(true);
-            }
+            if (document.getElementById('pageDracin').classList.contains('active')) renderVideos(true);
             updateBottomNavBadges();
         }
 
@@ -2252,6 +2109,8 @@
             const refCount = currentUser?.referralCount || 0;
             document.getElementById('bottomNavRef').textContent = refCount;
             document.getElementById('navRefCount').textContent = refCount;
+            document.getElementById('bottomNavVideo').textContent = videoList.length || 0;
+            document.getElementById('navVideoCount').textContent = videoList.length || 0;
         }
 
         function updateMemberTab() {
@@ -2266,13 +2125,12 @@
 
             const tbody = document.getElementById('historyTable');
             if (histories.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada riwayat</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:6px; font-size:0.65rem;">Belum ada riwayat</td></tr>';
             } else {
-                tbody.innerHTML = histories.slice(0, 8).map(h =>
-                    `<tr><td style="font-size:0.7rem;">${h.date}</td><td style="font-size:0.7rem;">${h.type}</td><td style="font-size:0.7rem;">Rp ${formatRupiah(h.amount)}</td><td style="font-size:0.7rem;">${h.note || '-'}</td></tr>`
+                tbody.innerHTML = histories.slice(0, 6).map(h =>
+                    `<tr><td style="font-size:0.6rem;">${h.date}</td><td style="font-size:0.6rem;">${h.type}</td><td style="font-size:0.6rem;">Rp ${formatRupiah(h.amount)}</td><td style="font-size:0.6rem;">${h.note || '-'}</td></tr>`
                 ).join('');
             }
-            renderMissions();
             renderVideos(false);
             updateBottomNavBadges();
         }
@@ -2287,10 +2145,10 @@
             const tbody = document.getElementById('referralTable');
             const refs = referralData.filter(r => r.referredBy === currentUser.refCode);
             if (refs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada referral</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:6px; font-size:0.65rem;">Belum ada referral</td></tr>';
             } else {
                 tbody.innerHTML = refs.map(r =>
-                    `<tr><td style="font-size:0.75rem;">${r.username}</td><td style="font-size:0.75rem;">Level ${r.level}</td><td style="font-size:0.75rem;">Rp ${formatRupiah(r.omset || 0)}</td><td style="font-size:0.75rem;">Rp ${formatRupiah(Math.round((r.omset || 0) * 0.08))}</td></tr>`
+                    `<tr><td style="font-size:0.65rem;">${r.username}</td><td style="font-size:0.65rem;">Level ${r.level}</td><td style="font-size:0.65rem;">Rp ${formatRupiah(r.omset || 0)}</td><td style="font-size:0.65rem;">Rp ${formatRupiah(Math.round((r.omset || 0) * 0.08))}</td></tr>`
                 ).join('');
             }
             updateBottomNavBadges();
@@ -2307,13 +2165,13 @@
             tbody.innerHTML = rewardLevels.map(rl => {
                 const reached = (u.omset || 0) >= rl.omset;
                 const status = reached ?
-                    `<span style="color:#4ecdc4; font-size:0.7rem;"><i class="fas fa-check-circle"></i> Tercapai</span>` :
-                    `<span style="color:#475074; font-size:0.7rem;"><i class="fas fa-lock"></i> Target Rp ${formatRupiah(rl.omset)}</span>`;
+                    `<span style="color:#4ecdc4; font-size:0.65rem;"><i class="fas fa-check-circle"></i> Tercapai</span>` :
+                    `<span style="color:#475074; font-size:0.65rem;"><i class="fas fa-lock"></i> Target Rp ${formatRupiah(rl.omset)}</span>`;
                 return `<tr>
-                    <td style="font-size:0.75rem;"><span class="badge-level">LEVEL ${rl.level}</span></td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(rl.reward)}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(rl.omset)}</td>
-                    <td style="font-size:0.7rem;">${status}</td>
+                    <td style="font-size:0.7rem;"><span class="badge-level">LEVEL ${rl.level}</span></td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(rl.reward)}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(rl.omset)}</td>
+                    <td style="font-size:0.65rem;">${status}</td>
                 </tr>`;
             }).join('');
         }
@@ -2321,18 +2179,24 @@
         function updateDepositTab() {
             if (!currentUser) return;
             document.getElementById('dSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
+            let uniqueCode = document.getElementById('depositCodeInput').value;
+            if (!uniqueCode || uniqueCode.length !== 3) {
+                uniqueCode = generateUniqueCode();
+                document.getElementById('depositCodeInput').value = uniqueCode;
+                document.getElementById('depositCode').textContent = uniqueCode;
+            }
             updateAdminBankDisplay();
 
             const tbody = document.getElementById('depositHistoryTable');
             if (depositHistory.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada deposit</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:6px; font-size:0.65rem;">Belum ada deposit</td></tr>';
             } else {
-                tbody.innerHTML = depositHistory.slice(0, 8).map(t =>
+                tbody.innerHTML = depositHistory.slice(0, 6).map(t =>
                     `<tr>
-                        <td style="font-size:0.7rem;">${t.date}</td>
-                        <td style="font-size:0.7rem;">Rp ${formatRupiah(t.amount)}</td>
-                        <td style="font-size:0.7rem;">${t.code || '-'}</td>
-                        <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.6rem;">${t.status}</span></td>
+                        <td style="font-size:0.6rem;">${t.date}</td>
+                        <td style="font-size:0.6rem;">Rp ${formatRupiah(t.amount)}</td>
+                        <td style="font-size:0.6rem;">${t.code || '-'}</td>
+                        <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.55rem;">${t.status}</span></td>
                     </tr>`
                 ).join('');
             }
@@ -2341,7 +2205,6 @@
         function updateWithdrawTab() {
             if (!currentUser) return;
             document.getElementById('wSaldo').textContent = 'Rp ' + formatRupiah(currentUser.saldo);
-            
             if (currentUser.bank) {
                 document.getElementById('wdBank').value = currentUser.bank.bank || '';
                 document.getElementById('wdBankAccount').value = currentUser.bank.account || '';
@@ -2350,21 +2213,21 @@
 
             const tbody = document.getElementById('wdHistoryTable');
             if (wdHistory.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada withdraw</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#475074; padding:6px; font-size:0.65rem;">Belum ada withdraw</td></tr>';
             } else {
-                tbody.innerHTML = wdHistory.slice(0, 8).map(t =>
+                tbody.innerHTML = wdHistory.slice(0, 6).map(t =>
                     `<tr>
-                        <td style="font-size:0.7rem;">${t.date}</td>
-                        <td style="font-size:0.7rem;">Rp ${formatRupiah(t.amount)}</td>
-                        <td style="font-size:0.7rem;">Rp ${formatRupiah(t.fee || 1000)}</td>
-                        <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.6rem;">${t.status}</span></td>
+                        <td style="font-size:0.6rem;">${t.date}</td>
+                        <td style="font-size:0.6rem;">Rp ${formatRupiah(t.amount)}</td>
+                        <td style="font-size:0.6rem;">Rp ${formatRupiah(t.fee || 1000)}</td>
+                        <td><span class="badge-${t.status === 'Berhasil' ? 'success' : t.status === 'Pending' ? 'pending' : 'danger'}" style="font-size:0.55rem;">${t.status}</span></td>
                     </tr>`
                 ).join('');
             }
         }
 
         // =========================================================
-        // DEPOSIT with Code
+        // DEPOSIT
         // =========================================================
         function doDeposit() {
             if (!currentUser) { showToast('Silakan login dulu!', 'fa-exclamation-circle'); return; }
@@ -2375,18 +2238,10 @@
                 showToast('Minimal deposit Rp 5.000!', 'fa-exclamation-circle');
                 return;
             }
-            
             if (!code || code.length !== 3) {
                 showToast('Masukkan 3 digit kode unik!', 'fa-exclamation-circle');
                 return;
             }
-            
-            // Check code match
-            if (code !== adminBank.code) {
-                showToast('Kode unik salah! Gunakan kode: ' + adminBank.code, 'fa-exclamation-circle');
-                return;
-            }
-            
             if (!currentUser.bank || !currentUser.bank.account) {
                 showToast('Silakan isi rekening Anda dulu!', 'fa-exclamation-circle');
                 return;
@@ -2394,9 +2249,7 @@
             
             const fileInput = document.getElementById('depositProof');
             let proofName = '';
-            if (fileInput.files && fileInput.files.length > 0) {
-                proofName = fileInput.files[0].name;
-            }
+            if (fileInput.files && fileInput.files.length > 0) proofName = fileInput.files[0].name;
             
             pendingTransactions.push({
                 id: transactionIdCounter++,
@@ -2424,7 +2277,12 @@
                 note: 'Kode: ' + code + (proofName ? ' | Bukti: ' + proofName : '')
             });
             
+            autoSave();
             showToast('Deposit Rp ' + formatRupiah(amount) + ' menunggu approve!', 'fa-clock');
+            
+            const newCode = generateUniqueCode();
+            document.getElementById('depositCodeInput').value = newCode;
+            document.getElementById('depositCode').textContent = newCode;
             updateAllTabs();
             if (isAdmin) updateAdminTab();
         }
@@ -2446,7 +2304,6 @@
                 showToast('Saldo tidak cukup!', 'fa-exclamation-circle');
                 return;
             }
-            
             if (!currentUser.bank || !currentUser.bank.account) {
                 showToast('Silakan isi rekening Anda dulu di menu Akun!', 'fa-exclamation-circle');
                 return;
@@ -2477,6 +2334,7 @@
                 note: 'Fee Rp ' + formatRupiah(fee) + ' | Menunggu approve'
             });
             
+            autoSave();
             showToast('WD Rp ' + formatRupiah(amount) + ' menunggu approve!', 'fa-clock');
             updateAllTabs();
             if (isAdmin) updateAdminTab();
@@ -2487,10 +2345,8 @@
         // =========================================================
         function approveTransaction(id, status) {
             if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
-            
             const pending = pendingTransactions.find(t => t.id === id);
             if (!pending) { showToast('Transaksi tidak ditemukan!', 'fa-exclamation-circle'); return; }
-            
             const user = users.find(u => u.username === pending.username);
             if (!user) { showToast('User tidak ditemukan!', 'fa-exclamation-circle'); return; }
             
@@ -2511,10 +2367,8 @@
                     const wd = wdHistory.find(w => w.date === pending.date && w.amount === pending.amount);
                     if (wd) wd.status = 'Berhasil';
                 }
-                
                 const hist = histories.find(h => h.date === pending.date && h.type === pending.type);
                 if (hist) hist.note = 'Disetujui admin';
-                
                 pending.status = 'Approved';
                 showToast('Transaksi ' + pending.type + ' disetujui!', 'fa-check-circle');
             } else {
@@ -2532,7 +2386,7 @@
             }
             
             pendingTransactions = pendingTransactions.filter(t => t.id !== id);
-            
+            autoSave();
             calculateBonus();
             updateAllTabs();
             updateAdminTab();
@@ -2599,7 +2453,7 @@
 
             const videoContainer = document.getElementById('videoListAdmin');
             if (videoList.length === 0) {
-                videoContainer.innerHTML = '<div style="color:#475074; padding:6px 0; font-size:0.8rem;">Belum ada video.</div>';
+                videoContainer.innerHTML = '<div style="color:#475074; padding:4px 0; font-size:0.7rem;">Belum ada video.</div>';
             } else {
                 videoContainer.innerHTML = videoList.map(v => `
                     <div class="video-item">
@@ -2615,7 +2469,7 @@
 
             const pendingContainer = document.getElementById('pendingTransactions');
             if (pendingTransactions.length === 0) {
-                pendingContainer.innerHTML = '<div style="color:#475074; padding:6px 0; text-align:center; font-size:0.8rem;">✅ Tidak ada transaksi pending</div>';
+                pendingContainer.innerHTML = '<div style="color:#475074; padding:4px 0; text-align:center; font-size:0.7rem;">✅ Tidak ada pending</div>';
             } else {
                 pendingContainer.innerHTML = pendingTransactions.map(t => `
                     <div class="pending-item">
@@ -2623,7 +2477,7 @@
                             <div class="user">${t.username} - ${t.type}</div>
                             <div class="detail">Rp ${formatRupiah(t.amount)} · ${t.date}</div>
                             <div class="detail" style="font-size:0.55rem;">${t.type === 'Deposit' ? 'Kode: ' + (t.code || '-') : 'Fee: Rp ' + formatRupiah(t.fee || 1000)}</div>
-                            <div class="detail" style="font-size:0.55rem;">Bank: ${t.bank?.bank || '-'} - ${t.bank?.account || '-'}</div>
+                            <div class="detail" style="font-size:0.55rem;">Bank: ${t.bank?.bank || '-'}</div>
                             ${t.proof ? '<div class="detail" style="font-size:0.55rem; color:#4ecdc4;">📎 ' + t.proof + '</div>' : ''}
                         </div>
                         <div class="actions">
@@ -2636,16 +2490,16 @@
 
             const tbody = document.getElementById('memberTable');
             tbody.innerHTML = users.map(u => {
-                const bankInfo = u.bank ? `${u.bank.bank || '-'} - ${u.bank.account || '-'}` : '-';
+                const bankInfo = u.bank ? `${u.bank.bank || '-'}` : '-';
                 return `<tr>
-                    <td style="font-size:0.75rem;">${u.username}</td>
-                    <td style="font-size:0.75rem;">Level ${u.level}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(u.omset || 0)}</td>
-                    <td style="font-size:0.75rem;">${u.referralCount || 0}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(u.saldo)}</td>
-                    <td style="font-size:0.65rem; color:#8892b0;">${bankInfo}</td>
+                    <td style="font-size:0.7rem;">${u.username}</td>
+                    <td style="font-size:0.7rem;">Level ${u.level}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(u.omset || 0)}</td>
+                    <td style="font-size:0.7rem;">${u.referralCount || 0}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(u.saldo)}</td>
+                    <td style="font-size:0.6rem; color:#8892b0;">${bankInfo}</td>
                 </tr>`;
-            }).join('') || '<tr><td colspan="6" style="text-align:center; color:#475074; padding:10px; font-size:0.8rem;">Belum ada member</td></tr>';
+            }).join('') || '<tr><td colspan="6" style="text-align:center; color:#475074; padding:6px; font-size:0.7rem;">Belum ada member</td></tr>';
 
             const reportBody = document.getElementById('reportTable');
             const totalRef = users.reduce((s, u) => s + (u.bonusReferral || 0), 0);
@@ -2654,11 +2508,11 @@
             const totalNonton = users.reduce((s, u) => s + (u.bonusNonton || 0), 0);
             reportBody.innerHTML = `
                 <tr>
-                    <td style="font-size:0.75rem;">${new Date().toLocaleDateString('id-ID', { month:'long', year:'numeric' })}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(totalRef)}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(totalRabat)}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(totalReward)}</td>
-                    <td style="font-size:0.75rem;">Rp ${formatRupiah(totalRef + totalRabat + totalReward + totalNonton)}</td>
+                    <td style="font-size:0.7rem;">${new Date().toLocaleDateString('id-ID', { month:'long', year:'numeric' })}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(totalRef)}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(totalRabat)}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(totalReward)}</td>
+                    <td style="font-size:0.7rem;">Rp ${formatRupiah(totalRef + totalRabat + totalReward + totalNonton)}</td>
                 </tr>
             `;
         }
@@ -2670,6 +2524,7 @@
             if (!isAdmin) { showToast('Hanya admin!', 'fa-exclamation-circle'); return; }
             videoDuration = parseInt(document.getElementById('videoDuration').value) || 180;
             bonusPerWatch = parseInt(document.getElementById('bonusPerWatch').value) || 100;
+            autoSave();
             showToast('Pengaturan disimpan!', 'fa-save');
         }
 
@@ -2682,6 +2537,7 @@
             refSettings.L5 = parseInt(document.getElementById('refL5').value) || 0;
             users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
             if (currentUser) { calculateBonus(); updateAllTabs(); }
+            autoSave();
             showToast('Pengaturan referral disimpan!', 'fa-save');
         }
 
@@ -2694,6 +2550,7 @@
             rabatSettings.L5 = parseInt(document.getElementById('rabatL5').value) || 0;
             users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
             if (currentUser) { calculateBonus(); updateAllTabs(); }
+            autoSave();
             showToast('Pengaturan rabat disimpan!', 'fa-save');
         }
 
@@ -2704,9 +2561,9 @@
             rewardLevels[2].reward = parseInt(document.getElementById('rewardL3').value) || 500000;
             rewardLevels[3].reward = parseInt(document.getElementById('rewardL4').value) || 2500000;
             rewardLevels[4].reward = parseInt(document.getElementById('rewardL5').value) || 10000000;
-            
             users.forEach(u => { const temp = currentUser; currentUser = u; calculateBonus(); currentUser = temp; });
             if (currentUser) { calculateBonus(); updateAllTabs(); }
+            autoSave();
             showToast('Pengaturan reward disimpan!', 'fa-save');
         }
 
@@ -2716,86 +2573,6 @@
         function formatRupiah(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
-
-        // =========================================================
-        // INIT
-        // =========================================================
-        (function init() {
-            // Create default admin
-            if (users.length === 0) {
-                const admin = {
-                    username: 'admin', password: 'admin123', name: 'Administrator',
-                    level: 5, omset: 10000000, saldo: 0,
-                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 10000000,
-                    referralCount: 2, totalWatch: 0,
-                    refCode: 'DEXTER001', referredBy: null, isAdmin: true,
-                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
-                    missionDone: {1:false,2:false,3:false,4:false,5:false},
-                    watchedVideos: [],
-                    bank: { bank: 'BCA', account: '1234567890', name: 'Admin DEXTER' },
-                    missionPoints: 0
-                };
-                users.push(admin);
-                
-                // Create default user
-                const user = {
-                    username: 'user', password: 'user123', name: 'User Biasa',
-                    level: 1, omset: 0, saldo: 0,
-                    bonusNonton: 0, bonusReferral: 0, bonusRabat: 0, bonusReward: 0,
-                    referralCount: 0, totalWatch: 0,
-                    refCode: 'DXT001', referredBy: null, isAdmin: false,
-                    missionProgress: {1:0,2:0,3:0,4:0,5:0},
-                    missionDone: {1:false,2:false,3:false,4:false,5:false},
-                    watchedVideos: [],
-                    bank: { bank: 'BCA', account: '9876543210', name: 'User Biasa' },
-                    missionPoints: 0
-                };
-                users.push(user);
-                
-                referralData.push({ username: 'member1', level: 2, omset: 500000, referredBy: 'DEXTER001' });
-                referralData.push({ username: 'member2', level: 1, omset: 200000, referredBy: 'DEXTER001' });
-                admin.referralCount = 2;
-            }
-            
-            // Default videos
-            if (videoList.length === 0) {
-                videoList = [
-                    { id: 1, title: 'Short Dracin - Episode 1: Petualangan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 100, createdAt: new Date().toLocaleString() },
-                    { id: 2, title: 'Short Dracin - Episode 2: Misi Rahasia', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 150, createdAt: new Date().toLocaleString() },
-                    { id: 3, title: 'Short Dracin - Episode 3: Pertarungan Epik', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 200, createdAt: new Date().toLocaleString() },
-                    { id: 4, title: 'Short Dracin - Episode 4: Kekuatan Baru', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 120, createdAt: new Date().toLocaleString() },
-                    { id: 5, title: 'Short Dracin - Episode 5: Final Boss', link: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0', reward: 250, createdAt: new Date().toLocaleString() },
-                ];
-                videoIdCounter = 6;
-            }
-            
-            users.forEach(u => {
-                if (u.referredBy && !referralData.find(r => r.username === u.username)) {
-                    referralData.push({ username: u.username, level: u.level, omset: u.omset, referredBy: u.referredBy });
-                }
-                if (!u.missionProgress) u.missionProgress = {1:0,2:0,3:0,4:0,5:0};
-                if (!u.missionDone) u.missionDone = {1:false,2:false,3:false,4:false,5:false};
-                if (!u.watchedVideos) u.watchedVideos = [];
-                if (!u.bonusNonton) u.bonusNonton = 0;
-                if (!u.totalWatch) u.totalWatch = 0;
-                if (!u.bank) u.bank = { bank: '', account: '', name: '' };
-            });
-            
-            document.getElementById('videoDuration').value = videoDuration;
-            document.getElementById('bonusPerWatch').value = bonusPerWatch;
-            
-            document.getElementById('rabatL1').value = rabatSettings.L1;
-            document.getElementById('rabatL2').value = rabatSettings.L2;
-            document.getElementById('rabatL3').value = rabatSettings.L3;
-            document.getElementById('rabatL4').value = rabatSettings.L4;
-            document.getElementById('rabatL5').value = rabatSettings.L5;
-            
-            document.getElementById('adminBank').value = adminBank.bank;
-            document.getElementById('adminBankAccount').value = adminBank.account;
-            document.getElementById('adminBankName').value = adminBank.name;
-            document.getElementById('adminBankCode').value = adminBank.code || '321';
-            updateAdminBankDisplay();
-        })();
     </script>
 </body>
 </html>
