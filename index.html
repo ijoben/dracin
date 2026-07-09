@@ -42,13 +42,13 @@
             font-size: 0.85rem;
         }
         .toast.show { display: flex; animation: slideUp 0.3s ease; }
-        .toast.i { color: #f5d742; font-size: 1rem; }
+        .toast i { color: #f5d742; font-size: 1rem; }
         @keyframes slideUp {
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* ===== AUTH ===== */
+        /* ===== LANDING / AUTH ===== */
         #landingPage, .auth-container {
             display: none !important;
         }
@@ -272,7 +272,7 @@
            BERANDA - DESAIN BARU
            ========================================================= */
 
-        /* ----- CAROUSEL SLIDER (1 item terlihat) ----- */
+        /* ----- CAROUSEL SLIDER (tinggi pas) ----- */
         .carousel-section {
             margin-bottom: 12px;
             position: relative;
@@ -283,6 +283,7 @@
             overflow: hidden;
             border-radius: 10px;
             position: relative;
+            height: 160px;
         }
         .carousel-wrapper::before,
         .carousel-wrapper::after {
@@ -290,36 +291,35 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 40px;
+            width: 30px;
             z-index: 2;
             pointer-events: none;
         }
         .carousel-wrapper::before {
             left: 0;
-            background: linear-gradient(to right, rgba(10, 14, 26, 0.8), transparent);
+            background: linear-gradient(to right, rgba(10, 14, 26, 0.85), transparent);
         }
         .carousel-wrapper::after {
             right: 0;
-            background: linear-gradient(to left, rgba(10, 14, 26, 0.8), transparent);
+            background: linear-gradient(to left, rgba(10, 14, 26, 0.85), transparent);
         }
         .carousel-track {
             display: flex;
             transition: transform 0.4s ease;
-            gap: 0;
+            height: 100%;
         }
         .carousel-item {
             min-width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            overflow: hidden;
+            height: 100%;
             flex-shrink: 0;
             background: linear-gradient(135deg, #1a1f3a, #2d3655);
             position: relative;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .carousel-item .content {
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -329,27 +329,27 @@
             text-align: center;
         }
         .carousel-item .content i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #f5d742;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .carousel-item .content .title {
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .carousel-item .content .sub {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #8892b0;
         }
         .carousel-dots {
             display: flex;
             justify-content: center;
-            gap: 6px;
-            padding: 8px 0;
+            gap: 5px;
+            padding: 6px 0;
         }
         .carousel-dots .dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: rgba(255,255,255,0.15);
             cursor: pointer;
@@ -357,8 +357,8 @@
         }
         .carousel-dots .dot.active {
             background: #f5d742;
-            width: 24px;
-            border-radius: 4px;
+            width: 18px;
+            border-radius: 3px;
         }
         .carousel-btn {
             position: absolute;
@@ -367,11 +367,11 @@
             background: rgba(0,0,0,0.5);
             color: #fff;
             border: none;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             z-index: 3;
             display: flex;
             align-items: center;
@@ -379,14 +379,14 @@
             transition: 0.3s;
         }
         .carousel-btn:hover { background: rgba(0,0,0,0.8); }
-        .carousel-btn.prev { left: 6px; }
-        .carousel-btn.next { right: 6px; }
+        .carousel-btn.prev { left: 4px; }
+        .carousel-btn.next { right: 4px; }
 
         /* ----- BANNER PROGRAM MITRA ----- */
         .banner-mitra {
             background: linear-gradient(135deg, #1a2a4a, #2d1b4a);
             border-radius: 10px;
-            padding: 12px 14px;
+            padding: 10px 12px;
             margin-bottom: 12px;
             border: 1px solid rgba(245, 215, 66, 0.06);
             position: relative;
@@ -409,40 +409,40 @@
             color: #f5d742;
             padding: 1px 10px;
             border-radius: 16px;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 700;
         }
         .banner-mitra .title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: #fff;
-            margin: 3px 0 1px;
+            margin: 2px 0 1px;
         }
         .banner-mitra .title span { color: #f5d742; }
         .banner-mitra .desc {
             color: #8892b0;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             margin-bottom: 4px;
         }
         .banner-mitra .stats {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             background: rgba(255,255,255,0.03);
             border-radius: 6px;
-            padding: 4px 8px;
+            padding: 3px 6px;
         }
         .banner-mitra .stats .item {
             display: flex;
             align-items: center;
             gap: 3px;
             color: #b9c4e0;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
         }
-        .banner-mitra .stats .item i { color: #f5d742; font-size: 0.55rem; }
+        .banner-mitra .stats .item i { color: #f5d742; font-size: 0.5rem; }
         .banner-mitra .stats .item strong { color: #fff; }
 
-        /* ----- FILM FAVORIT & BARU (2 kolom, no scroll) ----- */
+        /* ----- FILM (3 kolom) ----- */
         .film-section {
             margin-bottom: 12px;
         }
@@ -455,23 +455,23 @@
         }
         .film-section .header h4 {
             color: #fff;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
         }
         .film-section .header .see-all {
             color: #8892b0;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             cursor: pointer;
         }
         .film-section .header .see-all:hover { color: #f5d742; }
 
         .film-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
         }
         .film-item {
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             background: linear-gradient(135deg, #1a1f3a, #2d3655);
             position: relative;
@@ -479,7 +479,7 @@
             transition: 0.3s;
             aspect-ratio: 7/10;
         }
-        .film-item:hover { transform: scale(1.02); }
+        .film-item:hover { transform: scale(1.03); }
         .film-item .inner {
             width: 100%;
             height: 100%;
@@ -488,39 +488,41 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            padding: 8px;
+            padding: 6px;
         }
         .film-item .inner i {
-            font-size: 1.6rem;
-            margin-bottom: 6px;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
         }
         .film-item .inner .film-title {
-            font-size: 0.55rem;
+            font-size: 0.45rem;
             text-align: center;
             font-weight: 600;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            line-height: 1.2;
+            line-height: 1.1;
         }
         .film-item .inner .film-ep {
-            font-size: 0.5rem;
+            font-size: 0.4rem;
             color: #8892b0;
         }
         .film-item .badge-ep {
             position: absolute;
-            top: 4px;
-            right: 4px;
+            top: 3px;
+            right: 3px;
             background: rgba(245, 215, 66, 0.12);
             color: #f5d742;
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 0.45rem;
+            padding: 0 5px;
+            border-radius: 3px;
+            font-size: 0.4rem;
             font-weight: 600;
         }
 
-        /* ===== STATS ===== */
+        /* =========================================================
+           SEMUA FITUR LENGKAP (STATS, RABAT, Dll)
+           ========================================================= */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -539,7 +541,6 @@
         .stat-card .value.green { color: #4ecdc4; }
         .stat-card .value.purple { color: #a78bfa; }
 
-        /* ===== RABAT ===== */
         .rabat-section {
             background: rgba(255,255,255,0.02);
             border-radius: 8px;
@@ -564,7 +565,6 @@
         .rabat-item .persen { color: #fff; font-size: 0.75rem; font-weight: 700; }
         .rabat-item .persen.highlight { color: #f5d742; }
 
-        /* ===== TABEL RIWAYAT ===== */
         .table-wrap { overflow-x: auto; margin-top: 6px; }
         .table-wrap table { width: 100%; border-collapse: collapse; min-width: 260px; }
         .table-wrap th {
@@ -580,7 +580,7 @@
         .table-wrap td { padding: 4px 4px 4px 0; border-bottom: 1px solid rgba(255,255,255,0.03); color: #d6e0ff; font-size: 0.6rem; }
 
         /* =========================================================
-           HALAMAN LAIN
+           HALAMAN LAIN (Dracin, Referral, Reward, Deposit, Withdraw, Akun, Admin)
            ========================================================= */
         .video-section {
             background: rgba(255,255,255,0.02);
@@ -690,7 +690,6 @@
             font-weight: 600;
         }
 
-        /* ===== FORM ===== */
         .form-group { margin-bottom: 6px; }
         .form-group label { color: #b9c4e0; font-size: 0.6rem; font-weight: 500; display: block; margin-bottom: 2px; }
         .form-group input, .form-group textarea, .form-group select {
@@ -710,7 +709,6 @@
         }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
-        /* ===== ADMIN ===== */
         .admin-settings { display: grid; grid-template-columns: 1fr; gap: 8px; }
         .admin-settings .setting-group {
             background: rgba(255,255,255,0.02);
@@ -850,9 +848,10 @@
            RESPONSIVE
            ========================================================= */
         @media (max-width: 480px) {
-            .carousel-item { height: 170px; }
-            .carousel-item .content i { font-size: 2rem; }
-            .carousel-item .content .title { font-size: 0.7rem; }
+            .carousel-wrapper { height: 140px; }
+            .carousel-item .content i { font-size: 1.6rem; }
+            .carousel-item .content .title { font-size: 0.65rem; }
+            .carousel-item .content .sub { font-size: 0.5rem; }
             .bottom-nav .nav-btn { min-width: 36px; padding: 2px 4px; }
             .bottom-nav .nav-btn i { font-size: 0.85rem; }
             .bottom-nav .nav-btn .nav-label { font-size: 0.35rem; }
@@ -868,31 +867,33 @@
             .video-card .video-title { font-size: 0.45rem; min-height: 16px; }
             .video-card .thumbnail { font-size: 1rem; }
             .video-card .thumbnail .play-overlay { width: 18px; height: 18px; font-size: 0.5rem; }
-            .banner-mitra { padding: 10px 12px; }
-            .banner-mitra .title { font-size: 0.85rem; }
-            .banner-mitra .stats .item { font-size: 0.5rem; }
-            .carousel-btn { width: 24px; height: 24px; font-size: 0.6rem; }
+            .banner-mitra { padding: 8px 10px; }
+            .banner-mitra .title { font-size: 0.8rem; }
+            .banner-mitra .stats .item { font-size: 0.45rem; }
+            .carousel-btn { width: 20px; height: 20px; font-size: 0.5rem; }
             .form-row { grid-template-columns: 1fr; }
             .admin-settings { grid-template-columns: 1fr; }
             .toast { font-size: 0.7rem; padding: 10px 16px; bottom: 70px; }
             .rabat-grid { grid-template-columns: repeat(5, 1fr); gap: 2px; }
             .rabat-item .persen { font-size: 0.65rem; }
-            .film-item .inner i { font-size: 1.3rem; }
-            .film-item .inner .film-title { font-size: 0.5rem; }
+            .film-item .inner i { font-size: 1rem; }
+            .film-item .inner .film-title { font-size: 0.4rem; }
+            .film-grid { gap: 4px; }
         }
 
         @media (max-width: 380px) {
-            .carousel-item { height: 140px; }
-            .carousel-item .content i { font-size: 1.6rem; }
-            .carousel-item .content .title { font-size: 0.6rem; }
+            .carousel-wrapper { height: 120px; }
+            .carousel-item .content i { font-size: 1.3rem; }
+            .carousel-item .content .title { font-size: 0.55rem; }
             .stats-grid { gap: 3px; }
             .stat-card { padding: 3px 4px; }
             .stat-card .value { font-size: 0.65rem; }
             .video-grid { gap: 3px; }
             .video-card { padding: 3px; }
             .video-card .video-title { font-size: 0.4rem; min-height: 14px; }
-            .film-item .inner i { font-size: 1rem; }
-            .film-item .inner .film-title { font-size: 0.4rem; }
+            .film-item .inner i { font-size: 0.8rem; }
+            .film-item .inner .film-title { font-size: 0.35rem; }
+            .film-grid { gap: 3px; }
         }
     </style>
 </head>
@@ -982,7 +983,7 @@
         <!-- ========================================================= -->
         <div id="pageDashboard" class="page active">
             
-            <!-- CAROUSEL SLIDER (1 item terlihat) -->
+            <!-- CAROUSEL SLIDER (tinggi pas 160px) -->
             <div class="carousel-section">
                 <div class="carousel-wrapper">
                     <div class="carousel-track" id="carouselTrack">
@@ -1006,7 +1007,7 @@
                 </div>
             </div>
 
-            <!-- FILM FAVORIT (2 kolom) -->
+            <!-- FILM FAVORIT (3 kolom) -->
             <div class="film-section">
                 <div class="header">
                     <h4>⭐ Favorit</h4>
@@ -1017,7 +1018,7 @@
                 </div>
             </div>
 
-            <!-- FILM BARU (2 kolom) -->
+            <!-- FILM BARU (3 kolom) -->
             <div class="film-section">
                 <div class="header">
                     <h4>🔥 Baru</h4>
@@ -1028,7 +1029,7 @@
                 </div>
             </div>
 
-            <!-- STATS -->
+            <!-- STATS (Lengkap) -->
             <div class="stats-grid">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="mTotalSaldo">Rp 0</div></div>
                 <div class="stat-card"><div class="label">Bonus Nonton</div><div class="value" id="mBonusNonton">Rp 0</div></div>
@@ -1063,7 +1064,7 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- PAGE LAINNYA -->
+        <!-- PAGE: DRACIN -->
         <!-- ========================================================= -->
         <div id="pageDracin" class="page">
             <div class="video-section">
@@ -1078,6 +1079,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: REFERRAL -->
+        <!-- ========================================================= -->
         <div id="pageReferral" class="page">
             <div style="display:flex; flex-wrap:wrap; gap:4px; align-items:center; margin-bottom:8px;">
                 <div style="background:rgba(255,255,255,0.03); padding:4px 10px; border-radius:6px; border:1px solid rgba(255,255,255,0.04); flex:1;">
@@ -1102,6 +1106,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: REWARD -->
+        <!-- ========================================================= -->
         <div id="pageReward" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
                 <div class="stat-card"><div class="label">Level</div><div class="value highlight" id="rwLevel">1</div></div>
@@ -1127,6 +1134,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: DEPOSIT -->
+        <!-- ========================================================= -->
         <div id="pageDeposit" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="dSaldo">Rp 0</div></div>
@@ -1192,6 +1202,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: WITHDRAW -->
+        <!-- ========================================================= -->
         <div id="pageWithdraw" class="page">
             <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
                 <div class="stat-card"><div class="label">Saldo</div><div class="value highlight" id="wSaldo">Rp 0</div></div>
@@ -1235,6 +1248,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: AKUN -->
+        <!-- ========================================================= -->
         <div id="pageAkun" class="page">
             <div style="background:rgba(255,255,255,0.02); border-radius:8px; padding:10px; border:1px solid rgba(255,255,255,0.04); margin-bottom:8px;">
                 <h4 style="color:#f5d742; font-size:0.75rem; margin-bottom:6px;"><i class="fas fa-user-circle"></i> Profil Saya</h4>
@@ -1278,6 +1294,9 @@
             </div>
         </div>
 
+        <!-- ========================================================= -->
+        <!-- PAGE: ADMIN -->
+        <!-- ========================================================= -->
         <div id="pageAdmin" class="page">
             <h3 style="color:#f5d742; margin-bottom:8px; font-size:0.9rem;"><i class="fas fa-crown"></i> Admin Dashboard</h3>
             <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr;">
@@ -1400,7 +1419,7 @@
 
     <script>
         // =========================================================
-        // DATA - LOCAL STORAGE (SEMUA FITUR TETAP)
+        // DATA - LOCAL STORAGE (SEMUA FITUR LENGKAP)
         // =========================================================
         let currentUser = null;
         let users = [];
@@ -1598,7 +1617,7 @@
         })();
 
         // =========================================================
-        // CAROUSEL (1 item terlihat)
+        // CAROUSEL
         // =========================================================
         function renderCarousel() {
             const track = document.getElementById('carouselTrack');
@@ -1640,7 +1659,7 @@
         }
 
         // =========================================================
-        // FILMS (2 kolom)
+        // FILMS (3 kolom)
         // =========================================================
         function renderFilms() {
             const favGrid = document.getElementById('favoriteGrid');
